@@ -1,0 +1,19 @@
+.menu{
+	display:flex;
+	flex-direction:column;
+	height:100%;
+}
+.menu-link{
+		text-decoration: none;
+	margin:0 1.5rem 0 0;
+	color:black;
+	min-width:5rem;
+	
+	
+	/* display: flex;
+	align-items:center;
+	justify-content: center; */
+	
+	
+	padding:0 1rem;
+}

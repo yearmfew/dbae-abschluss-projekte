@@ -1,0 +1,13 @@
+.page-container{
+	display:flex;
+	flex-direction:row;
+	height: 95vh;
+	margin:0;
+}
+
+.page-container-menu{
+	width:20%;
+}
+.page-container-content{
+	width:80%;
+}

@@ -1,6 +1,7 @@
-package Dozent;
-import Seminar.Seminar;
+package dozent;
 import java.util.ArrayList;
+
+import seminar.Seminar;
 public class Dozent {
 
 	private int id;

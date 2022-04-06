@@ -1,6 +1,7 @@
-package Student;
-import Seminar.Seminar;
+package student;
 import java.util.ArrayList;
+
+import seminar.Seminar;
 public class Student {
 	private int id;
 	private String vorname;

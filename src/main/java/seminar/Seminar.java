@@ -1,6 +1,6 @@
-package Seminar;
-import Dozent.Dozent;
-import Student.Student;
+package seminar;
+import dozent.Dozent;
+import student.Student;
 public class Seminar {
 
 	private int id;

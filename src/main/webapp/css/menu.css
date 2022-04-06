@@ -2,18 +2,27 @@
 	display:flex;
 	flex-direction:column;
 	height:100%;
+	justify-content: flex-start;
+	background-color:#cecece;
 }
-.menu-link{
-		text-decoration: none;
-	margin:0 1.5rem 0 0;
+
+
+.menu-item{
+	text-decoration: none;
 	color:black;
-	min-width:5rem;
-	
-	
-	/* display: flex;
-	align-items:center;
-	justify-content: center; */
-	
-	
+	min-width:3rem;
 	padding:0 1rem;
+	background-color:#cecece;
+	color:white;
+	height:3rem;
+	display:flex;
+	align-items:center;
+}
+.menu-item:hover{
+	background-color:#9d9d9d;
+	color:white;
+}
+
+.logoutButton{
+	justify-self: flex-end;
 }

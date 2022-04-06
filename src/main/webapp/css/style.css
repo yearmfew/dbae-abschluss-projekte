@@ -1,13 +1,32 @@
-.page-container{
-	display:flex;
-	flex-direction:row;
+.page-container {
+	display: flex;
+	flex-direction: row;
 	height: 95vh;
-	margin:0;
+	margin: 0;
 }
 
-.page-container-menu{
-	width:20%;
+.page-containerMenu {
+	width: 15%;
 }
-.page-container-content{
-	width:80%;
+
+.page-containerContent {
+	width: 85%;
+	padding: 1rem;
 }
+
+/*
+Seminar page Css
+*/
+.seminarDetailsTable {
+	width: 50% !important;
+}
+.seminarPageContent{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+
+	gap:3rem;
+	height:100%;
+} /*
+! Seminar page Css
+*/

@@ -5,9 +5,10 @@
 	margin:0;
 }
 
-.page-container-menu{
-	width:20%;
+.page-containerMenu{
+	width:15%;
 }
-.page-container-content{
-	width:80%;
+.page-containerContent{
+	width:85%;
+	padding:1rem;
 }

@@ -1,10 +1,6 @@
-
-
-<ul class="menu">
-  <li class="menu-item">
-    <a class="menu-link active" href="#">Login</a>
-  </li>
-  <li class="menu-item">
-    <a class="menu-link" href="#">Registrierung</a>
-  </li>
-</ul>
+<div class="menu">
+	<div class="menu-items">
+    	<a class="menu-item" href="login.jsp">Login</a>
+    	<a class="menu-item" href="registration.jsp">Registrierung</a>
+	</div>
+</div>

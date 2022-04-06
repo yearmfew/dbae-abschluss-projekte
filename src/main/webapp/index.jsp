@@ -1,9 +1,9 @@
  <jsp:include page = "shared/header.jsp" />
-  <div class="page-container-menu">
+  <div class="page-containerMenu">
  
  <jsp:include page = "shared/menu-loggedout.jsp" />
  </div>
- <div class=" page-container-content ">
+ <div class=" page-containerContent ">
  
 
 <h1>hello again includeed</h1>

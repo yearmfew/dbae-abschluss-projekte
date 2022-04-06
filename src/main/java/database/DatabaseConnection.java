@@ -10,10 +10,10 @@ import java.sql.SQLException;
 public class DatabaseConnection {
 	
 	protected static Connection con;
-	private static final String DB_SERVER = "207.154.234.136:5432";
+	private static final String DB_SERVER = "+++";
 	private static final String DB_NAME = "2022-Seminarplaner-BYAS";
 	private static final String DB_USER = "2022-Seminarplaner-BYAS";
-	private static final String DB_PASSWORD = "bf2eb761d40672c33dbf02da9ab62837";
+	private static final String DB_PASSWORD = "+++";
 	private static final String DB_DRIVER = "org.postgresql.Driver";
 	private static final String DB_URL = "jdbc:postgresql://" + DB_SERVER + "/" + DB_NAME;
 

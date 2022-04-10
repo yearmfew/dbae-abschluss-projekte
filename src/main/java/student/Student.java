@@ -8,6 +8,7 @@ public class Student {
 	private String nachname;
 	private String matrikelnummer;
 	private String email;
+	private String passwort;
 	private String studiengang;
 	private String abschluss;
 	private String seminarthema;
@@ -25,17 +26,19 @@ public class Student {
 	}
 	
 	
-	public Student(String vorname, String nachname, String email, String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+	public Student(String vorname, String nachname, String email, String passwort, String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
 		super();
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;
+		this.passwort = passwort;
 		this.matrikelnummer = matrikelnummer;
 		this.studiengang = studiengang;
 		this.seminar = seminar;
 		this.abschluss = abschluss;
 		this.seminarthema = seminarthema;
 	}
+	
 	
 	public int getId() {
 		return id;
@@ -80,5 +83,8 @@ public class Student {
 		this.beteiligteSeminaren = beteiligteSeminaren;
 	}
 	
+	public String getPasswort() {
+		return passwort;
+	}
 	
 }

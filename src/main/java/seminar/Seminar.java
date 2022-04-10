@@ -7,6 +7,7 @@ public class Seminar {
 	private String titel;
 	private Dozent dozent;
 	private String oberbegriff;
+	private String theme;
 	private String beschreibung;
 	private Student zugewissenerStudent;
 	private String semester;
@@ -14,6 +15,18 @@ public class Seminar {
 	
 	
 	
+	public Seminar(int id, String titel, String oberbegriff, String beschreibung, String theme,
+			 String semester, boolean status) {
+		super();
+		this.id = id;
+		this.titel = titel;
+		this.oberbegriff = oberbegriff;
+		this.theme = theme;
+		this.beschreibung = beschreibung;
+		this.semester = semester;
+		this.status = status;
+		
+	}
 	
 	
 	public Seminar(int id, String titel, Dozent dozent, String oberbegriff, String beschreibung,
@@ -28,6 +41,7 @@ public class Seminar {
 		this.semester = semester;
 		this.status = status;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -52,6 +66,18 @@ public class Seminar {
 	public void setOberbegriff(String oberbegriff) {
 		this.oberbegriff = oberbegriff;
 	}
+	
+	
+	public String getTheme() {
+		return theme;
+	}
+
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
+
 	public String getBeschreibung() {
 		return beschreibung;
 	}

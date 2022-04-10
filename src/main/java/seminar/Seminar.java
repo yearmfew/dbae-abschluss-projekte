@@ -96,10 +96,12 @@ public class Seminar {
 	public void setSemester(String semester) {
 		this.semester = semester;
 	}
-	public boolean isStatus() {
-		return status;
+	public String isStatus() {
+		if(status == true) return "belegt";
+		return "frei";
 	}
 	public void setStatus(boolean status) {
+		
 		this.status = status;
 	}
 }

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import seminar.Seminar;
 public class Student {
-	// private int id;
+	private int id;
 	private String vorname;
 	private String nachname;
 	private String matrikelnummer;
@@ -15,6 +15,14 @@ public class Student {
 	private ArrayList<Seminar> beteiligteSeminaren;
 	
 	
+	
+	public Student(int id, String vorname, String nachname) {
+		super();
+		this.id = id;
+		this.vorname = vorname;
+		this.nachname = nachname;
+		
+	}
 	
 	
 	public Student(String vorname, String nachname, String email, String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
@@ -28,13 +36,13 @@ public class Student {
 		this.abschluss = abschluss;
 		this.seminarthema = seminarthema;
 	}
-	/*
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	} */
+	}
 	
 	public String getSeminar() {
 		return seminar;

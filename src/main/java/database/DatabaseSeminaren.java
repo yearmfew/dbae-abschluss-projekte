@@ -101,12 +101,8 @@ public class DatabaseSeminaren {
 
 	public static boolean updateSeminar(Seminar seminar) {
 		boolean erfolg = false;
-		System.out.println(seminar.getDozentId());
+		System.out.println(seminar.getBeschreibung());
 		try {
-			// PreparedStatement pstmt = con.prepareStatement("UPDATE student SET vorname = ?, nachname = ? , email = ?, "
-               //      + " matrikelnummer = ?, seminar = ?, studiengang = ?, abschluss = ?, seminarthema = ? WHERE id = ? ");
-			
-			// titel, dozentId, thema, oberbegriff, beschreibung, semester
 			con = DatabaseConnection.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(
 					"UPDATE seminar SET id = ?, titel = ?, dozent_id = ?, thema = ?, oberbegriff = ?, beschreibung = ?, semester = ? WHERE id = ? ");
@@ -121,7 +117,6 @@ public class DatabaseSeminaren {
 			int zeilen = pstmt.executeUpdate();
 
 			if (zeilen > 0) {
-				System.out.println("oldu..");
 				erfolg = true;
 			}
 

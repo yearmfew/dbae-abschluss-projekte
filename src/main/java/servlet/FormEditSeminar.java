@@ -45,22 +45,24 @@ public class FormEditSeminar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 		HttpSession session = request.getSession();
 		Seminar seminar = (Seminar) session.getAttribute("seminar");
-		System.out.println("hello..");
+
 		String titel = seminar.getTitel();
 		String thema = seminar.getThema();
 		String oberbegriff = seminar.getOberbegriff();
 		String beschreibung = seminar.getBeschreibung();
 		String semester = seminar.getSemester();
 		int dozentId = seminar.getDozent().getId();
-
-		if(request.getParameter("titel") !=null) titel = request.getParameter("titel");
-		if(request.getParameter("thema") !=null) thema = request.getParameter("thema");
-		if(request.getParameter("oberbegriff") !=null) oberbegriff = request.getParameter("oberbegriff");
-		if(request.getParameter("beschreibung") !=null) beschreibung = request.getParameter("beschreibung");
-		if(request.getParameter("semester") !=null) semester = request.getParameter("semester");
-		if(request.getParameter("dozentId") != null) dozentId = Integer.parseInt(request.getParameter("dozentId"));
+		
+		
+		if(request.getParameter("titel") !="") titel = request.getParameter("titel");
+		if(request.getParameter("thema") !="") thema = request.getParameter("thema");
+		if(request.getParameter("oberbegriff") !="") oberbegriff = request.getParameter("oberbegriff");
+		if(request.getParameter("beschreibung") !="") beschreibung = request.getParameter("beschreibung");
+		if(request.getParameter("semester") !="") semester = request.getParameter("semester");
+		if(request.getParameter("dozentId") != "") dozentId = Integer.parseInt(request.getParameter("dozentId"));
 
 		
 		checkFormEditSeminarData cF = new checkFormEditSeminarData();
@@ -74,7 +76,7 @@ public class FormEditSeminar extends HttpServlet {
 			boolean erfolg = database.DatabaseSeminaren.updateSeminar(updatedSeminer);
 			if(erfolg) {
 				session.setAttribute("seminar", updatedSeminer);
-				request.getRequestDispatcher("editSeminar.jsp").forward(request, response);	
+				request.getRequestDispatcher("initSeminaren").forward(request, response);	
 			}
 	//	} else {
 			// fehler erklarungen erstellung mit for loop

@@ -22,9 +22,6 @@ public class ProfilePage extends HttpServlet {
 		HttpSession session = request.getSession();
 		// int id = student.getId();
 		Student student = database.DatabaseProfilePage.getStudentData(0); // erstmal null
-		
-		
-
 	    
 		session.setAttribute("student", student);
 

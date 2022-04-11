@@ -16,8 +16,7 @@
 		<h3>Profil bearbeiten:</h3>
 
 		<form class="form-horizontal" role="form">
-
-
+			
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Vorname:</label>
 				<div class="col-lg-8">
@@ -27,52 +26,53 @@
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Nachname</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" value="${ nachname } ">
+					<input class="form-control" type="text"  name="nachname" placeholder="${ nachname } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Matrikelnummer</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text"
-						value="${ matrikelnummer } ">
+					<input class="form-control" type="text" name="matrikelnummer"
+						placeholder="${ matrikelnummer } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Email</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="email" value="${ email } ">
+					<input class="form-control" type="email" name="email" placeholder="${ email } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Studiengang</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" value="${ studiengang } ">
+					<input class="form-control" type="text" name="studiengang" placeholder="${ studiengang } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Seminar</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" value="${ seminar } ">
+					<input class="form-control" type="text" name="seminar" placeholder="${ seminar } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Abschluss</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" value="${ abschluss } ">
+					<input class="form-control" type="text" name="abschluss" placeholder="${ abschluss } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Seminarthema:</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" value="${ seminarthema }">
+					<input class="form-control" type="text" name="seminarthema" placeholder="${ seminarthema }">
 				</div>
+				
 			</div>
 			
 	<div class="form-inputs">
 			<div>
 			<h5>Geben Sie ihr Passwort ein um die Änderungen zu bestätigen.</h5>
 				<label for="passwort" class="form-label">Passwort:</label> <input type="text"
-					required class="form-control" name="passwort" id=""
+					 required class="form-control" name="passwort" id=""
 					value=${ passwort }>
 
 			</div>

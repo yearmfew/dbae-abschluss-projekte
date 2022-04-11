@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.DatabaseKunde;
-import database.DatabasePassword;
-import kunde.Kunde;
 import seminar.Seminar;
 import validierung.checkFormEditSeminarData;
 
@@ -50,6 +47,7 @@ public class FormEditSeminar extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		Seminar seminar = (Seminar) session.getAttribute("seminar");
+		System.out.println("hello..");
 		String titel = seminar.getTitel();
 		String thema = seminar.getThema();
 		String oberbegriff = seminar.getOberbegriff();
@@ -69,16 +67,21 @@ public class FormEditSeminar extends HttpServlet {
 
 		Map result = cF.checkForm(titel, dozentId, thema, oberbegriff, beschreibung, semester);
 		
-		if (result.size() == 0) {
+	//	if (true) {
 			// update here seminar table
-
-			request.getRequestDispatcher("konto.jsp").forward(request, response);
-		} else {
-			// fehler erklarungen erstellung mit for loop
-			for (Object i : result.keySet()) {
-				request.setAttribute((String) i, (String) result.get(i));
+			Seminar updatedSeminer = new Seminar(seminar.getId(), titel, dozentId, oberbegriff, beschreibung, thema, semester, seminar.getStatus());
+			
+			boolean erfolg = database.DatabaseSeminaren.updateSeminar(updatedSeminer);
+			if(erfolg) {
+				session.setAttribute("seminar", updatedSeminer);
+				request.getRequestDispatcher("editSeminar.jsp").forward(request, response);	
 			}
-		
+	//	} else {
+			// fehler erklarungen erstellung mit for loop
+			//for (Object i : result.keySet()) {
+			//	request.setAttribute((String) i, (String) result.get(i));
+			// }
+	//	}
 		
 		// update seminar table..
 

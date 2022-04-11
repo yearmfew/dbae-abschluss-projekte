@@ -7,7 +7,7 @@ public class Seminar {
 	private String titel;
 	private Dozent dozent;
 	private String oberbegriff;
-	private String theme;
+	private String thema;
 	private String beschreibung;
 	private Student zugewissenerStudent;
 	private String semester;
@@ -15,13 +15,13 @@ public class Seminar {
 	
 	
 	
-	public Seminar(int id, String titel, String oberbegriff, String beschreibung, String theme,
+	public Seminar(int id, String titel, String oberbegriff, String beschreibung, String thema,
 			 String semester, boolean status) {
 		super();
 		this.id = id;
 		this.titel = titel;
 		this.oberbegriff = oberbegriff;
-		this.theme = theme;
+		this.thema = thema;
 		this.beschreibung = beschreibung;
 		this.semester = semester;
 		this.status = status;
@@ -68,13 +68,13 @@ public class Seminar {
 	}
 	
 	
-	public String getTheme() {
-		return theme;
+	public String getThema() {
+		return thema;
 	}
 
 
-	public void setTheme(String theme) {
-		this.theme = theme;
+	public void setThema(String thema) {
+		this.thema = thema;
 	}
 
 
@@ -99,6 +99,9 @@ public class Seminar {
 	public String isStatus() {
 		if(status == true) return "belegt";
 		return "frei";
+	}
+	public boolean getStatus() {
+		return status;
 	}
 	public void setStatus(boolean status) {
 		

@@ -28,17 +28,31 @@
 				</thead>
 				<c:forEach var="seminar" items="${ sessionScope.seminaren }">
 					<tr>
-						<td class="seminarTitle" >${seminar.getTitel()}</td>
-						<td>${seminar.getDozent().getTitel()} ${seminar.getDozent().getVorname()} ${seminar.getDozent().getNachname()}</td>
-						<td class="thema">${seminar.getTheme()}</td>
+						<td class="seminarTitle">${seminar.getTitel()}</td>
+						<td>${seminar.getDozent().getTitel()}
+							${seminar.getDozent().getVorname()}
+							${seminar.getDozent().getNachname()}</td>
+						<td class="thema">${seminar.getThema()}</td>
 						<td>${seminar.isStatus()}</td>
 						<td>${seminar.getSemester()}</td>
-						<td>Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+						<td>
+						<!-- 
+						 	<button onclick="toEditSeminar(${seminar.getId()})">
+								Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							</button>
+						 -->
+							<a href="editSeminar?method=editSeminar&seminarId=${seminar.getId()}">
+								Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						</a>
+							
+
+						</td>
 						<td>Belegen <i class="fa fa-sign-in" aria-hidden="true"></td>
-						<td class="seminarDetails" ><a
-							href="toSeminarDetails?method=toSeminarDetails&seminarId=${seminar.getId()}">
+						<td class="seminarDetails">
+						<a href="toSeminarDetails?method=toSeminarDetails&seminarId=${seminar.getId()}">
 								Details ansehen <i class="fa fa-info-circle" aria-hidden="true"></i>
-						</a></td>
+						</a>
+						</td>
 
 
 					</tr>
@@ -51,7 +65,6 @@
 
 		</div>
 	</div>
-
 
 
 	<jsp:include page="shared/footer.jsp" />

@@ -3,7 +3,7 @@
 
 <div class="page-container-menu">
 
-	<jsp:include page="shared/menu-loggedout.jsp" />
+	<jsp:include page="shared/menu-loggedin.jsp" />
 </div>
 <div class=" page-container-content ">
 
@@ -20,7 +20,7 @@
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Vorname:</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" name="vorname" placeholder="${ vorname } ">
+					<input class="form-control" type="text" name="vorname" placeholder="${ sessionScope.student.getVorname() } ">
 				</div>
 			</div>
 			<div class="form-group">

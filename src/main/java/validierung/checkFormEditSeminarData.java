@@ -19,8 +19,7 @@ public class checkFormEditSeminarData {
 	 * 
 	 */
 	public Map checkForm(String titel, int dozentId, String thema, 
-			 String oberbegriff, String beschreibung, 
-			String semester ) {
+			 String oberbegriff, String beschreibung, String semester ) {
 		Validierung validierung = new Validierung();
 		boolean titelCheck = validierung.textFelderCheck(titel);
 		boolean themaCheck = validierung.textFelderCheck(thema);

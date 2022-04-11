@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import database.DatabaseKunde;
+import database.DatabasePassword;
+import kunde.Kunde;
 import seminar.Seminar;
 import validierung.checkFormEditSeminarData;
 
@@ -20,19 +23,21 @@ import validierung.checkFormEditSeminarData;
 @WebServlet("/FormEditSeminar")
 public class FormEditSeminar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FormEditSeminar() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public FormEditSeminar() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -50,22 +55,32 @@ public class FormEditSeminar extends HttpServlet {
 		String oberbegriff = seminar.getOberbegriff();
 		String beschreibung = seminar.getBeschreibung();
 		String semester = seminar.getSemester();
-		// hole dozent id und update database..... 
-		// int dozentId = 
+		int dozentId = seminar.getDozent().getId();
 
-		int dozentId = 0;
 		if(request.getParameter("titel") !=null) titel = request.getParameter("titel");
 		if(request.getParameter("thema") !=null) thema = request.getParameter("thema");
 		if(request.getParameter("oberbegriff") !=null) oberbegriff = request.getParameter("oberbegriff");
 		if(request.getParameter("beschreibung") !=null) beschreibung = request.getParameter("beschreibung");
 		if(request.getParameter("semester") !=null) semester = request.getParameter("semester");
-		
 		if(request.getParameter("dozentId") != null) dozentId = Integer.parseInt(request.getParameter("dozentId"));
 
 		
 		checkFormEditSeminarData cF = new checkFormEditSeminarData();
 
 		Map result = cF.checkForm(titel, dozentId, thema, oberbegriff, beschreibung, semester);
+		
+		if (result.size() == 0) {
+			// update here seminar table
+
+			request.getRequestDispatcher("konto.jsp").forward(request, response);
+		} else {
+			// fehler erklarungen erstellung mit for loop
+			for (Object i : result.keySet()) {
+				request.setAttribute((String) i, (String) result.get(i));
+			}
+		
+		
+		// update seminar table..
 
 	}
 

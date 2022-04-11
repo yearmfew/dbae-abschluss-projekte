@@ -15,8 +15,7 @@ public class DatabaseStudent {
 		try {
 			con = DatabaseConnection.getConnection();
 
-			PreparedStatement pstmt = con.prepareStatement("INSERT INTO student VALUES (" + "?, " + // id - int
-					"?, " + // vorname - String
+			PreparedStatement pstmt = con.prepareStatement("INSERT INTO student (vorname, nachname, email, matrikelnummer, seminar, studiengang, abschluss, seminarthema) VALUES (" + "?, " + /// vorname - String
 					"?, " + // nachname - String
 					"?, " + // mail - String
 					"?, " + // Matrikelnummer - String
@@ -25,15 +24,15 @@ public class DatabaseStudent {
 					"?, " + // Abschluss - String
 					"?" + // Semniarthema - String
 					")");
-			pstmt.setInt(1, student.getId());
-			pstmt.setString(2, student.getVorname());
-			pstmt.setString(3, student.getNachname());
-			pstmt.setString(4, student.getMail());
-			pstmt.setString(5, student.getMatrikelnummer());
-			pstmt.setString(6, student.getSeminar());
-			pstmt.setString(7, student.getStudiengang());
-			pstmt.setString(8, student.getAbschluss());
-			pstmt.setString(9, student.getSeminarthema());
+			
+			pstmt.setString(1, student.getVorname());
+			pstmt.setString(2, student.getNachname());
+			pstmt.setString(3, student.getMail());
+			pstmt.setString(4, student.getMatrikelnummer());
+			pstmt.setString(5, student.getSeminar());
+			pstmt.setString(6, student.getStudiengang());
+			pstmt.setString(7, student.getAbschluss());
+			pstmt.setString(8, student.getSeminarthema());
 			int zeilen = pstmt.executeUpdate();
 			if (zeilen > 0) {
 				erfolg = true;

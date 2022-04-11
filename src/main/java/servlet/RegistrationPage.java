@@ -49,14 +49,16 @@ public class RegistrationPage extends HttpServlet {
 
 		ArrayList<Student> sessionStudenten = (ArrayList<Student>) session.getAttribute("studenten");
 
-		Student newStudent = new Student(vorname, nachname, email, password, matrikelnummer, studiengang, seminar, abschluss,
+		Student newStudent = new Student(vorname, nachname, email, matrikelnummer, studiengang, seminar, abschluss,
 				seminarthema);
 		studenten.add(newStudent);
-
+		
 		session.setAttribute("studenten", studenten);
 
 		boolean isEmailExist = DatabaseStudent.isEmailExist(email);
-
+		
+		// muss alles in checkforma data weil ich das auch bei profil bearbeiten brauche
+		
 		Map<String, String> result = new HashMap<String, String>();
 		// prüfe im formular ob die formatbedingungen nach regex passen
 		if (RegEx.pruefeEmail(email)) {// email prüfen else error

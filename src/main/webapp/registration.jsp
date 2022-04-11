@@ -99,6 +99,7 @@
 			<div class="form-buttons">
 				<button type="submit" class="btn btn-primary">Registrieren</button>
 			</div>
+			</div>
 	</form>
 
 

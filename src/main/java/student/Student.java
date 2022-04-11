@@ -26,12 +26,11 @@ public class Student {
 	}
 	
 	
-	public Student(String vorname, String nachname, String email, String passwort, String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+	public Student(String vorname, String nachname, String email,  String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
 		super();
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;
-		this.passwort = passwort;
 		this.matrikelnummer = matrikelnummer;
 		this.studiengang = studiengang;
 		this.seminar = seminar;
@@ -70,6 +69,56 @@ public class Student {
 		return nachname;
 	}
 	
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+
+
+	public void setNachname(String nachname) {
+		this.nachname = nachname;
+	}
+
+
+	public void setMatrikelnummer(String matrikelnummer) {
+		this.matrikelnummer = matrikelnummer;
+	}
+
+
+	public void setStudiengang(String studiengang) {
+		this.studiengang = studiengang;
+	}
+
+
+	public void setAbschluss(String abschluss) {
+		this.abschluss = abschluss;
+	}
+
+
+	public void setSeminarthema(String seminarthema) {
+		this.seminarthema = seminarthema;
+	}
+
+
+	public void setSeminar(String seminar) {
+		this.seminar = seminar;
+	}
+
+
 	public String getMail() {
 		return email;
 	}

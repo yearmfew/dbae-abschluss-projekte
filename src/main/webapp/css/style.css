@@ -18,15 +18,28 @@
 Seminar page Css
 */
 .seminarDetailsTable {
-	width: 50% !important;
+	width: 95% !important;
 }
-.seminarPageContent{
-	display:flex;
-	flex-direction:column;
-	align-items:center;
 
-	gap:3rem;
-	height:100%;
+.seminarDetailsTable .description, .thema {
+	max-width: 15rem;
+	text-align: justify;
+}
+
+.seminarDetailsTable  .seminarTitle {
+	min-width: 6rem;
+}
+
+.seminarDetailsTable .seminarDetails a {
+	color: black;
+}
+
+.seminarPageContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3rem;
+	height: 100%;
 } /*
 ! Seminar page Css
 */

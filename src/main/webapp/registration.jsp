@@ -41,49 +41,53 @@
 					${ error } </span>
 
 				<div>Belegtes Seminar:</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="iis"
-						name="iis" id="iis"> <label class="form-check-label"
-						for="defaultCheck1"> iis </label>
+
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" value="iis"
+						name="seminar" id="iis"> <label class="form-check-label"
+						for="iis"> IIS </label>
 				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="wbs"
-						name="wbs" id="wbs"> <label class="form-check-label"
-						for="defaultCheck2"> wbs </label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" value="wbs"
+						name="seminar" id="wbs"> <label class="form-check-label"
+						for="wbs"> WBS </label>
 				</div>
+
+
 				<div>Studiengang:</div>
 
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="winf"
-						name="winf" value="winf"> <label class="form-check-label"
-						for="winf">WINF</label>
+					<input class="form-check-input" type="radio" id="winf"
+						name="studiengang" value="winf"> <label
+						class="form-check-label" for="winf"> WINF </label>
 				</div>
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="imit"
-						name="imit" value="imit"> <label class="form-check-label"
-						for="imit">IMIT</label>
+					<input class="form-check-input" type="radio" id="imit"
+						name="studiengang" value="imit"> <label
+						class="form-check-label" for="imit"> IMIT </label>
 				</div>
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="iim" name="iim"
-						value="iim"> <label class="form-check-label" for="iim">IIM</label>
+					<input class="form-check-input" type="radio" id="iim"
+						name="studiengang" value="iim"> <label
+						class="form-check-label" for="iim"> IIM </label>
 				</div>
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="ikue"
-						name="ikue" value="ikue"> <label class="form-check-label"
-						for="ikue">IKÜ</label>
+					<input class="form-check-input" type="radio" id="ikue"
+						name="studiengang" value="ikue"> <label
+						class="form-check-label" for="ikue"> IKÃœ </label>
 				</div>
 
 				<div>Abschluss:</div>
 
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="bachelor"
-						name="bachelor" value="bachelor"> <label
-						class="form-check-label" for="inlineCheckbox1">B.Sc</label>
+					<input class="form-check-input" type="radio" id="bachelor"
+						name="abschluss" value="bachelor"> <label
+						class="form-check-label" for="bachelor">B.Sc</label>
 				</div>
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="master"
-						name="master" value="master"> <label
-						class="form-check-label" for="inlineCheckbox2">M.Sc</label>
+					<input class="form-check-input" type="radio" id="master"
+						name="abschluss" value="master"> <label
+						class="form-check-label" for="master">M.Sc</label>
 				</div>
 				<div>
 					<label for="vorname" class="form-label">Seminarthema</label> <input
@@ -91,12 +95,12 @@
 						id="seminarthema">
 				</div>
 			</div>
+
 			<div class="form-buttons">
 				<button type="submit" class="btn btn-primary">Registrieren</button>
 			</div>
-	</div>
+			</div>
 	</form>
-
 
 
 	<jsp:include page="shared/footer.jsp" />

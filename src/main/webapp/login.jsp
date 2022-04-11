@@ -6,7 +6,7 @@
  </div>
  <div class=" page-container-content ">
  
-<form action="FormLogin" method="POST">
+<form action="LoginPage" method="POST">
   <div class="mb-3">
     <label for="email"  class="form-label">Email</label>
     <input type="email" required class="form-control" name="email" id="email">

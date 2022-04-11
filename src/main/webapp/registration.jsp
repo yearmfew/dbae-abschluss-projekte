@@ -74,7 +74,7 @@
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="ikue"
 						name="studiengang" value="ikue"> <label
-						class="form-check-label" for="ikue"> IKÜ </label>
+						class="form-check-label" for="ikue"> IKÃœ </label>
 				</div>
 
 				<div>Abschluss:</div>

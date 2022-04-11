@@ -12,40 +12,35 @@
 				<tbody>
 					<tr>
 						<th scope="row">Titel</th>
-						<td>Mark</td>
+						<td>${sessionScope.seminar.getTitel()}</td>
 					</tr>
 					<tr>
 						<th scope="row">Dozent</th>
-						<td>Jacob</td>
+						<td>${sessionScope.seminar.getDozent().getVorname()} ${sessionScope.seminar.getDozent().getNachname()}</td>
+					</tr>
+						<tr>
+						<th scope="row">Thema</th>
+						<td>${sessionScope.seminar.getTheme()}</td>
 					</tr>
 					<tr>
 						<th scope="row">Oberbegriff</th>
-						<td>Larry</td>
+						<td>${sessionScope.seminar.getOberbegriff()}</td>
 					</tr>
 					<tr>
 						<th scope="row">Beschreibung</th>
-						<td>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. Lorem Ipsum has been the industry's
-							standard dummy text ever since the 1500s, when an unknown printer
-							took a galley of type and scrambled it to make a type specimen
-							book. It has survived not only five centuries, but also the leap
-							into electronic typesetting, remaining essentially unchanged. It
-							was popularised in the 1960s with the release of Letraset sheets
-							containing Lorem Ipsum passages, and more recently with desktop
-							publishing software like Aldus PageMaker including versions of
-							Lorem Ipsum.</td>
+						<td>${sessionScope.seminar.getBeschreibung()}</td>
 					</tr>
 					<tr>
 						<th scope="row">Zugewiesener Student</th>
-						<td>Larry</td>
+						<td>${sessionScope.seminar.getZugewissenerStudent().getVorname()} ${sessionScope.seminar.getZugewissenerStudent().getNachname()}</td>
 					</tr>
 					<tr>
 						<th scope="row">Semester</th>
-						<td>Larry</td>
+						<td>${sessionScope.seminar.getSemester()}</td>
 					</tr>
 					<tr>
 						<th scope="row">Status</th>
-						<td>Larry</td>
+						<td>${sessionScope.seminar.isStatus()}</td>
 					</tr>
 				</tbody>
 			</table>

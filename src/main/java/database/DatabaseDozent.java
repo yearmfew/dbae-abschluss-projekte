@@ -46,5 +46,37 @@ public class DatabaseDozent {
 		return dozent;
 
 	}
+	
+	public static ArrayList getAllDozenten() {
+		ArrayList<Dozent> dozenten = new ArrayList <Dozent>();
+		try {
+			con = DatabaseConnection.getConnection();
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM dozent");
+					
+			ResultSet rs = pstmt.executeQuery();
+			if (rs == null) {
+				System.out.println("Es gibt keinen Dozent mit diesem Id in db.");
+			} else {
+				while (rs.next()) {
+					Dozent dozent = new Dozent(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"), rs.getString("titel"), rs.getString("email"));
+					dozenten.add(dozent);
+				}
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			System.err.println("SQL Fehler bei getKontoId" + e.toString());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("[SQL] Fehler bei getKontoId - Verbindung geschlossen");
+			}
+		}
+		
+		return dozenten;
+	}
 
 }

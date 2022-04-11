@@ -63,7 +63,8 @@ public class ProfilePage extends HttpServlet {
 		ArrayList<Student> sessionStudenten = (ArrayList<Student>) session.getAttribute("studenten");
 
 		if (passwort.equals(database.DatabaseProfilePage.getPasswort(0))) {
-			vorname = request.getParameter("vorname");
+			
+			request.getParameter("vorname");
 			nachname = request.getParameter("nachname");
 			email = request.getParameter("email");
 			matrikelnummer = request.getParameter("matrikelnummer");
@@ -71,17 +72,6 @@ public class ProfilePage extends HttpServlet {
 			seminar = request.getParameter("seminar");
 			abschluss = request.getParameter("abschluss");
 			seminarthema = request.getParameter("seminarthema"); // kann auch leer sein -> noch machen
-			
-			request.setAttribute("vorname", vorname);
-			request.setAttribute("nachname", nachname);
-			request.setAttribute("email", email);
-			request.setAttribute("matrikelnummer", matrikelnummer);
-			request.setAttribute("studiengang", studiengang);
-			request.setAttribute("seminar", seminar);
-			request.setAttribute("abschluss", abschluss);
-			request.setAttribute("seminarthema", seminarthema);
-			
-			
 			
 			Student updateStudent = new Student(vorname, nachname, email, matrikelnummer, studiengang, seminar,
 					abschluss, seminarthema);

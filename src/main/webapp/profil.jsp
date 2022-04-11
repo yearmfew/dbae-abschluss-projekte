@@ -21,7 +21,7 @@
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Vorname:</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" placeholder="${ vorname } ">
+					<input class="form-control" type="text" name="vorname" placeholder="${ vorname } ">
 				</div>
 			</div>
 			<div class="form-group">

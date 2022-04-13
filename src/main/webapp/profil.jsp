@@ -3,7 +3,7 @@
 
 <div class="page-container-menu">
 
-	<jsp:include page="shared/menu-loggedin.jsp" />
+	<jsp:include page="shared/menu.jsp" />
 </div>
 <div class=" page-container-content ">
 

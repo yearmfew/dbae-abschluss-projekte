@@ -2,7 +2,7 @@
 
 <jsp:include page="shared/header.jsp" />
 <div class="page-containerMenu">
-	<jsp:include page="shared/menu-loggedin.jsp" />
+	<jsp:include page="shared/menu.jsp" />
 </div>
 <div class=" page-containerContent ">
 	<div class="seminarPageContent">

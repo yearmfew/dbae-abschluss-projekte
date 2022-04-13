@@ -71,11 +71,19 @@ public class FormEditSeminar extends HttpServlet {
 		if (result.size() == 0) {
 			// update here seminar table
 			Seminar updatedSeminer = new Seminar(seminar.getId(), titel, dozentId, oberbegriff, beschreibung, thema, semester, seminar.getStatus());
-			boolean erfolg = database.DatabaseSeminaren.updateSeminar(updatedSeminer);
-			if(erfolg) {
+			
+			
+			try {			
+				database.DatabaseSeminaren.updateSeminar(updatedSeminer);
+			}catch(Exception updateSeminarException){
+				updateSeminarException.printStackTrace();
+				request.getRequestDispatcher("initSeminaren").forward(request, response);
+			}finally {
+				
 				session.setAttribute("seminar", updatedSeminer);
 				request.getRequestDispatcher("initSeminaren").forward(request, response);	
 			}
+			
 		} else {
 			// fehler erklarungen erstellung mit for loop
 			for (Object i : result.keySet()) {

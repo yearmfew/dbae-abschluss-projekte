@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import seminar.Seminar;
 import student.Student;
 
 /**
@@ -21,10 +23,10 @@ public class initProfil extends HttpServlet {
 			// TODO Auto-generated method stub
 			HttpSession session = request.getSession();
 
-			Student student = database.DatabaseProfilePage.getStudentData(0);
-			session.setAttribute("student", student);
+			ArrayList <Student> studenten = database.DatabaseStudent.getStudentData();
+			session.setAttribute("studenten", studenten);
 
-			request.getRequestDispatcher("profil.jsp").forward(request, response);
+			request.getRequestDispatcher("studentenProfile.jsp").forward(request, response);
 
 		}
 

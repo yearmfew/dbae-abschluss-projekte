@@ -8,7 +8,10 @@
 		<h1>Seminaren</h1>
 		<div class="seminarDetailsTable">
 			Table for seminaren ....
-
+${ sessionScope.validLogin }
+--
+${ sessionScope.student.getVorname() } --
+${ sessionScope.user.getUserType() }
 
 			<table class="table table-striped">
 

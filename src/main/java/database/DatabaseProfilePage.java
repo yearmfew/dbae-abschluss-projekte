@@ -67,7 +67,7 @@ public class DatabaseProfilePage {
 				String studiengang = rs.getString("studiengang");
 				String abschluss = rs.getString("abschluss");
 				String seminarthema = rs.getString("seminarthema");
-
+				
 				student = new Student(vorname, nachname, email, matrikelnummer, seminar, studiengang, abschluss,
 						seminarthema);
 

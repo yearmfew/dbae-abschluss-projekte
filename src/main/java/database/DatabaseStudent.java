@@ -102,7 +102,7 @@ public class DatabaseStudent {
 	}
 
 	public static Student getStudentById(int id) {
-		Student student = null;
+		Student habile = null;
 		try {
 			con = DatabaseConnection.getConnection();
 			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM student WHERE id= ?");
@@ -115,7 +115,7 @@ public class DatabaseStudent {
 					Student myStudent = new Student(rs.getInt("id"), 
 							rs.getString("vorname"), rs.getString("nachname"), rs.getString("email"),
 							rs.getString("matrikelnummer"), rs.getString("studiengang"), rs.getString("seminar"), rs.getString("abschluss"), rs.getString("seminarThema"));
-					student = myStudent;
+					return myStudent;
 				}
 			}
 
@@ -135,7 +135,7 @@ public class DatabaseStudent {
 		
 		
 		
-		return student;
+		return habile;
 
 	}
 

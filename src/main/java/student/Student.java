@@ -29,7 +29,18 @@ public class Student {
 		this.id = id;
 		this.passwort = passwort;
 	}
+	public Student( String vorname, String nachname, String email,String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+		super();
 	
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.email = email;
+		this.matrikelnummer = matrikelnummer;
+		this.studiengang = studiengang;
+		this.seminar = seminar;
+		this.abschluss = abschluss;
+		this.seminarthema = seminarthema;
+	}
 	
 	public Student( String vorname, String nachname, String email, String passwort,  String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
 		super();

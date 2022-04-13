@@ -26,7 +26,7 @@ public class DatabasePassword {
 			try {
 				con = DatabaseConnection.getConnection();
 				PreparedStatement pstmt = con
-						.prepareStatement("INSERT INTO user (passwort, email) VALUES (" + "?, " + "?" +
+						.prepareStatement("INSERT INTO users (passwort, email) VALUES (" + "?, " + "?" +
 						// "?" +
 								")");
 				// pstmt.setInt(1, student.getId());

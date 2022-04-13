@@ -44,13 +44,12 @@ ${ sessionScope.user.getUserType() }
 						<td>${seminar.isStatus()}</td>
 						<td>${seminar.getSemester()}</td>
 						<td>
-							<a href="editSeminar?method=editSeminar&seminarId=${seminar.getId()}">
-								Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-							</a>
-						</td>
-						<td><a href="belegen?method=belegen&seminarId=${seminar.getId()}">Belegen <i class="fa fa-sign-in" aria-hidden="true">	</a></td>
-
-
+							<c:if test="${!sessionScope.user.isUserStudent()}">
+                            <td><a
+                                href="editSeminar?method=editSeminar&seminarId=${seminar.getId()}">
+                                    Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a></td>
+                        </c:if>
 					</tr>
 				</c:forEach>
 

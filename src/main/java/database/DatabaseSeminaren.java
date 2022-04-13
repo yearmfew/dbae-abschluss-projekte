@@ -151,7 +151,6 @@ public class DatabaseSeminaren {
 	// UPDATE METHODS
 	public static boolean updateSeminar(Seminar seminar) {
 		boolean erfolg = false;
-		System.out.println(seminar.getBeschreibung());
 		try {
 			con = DatabaseConnection.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(

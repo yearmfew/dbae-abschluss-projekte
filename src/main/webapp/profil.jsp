@@ -3,7 +3,7 @@
 
 <div class="page-container-menu">
 
-	<jsp:include page="shared/menu-loggedout.jsp" />
+	<jsp:include page="shared/menu-loggedin.jsp" />
 </div>
 <div class=" page-container-content ">
 
@@ -18,52 +18,52 @@
 		<form class="form-horizontal" role="form">
 			
 			<div class="form-group">
-				<label class="col-lg-3 control-label">Vorname:</label>
+				<label class="col-lg-3 control-label">Vorname</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" name="vorname" placeholder="${ vorname } ">
+					<input class="form-control" type="text" name="vorname" placeholder="${ sessionScope.student.getVorname() } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Nachname</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text"  name="nachname" placeholder="${ nachname } ">
+					<input class="form-control" type="text"  name="nachname" placeholder="${ sessionScope.student.getNachname() } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Matrikelnummer</label>
 				<div class="col-lg-8">
 					<input class="form-control" type="text" name="matrikelnummer"
-						placeholder="${ matrikelnummer } ">
+						placeholder="${ sessionScope.student.getMatrikelnummer() } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Email</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="email" name="email" placeholder="${ email } ">
+					<input class="form-control" type="email" name="email" placeholder="${ sessionScope.student.getEmail() } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Studiengang</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" name="studiengang" placeholder="${ studiengang } ">
+					<input class="form-control" type="text" name="studiengang" placeholder="${ sessionScope.student.getStudiengang() } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Seminar</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" name="seminar" placeholder="${ seminar } ">
+					<input class="form-control" type="text" name="seminar" placeholder="${ sessionScope.student.getSeminar() } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Abschluss</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" name="abschluss" placeholder="${ abschluss } ">
+					<input class="form-control" type="text" name="abschluss" placeholder="${ sessionScope.student.getAbschluss() } ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-3 control-label">Seminarthema:</label>
 				<div class="col-lg-8">
-					<input class="form-control" type="text" name="seminarthema" placeholder="${ seminarthema }">
+					<input class="form-control" type="text" name="seminarthema" placeholder="${ sessionScope.student.getSeminarthema() } ">
 				</div>
 				
 			</div>

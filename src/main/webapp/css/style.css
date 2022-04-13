@@ -43,3 +43,10 @@ Seminar page Css
 } /*
 ! Seminar page Css
 */
+
+.warning{
+	display:flex;
+	justify-content: flex-end;
+	font-size:11px;
+	color:red;
+}

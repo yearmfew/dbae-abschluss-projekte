@@ -6,33 +6,43 @@ import java.sql.Connection;
 import student.Student;
 import java.sql.SQLException;
 import student.Student;
+
+import java.util.ArrayList;
+
+import dozent.Dozent;
+import seminar.Seminar;
+
 public class DatabaseStudent {
 	private static Connection con = null;
 
 	public static boolean addStudent(Student student) {
 		boolean erfolg = false;
+		System.out.println("id: " + student.getId());
 
 		try {
 			con = DatabaseConnection.getConnection();
-
-			PreparedStatement pstmt = con.prepareStatement("INSERT INTO student (vorname, nachname, email, matrikelnummer, seminar, studiengang, abschluss, seminarthema) VALUES (" + "?, " + /// vorname - String
-					"?, " + // nachname - String
-					"?, " + // mail - String
-					"?, " + // Matrikelnummer - String
-					"?, " + // Studiengang - String
-					"?, " + // belegtes Seminar - String
-					"?, " + // Abschluss - String
-					"?" + // Semniarthema - String
-					")");
-			
-			pstmt.setString(1, student.getVorname());
-			pstmt.setString(2, student.getNachname());
-			pstmt.setString(3, student.getMail());
-			pstmt.setString(4, student.getMatrikelnummer());
-			pstmt.setString(5, student.getSeminar());
-			pstmt.setString(6, student.getStudiengang());
-			pstmt.setString(7, student.getAbschluss());
-			pstmt.setString(8, student.getSeminarthema());
+			/* ) */
+			PreparedStatement pstmt = con.prepareStatement(
+					"INSERT INTO student (id, vorname, nachname, email, matrikelnummer, seminar, studiengang, abschluss, seminarthema) VALUES ("
+							+ "?, " + /// vorname - String
+							"?, " + // nachname - String
+							"?, " + // nachname - String
+							"?, " + // mail - String
+							"?, " + // Matrikelnummer - String
+							"?, " + // Studiengang - String
+							"?, " + // belegtes Seminar - String
+							"?, " + // Abschluss - String
+							"?" + // Semniarthema - String
+							")");
+			pstmt.setInt(1, student.getId());
+			pstmt.setString(2, student.getVorname());
+			pstmt.setString(3, student.getNachname());
+			pstmt.setString(4, student.getMail());
+			pstmt.setString(5, student.getMatrikelnummer());
+			pstmt.setString(6, student.getSeminar());
+			pstmt.setString(7, student.getStudiengang());
+			pstmt.setString(8, student.getAbschluss());
+			pstmt.setString(9, student.getSeminarthema());
 			int zeilen = pstmt.executeUpdate();
 			if (zeilen > 0) {
 				erfolg = true;
@@ -109,7 +119,7 @@ public class DatabaseStudent {
 
 		} catch (SQLException e) {
 			System.err.println(e);
-			System.err.println("SQL Fehler bei getKontoId" + e.toString());
+			System.err.println("SQL Fehler bei getStudentid" + e.toString());
 		} finally {
 			try {
 				con.close();
@@ -160,8 +170,49 @@ public class DatabaseStudent {
 				System.out.println("[SQL] Fehler bei getId() - Verbindung geschlossen");
 			}
 		}
-
+		System.out.println("id in email:"+ id);
 		return id;
 	}
 
+	public static ArrayList getStudentData() {
+		ArrayList<Student> studenten = new ArrayList<Student>();
+
+		try {
+			con = DatabaseConnection.getConnection();
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM student");
+			ResultSet rs = pstmt.executeQuery();
+			if (rs == null) {
+				System.out.println("Es gibt keinen Studenten in der Datenbank.");
+			} else {
+				while (rs.next()) {
+					Student student = new Student(rs.getString("vorname"), rs.getString("nachname"),
+							rs.getString("email"), rs.getString("matrikelnummer"), rs.getString("seminar"),
+							rs.getString("studiengang"), rs.getString("abschluss"), rs.getString("seminarthema"));
+
+					// Dozent dozent = DatabaseDozent.getDozentById(rs.getInt("dozent_id"));
+
+					// int studentId = rs.getInt("zugewissenerStudentId");
+					// student = DatabaseStudent.getStudentById(studentId);
+
+					// seminar.setZugewissenerStudent(student);
+					// seminar.setDozent(dozent);
+					studenten.add(student);
+				}
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			System.err.println("SQL Fehler bei getStudentenData" + e.toString());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("[SQL] Fehler bei getStudenData - Verbindung geschlossen");
+			}
+		}
+		return studenten;
+
+	}
 }

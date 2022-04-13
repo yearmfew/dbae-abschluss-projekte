@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="shared/header.jsp" />
 <div class="page-containerMenu">
 	<jsp:include page="shared/menu-loggedin.jsp" />
@@ -16,7 +16,7 @@
 					</tr>
 					<tr>
 						<th scope="row">Nachname</th>
-						<td>${sessionScope.sutdent.getNachname()}</td>
+						<td>${sessionScope.student.getNachname()}</td>
 					</tr>
 						<tr>
 						<th scope="row">Email</th>
@@ -40,6 +40,14 @@
 					<tr>
 						<th scope="row">Seminarthema</th>
 						<td>${sessionScope.student.getSeminarthema()}</td>
+					</tr>
+					<tr>
+						<c:if test="${!sessionScope.user.isUserStudent()}">
+                            <td><a
+                                href="ProfilePage?method=ProfilePage&studentId=${student.getId()}">
+                                    Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a></td>
+                        </c:if>
 					</tr>
 				</tbody>
 			</table>

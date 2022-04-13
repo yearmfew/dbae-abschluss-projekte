@@ -27,9 +27,11 @@ public class ProfilePage extends HttpServlet {
 		HttpSession session = request.getSession();
 		Student student = (Student) session.getAttribute("student");
 		int id = student.getId();
+		System.out.println("id ist" + id);
 		//probiere das erstmal statisch mit eingabe der id 27
-		student = database.DatabaseProfilePage.getStudentData(id); // erstmal null
+		student = DatabaseStudent.getStudentById(id);  // erstmal null
 		
+		System.out.println(student.getEmail());
 		session.setAttribute("student", student);
 		
 		String vorname = student.getVorname();
@@ -92,13 +94,13 @@ public class ProfilePage extends HttpServlet {
 			if(request.getParameter("seminarthema") != null) seminarthema = request.getParameter("seminarthema");
 			
 			checkFormStudentData cF = new checkFormStudentData();
-			
+			/*
 			Map result = cF.checkForm(vorname, nachname, email, studiengang,
 					 matrikelnummer, seminar, abschluss, seminarthema);
 			// muss ich noch schreiben
 			// if(result.isEmpty()) {
 			
-			
+			*/
 			Student updateStudent = new Student(vorname, nachname, email, matrikelnummer, studiengang, seminar,
 					abschluss, seminarthema);
 			database.DatabaseProfilePage.updateStudent(updateStudent);

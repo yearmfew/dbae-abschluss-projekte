@@ -49,7 +49,7 @@ public class DatabaseUser {
 		User user = null;
 		try {
 			con = DatabaseConnection.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM user WHERE id= ?");
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE id= ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs == null) {
@@ -80,7 +80,7 @@ public class DatabaseUser {
 		User user = null;
 		try {
 			con = DatabaseConnection.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM passwort WHERE email = ?");
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?");
 			pstmt.setString(1, email);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs == null) {

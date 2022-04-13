@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="shared/header.jsp" />
 <div class="page-containerMenu">
-	<jsp:include page="shared/menu-loggedin.jsp" />
+	<jsp:include page="shared/menu.jsp" />
 </div>
 <div class=" page-containerContent ">
-	<div class="seminarPageContent">
+	<div class="addSeminarPageContainer">
 		<h1>Add Seminar</h1>
 		<form action="FormAddSeminar" method="POST">
 			<div class="mb-2">

@@ -56,36 +56,34 @@ public class FormEditSeminar extends HttpServlet {
 		String semester = seminar.getSemester();
 		int dozentId = seminar.getDozent().getId();
 		
-		
 		if(request.getParameter("titel") !="") titel = request.getParameter("titel");
 		if(request.getParameter("thema") !="") thema = request.getParameter("thema");
 		if(request.getParameter("oberbegriff") !="") oberbegriff = request.getParameter("oberbegriff");
 		if(request.getParameter("beschreibung") !="") beschreibung = request.getParameter("beschreibung");
 		if(request.getParameter("semester") !="") semester = request.getParameter("semester");
-		if(request.getParameter("dozentId") != "") dozentId = Integer.parseInt(request.getParameter("dozentId"));
+		if(request.getParameter("dozentId") != null) dozentId = Integer.parseInt(request.getParameter("dozentId"));
 
 		// check for anführung zeichnen usw...
 		checkFormEditSeminarData cF = new checkFormEditSeminarData();
 
 		Map result = cF.checkForm(titel, dozentId, thema, oberbegriff, beschreibung, semester);
 		
-	//	if (true) {
+		if (result.size() == 0) {
 			// update here seminar table
 			Seminar updatedSeminer = new Seminar(seminar.getId(), titel, dozentId, oberbegriff, beschreibung, thema, semester, seminar.getStatus());
-			
 			boolean erfolg = database.DatabaseSeminaren.updateSeminar(updatedSeminer);
 			if(erfolg) {
 				session.setAttribute("seminar", updatedSeminer);
 				request.getRequestDispatcher("initSeminaren").forward(request, response);	
 			}
-	//	} else {
+		} else {
 			// fehler erklarungen erstellung mit for loop
-			//for (Object i : result.keySet()) {
-			//	request.setAttribute((String) i, (String) result.get(i));
-			// }
-	//	}
+			for (Object i : result.keySet()) {
+				request.setAttribute((String) i, (String) result.get(i));
+			 }
+			request.getRequestDispatcher("editSeminar.jsp").forward(request, response);
+		}
 		
-		// update seminar table..
 
 	}
 

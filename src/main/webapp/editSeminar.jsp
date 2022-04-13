@@ -18,7 +18,7 @@
 				id="titel" 
 				placeholder="${sessionScope.seminar.getTitel()}"
 				>
-				<span class="warning"> fehler message here.. </span>
+				<span class="warning">  ${ titelFehler } </span>
 			</div>
 			<div class="mb-2">
 				<label for="dozent" class="form-label">Dozent</label> 
@@ -48,7 +48,7 @@
 				id="thema"
 				placeholder="${sessionScope.seminar.getThema()}"
 				>
-				<span class="warning"> fehler message here.. </span>
+				<span class="warning">  ${ themaFehler } </span>
 			</div>
 			<div class="mb-2">
 				<label for="oberbegriff" class="form-label">Oberbegriff</label> 
@@ -69,7 +69,7 @@
 				id="beschreibung"
 				placeholder="${sessionScope.seminar.getBeschreibung()}"
 				>
-				<span class="warning"> fehler message here.. </span>
+				<span class="warning">  ${ beschreibungFehler } </span>
 			</div>
 			<div class="mb-2">
 				<label for="semester" class="form-label">Semester</label> 
@@ -81,6 +81,7 @@
 				placeholder="${sessionScope.seminar.getSemester()}"
 				>
 			</div>
+				<span class="warning">  ${ semesterFehler } </span>
 			<button type="submit" class="btn btn-primary">Speichere Anderungen</button>
 		</form>
 	</div>

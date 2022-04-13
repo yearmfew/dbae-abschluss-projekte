@@ -64,7 +64,7 @@ public class FormEditSeminar extends HttpServlet {
 		if(request.getParameter("semester") !="") semester = request.getParameter("semester");
 		if(request.getParameter("dozentId") != "") dozentId = Integer.parseInt(request.getParameter("dozentId"));
 
-		
+		// check for anführung zeichnen usw...
 		checkFormEditSeminarData cF = new checkFormEditSeminarData();
 
 		Map result = cF.checkForm(titel, dozentId, thema, oberbegriff, beschreibung, semester);

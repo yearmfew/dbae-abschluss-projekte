@@ -18,7 +18,6 @@ public class Student {
 	
 	
 	public Student(int id, String vorname, String nachname) {
-		super();
 		this.id = id;
 		this.vorname = vorname;
 		this.nachname = nachname;

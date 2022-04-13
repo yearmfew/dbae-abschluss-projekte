@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="shared/header.jsp" />
 <div class="page-containerMenu">
@@ -20,7 +21,7 @@
 					</tr>
 						<tr>
 						<th scope="row">Thema</th>
-						<td>${sessionScope.seminar.getTheme()}</td>
+						<td>${sessionScope.seminar.getThema()}</td>
 					</tr>
 					<tr>
 						<th scope="row">Oberbegriff</th>
@@ -32,7 +33,10 @@
 					</tr>
 					<tr>
 						<th scope="row">Zugewiesener Student</th>
-						<td>${sessionScope.seminar.getZugewissenerStudent().getVorname()} ${sessionScope.seminar.getZugewissenerStudent().getNachname()}</td>
+						<!-- Wir kontrollieren ob seminar belegt und student hat. Sonst kann es probleme zuführen -->
+						<c:if test="${sessionScope.seminar.getStatus()}">
+						 	<td>STudent: ${sessionScope.seminar.getZugewissenerStudent().getVorname()} ${sessionScope.seminar.getZugewissenerStudent().getNachname()}</td>
+						</c:if>
 					</tr>
 					<tr>
 						<th scope="row">Semester</th>

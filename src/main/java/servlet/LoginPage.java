@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.DatabaseStudent;
+import database.DatabaseUserType;
+import dozent.Dozent;
+import database.DatabaseDozent;
 import database.DatabasePassword;
 import student.Student;
+import user.UserType;
 
 //Servlet welches die Logindaten des Besuchers auf Richtigkeit prüft
 @WebServlet("/LoginPage")
@@ -27,30 +31,47 @@ public class LoginPage extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("validLogin", false);
 		Boolean isLoginSuccessfull = false;
+		Boolean isDozentLoginSuccessfull = false;
 
 		// get studenten id
 		int studentenId = DatabaseStudent.getId(email);
-		if (studentenId != 0) {
+		
+		int dozentenId = DatabaseDozent.getId(email);
+		System.out.println("dozentid ist" + dozentenId);
+		if (studentenId != 0 || dozentenId != 0) { 
+			
 			isLoginSuccessfull = DatabasePassword.checkPassword(studentenId, password);
+			System.out.println("ivh bin schonmal richtig");
+			isDozentLoginSuccessfull = DatabasePassword.checkPasswordDozent(dozentenId, password);
 		} else {
-			// es gibt keinen student mit dieser email
 			// redirect to login page with error code
 			request.setAttribute("keineEmailFounded", "Es gibt keinen Nutzer mit dieser Mail.");
 		}
 
 		if (isLoginSuccessfull) {
-			/*
-			Student student = DatabaseKunde.getKundenData(email);
-			ArrayList<Konto> konten = DatabaseKonto.getKontoData(email);
-			session.setAttribute("kunde", kunde);
-			session.setAttribute("konten", konten);
-			request.getRequestDispatcher("konto.jsp").forward(request, response);
-			*/
-		} else {
+			
+			Student student = DatabaseStudent.getStudentById(studentenId);
+			session.setAttribute("student", student);
+			request.getRequestDispatcher("profil.jsp").forward(request, response);
+			System.out.println("Der Student Login ist erfolgreich");
+		
+		} else if (isDozentLoginSuccessfull) {
+			Dozent dozent = DatabaseDozent.getDozentById(dozentenId);
+			
+			session.setAttribute("dozent", dozent);
+			String type = ("dozent");
+			UserType usertype = new UserType (dozentenId, "type");
+			usertype.setId(dozentenId);
+			usertype.setType(type);
+			DatabaseUserType.addUsertype(usertype);
+			request.getRequestDispatcher("profil.jsp").forward(request, response);
+			
+			System.out.println("Der Dozent Login ist erfolgreich");
+		} else  {
 			request.setAttribute("fehlermeldung", "Nutzername oder Passwort falsch. Bitte überprüfen sie ihre Daten.");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-
+		
 	}
 
 }

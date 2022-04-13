@@ -22,7 +22,7 @@ public class DatabaseDozent {
 			pstmt.setInt(1, id);			
 			ResultSet rs = pstmt.executeQuery();
 			if (rs == null) {
-				System.out.println("Es gibt keinen Dozent mit diesem Id in db.");
+				System.out.println("Es gibt keinen Dozent mit dieser id in db.");
 			} else {
 				while (rs.next()) {
 					Dozent myDozent = new Dozent(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"), rs.getString("titel"), rs.getString("email"));
@@ -65,18 +65,46 @@ public class DatabaseDozent {
 
 		} catch (SQLException e) {
 			System.err.println(e);
-			System.err.println("SQL Fehler bei getKontoId" + e.toString());
+			System.err.println("SQL Fehler bei getAllDozenten" + e.toString());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("[SQL] Fehler bei getAllDozenten - Verbindung geschlossen");
+			}
+		}
+		
+		return dozenten;
+	}
+	public static int getId(String email) {
+		int id = 0;
+
+		try {
+			con = DatabaseConnection.getConnection();
+
+			PreparedStatement pstmt = con.prepareStatement("SELECT id FROM dozent WHERE email = ?");
+			pstmt.setString(1, email);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getInt("id");
+			}
+			System.out.println(id);
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			System.err.println("SQL Fehler bei getId()" + e.toString());
 		} finally {
 			try {
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("[SQL] Fehler bei getKontoId - Verbindung geschlossen");
+				System.out.println("[SQL] Fehler bei getId() - Verbindung geschlossen");
 			}
 		}
-		
-		return dozenten;
-	}
 
+		return id;
+	}
 }

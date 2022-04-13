@@ -47,4 +47,9 @@ private String password;
 		this.password = password;
 	}
 	
+	public boolean isUserStudent() {
+		// return false;
+		return userType.equals("student");
+	}
+	
 }

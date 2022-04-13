@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import exceptions.seminarNotFoundException;
 import seminar.Seminar;
 
 /**
@@ -30,8 +31,18 @@ public class toSeminarDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Seminar seminar = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
 		HttpSession session = request.getSession();
+		Seminar seminar = null;
+		try {
+			seminar = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
+			//seminar = database.DatabaseSeminaren.getSeminarById(1234);
+		} catch (seminarNotFoundException e) {
+			request.getRequestDispatcher("initSeminaren").forward(request, response);
+			session.setAttribute("seminarNotFound", e.getMessage());
+			e.printStackTrace();
+			return;
+		}
+		
 		session.setAttribute("seminar", seminar);
 		request.getRequestDispatcher("seminarDetails.jsp").forward(request, response);
 

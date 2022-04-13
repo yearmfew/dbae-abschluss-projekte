@@ -14,17 +14,16 @@ import javax.servlet.http.HttpSession;
 
 import database.DatabasePassword;
 import database.DatabaseStudent;
-import database.DatabaseUserType;
+import database.DatabaseUser;
 import student.RegEx;
 import student.Student;
-import user.UserType;
+import user.User;
 import validierung.checkFormEditSeminarData;
 import validierung.checkFormStudentData;
 
 @WebServlet("/RegistrationPage")
 public class RegistrationPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ArrayList<Student> studenten = new ArrayList<Student>();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -67,21 +66,11 @@ public class RegistrationPage extends HttpServlet {
 		DatabasePassword.addPassword(student);
 		// id holen von db
 		int id = DatabasePassword.getUserId(student.getEmail());
-		System.out.println("returned id from da." + id);
+
 		student.setId(id);
-		System.out.println("rid newStudent." + student.getId());
 		// DATABASE STUDENT WRITE DATA
 		DatabaseStudent.addStudent(student);
-		// test
-		String type = ("student");
-		UserType usertype = new UserType(id, type);
-		usertype.setType(type);
-		usertype.setId(id);
-		DatabaseUserType.addUsertype(usertype);
-		// add to session
-		//session.setAttribute("usertype", usertype);
-		
-		// test
+	
 		
 		
 		

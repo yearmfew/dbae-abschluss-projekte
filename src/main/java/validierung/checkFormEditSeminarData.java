@@ -25,26 +25,26 @@ public class checkFormEditSeminarData {
 		boolean themaCheck = validierung.textFelderCheck(thema);
 		boolean oberbegriffCheck = validierung.textFelderCheck(oberbegriff);
 		boolean beschreibungCheck = validierung.textFelderCheck(beschreibung); 
-		boolean semesterCheck = validierung.textFelderCheck(semester) && validierung.countCheck(semester, 10) ; 
-
+		boolean semesterCheck = validierung.textFelderCheck(semester); 
+		
 		
 		Map<String, String> result = new HashMap<String, String>();
 		
-		if(titelCheck) {
-			result.put("titelHatUnerlaubteZeichnen", "Es gibt unerlaubte Zeichnen mit dieser Titel");
+		if(!titelCheck) {
+			result.put("titelFehler", "Es gibt unerlaubte Zeichnen mit dieser Titel");
 		}
 		if (!themaCheck) {
-			result.put("themaHatUnerlaubteZeichnen", "Es gibt unerlaubte Zeichnen mit dieser Thema");
+			result.put("themaFehler", "Es gibt unerlaubte Zeichnen mit dieser Thema");
 	    }
 		if (!oberbegriffCheck) {
-			result.put("oberbegriffHatUnerlaubteZeichnen", "Es gibt unerlaubte Zeichnen mit dieser Thema.");
+			result.put("oberbegriffFehler", "Es gibt unerlaubte Zeichnen mit dieser Thema.");
 		}
 		if (!beschreibungCheck) {
-			result.put("beschreibungHatUnerlaubteZeichnen", "Es gibt unerlaubte Zeichnen mit dieser Thema.");
+			result.put("beschreibungFehler", "Es gibt unerlaubte Zeichnen mit dieser Thema.");
 		}
 		
 		if (!semesterCheck) {
-			result.put("semesterHatUnerlaubteZeichnen", "Es gibt unerlaubte Zeichnen mit dieser Thema oder es ist mehr als 10 zeichnen.");
+			result.put("semesterFehler", "Es gibt unerlaubte Zeichnen mit dieser Semester");
 		}
 		
 		return result;

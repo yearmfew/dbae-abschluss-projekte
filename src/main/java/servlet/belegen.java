@@ -6,21 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import seminar.Seminar;
 
 /**
- * Servlet implementation class link
+ * Servlet implementation class belegen
  */
-@WebServlet("/toSeminarDetails")
-public class toSeminarDetails extends HttpServlet {
+@WebServlet("/belegen")
+public class belegen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public toSeminarDetails() {
+    public belegen() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,11 +27,12 @@ public class toSeminarDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Seminar seminar = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
-		HttpSession session = request.getSession();
-		session.setAttribute("seminar", seminar);
-		request.getRequestDispatcher("seminarDetails.jsp").forward(request, response);
 
+		int seminarId = Integer.parseInt(request.getParameter("seminarId"));
+	    int studentId = 0; // wird von session holen
+	    boolean result = database.DatabaseSeminaren.belegSeminar(seminarId, studentId);
+	    if(result) request.getRequestDispatcher("initSeminaren").forward(request, response);	
+	    
 	}
 
 	/**
@@ -43,8 +41,10 @@ public class toSeminarDetails extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
-	
+		
+		// int seminarId = Integer.parseInt(request.getParameter("seminarId"));
+		// System.out.println("hello.:  "+ seminarId);
 
+	}
 
 }

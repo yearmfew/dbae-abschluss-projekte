@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import student.Student;
 import java.sql.SQLException;
+import student.Student;
+
 import java.util.ArrayList;
 
 import dozent.Dozent;
@@ -100,7 +102,6 @@ public class DatabaseStudent {
 	}
 
 	public static Student getStudentById(int id) {
-
 		Student student = null;
 		try {
 			con = DatabaseConnection.getConnection();
@@ -110,8 +111,10 @@ public class DatabaseStudent {
 			if (rs == null) {
 				System.out.println("Es gibt keinen Student mit diesem Id in db.");
 			} else {
-				while (rs.next()) {
-					Student myStudent = new Student(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"));
+				while ( rs.next()) {
+					Student myStudent = new Student(rs.getInt("id"), 
+							rs.getString("vorname"), rs.getString("nachname"), rs.getString("email"),
+							rs.getString("matrikelnummer"), rs.getString("studiengang"), rs.getString("seminar"), rs.getString("abschluss"), rs.getString("seminarThema"));
 					student = myStudent;
 				}
 			}
@@ -128,7 +131,10 @@ public class DatabaseStudent {
 				System.out.println("[SQL] Fehler bei getStudentId - Verbindung geschlossen");
 			}
 		}
-
+		
+		
+		
+		
 		return student;
 
 	}
@@ -181,7 +187,7 @@ public class DatabaseStudent {
 				System.out.println("Es gibt keinen Studenten in der Datenbank.");
 			} else {
 				while (rs.next()) {
-					Student student = new Student(rs.getString("vorname"), rs.getString("nachname"),
+					Student student = new Student(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"),
 							rs.getString("email"), rs.getString("matrikelnummer"), rs.getString("seminar"),
 							rs.getString("studiengang"), rs.getString("abschluss"), rs.getString("seminarthema"));
 

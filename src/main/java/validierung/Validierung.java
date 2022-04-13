@@ -15,8 +15,8 @@ public class Validierung {
 	 * @return true oder false
 	 * */
 	public boolean textFelderCheck(String text) {
-		// must be done!!!!
-		return true;
+		
+		return Pattern.matches("([A-Z]|[a-z]|[\\-|\\&|\\.|\\,|\\:])*", text);
 	}
 	/**
 	 * Es kontrolliert ob der Name in der gewünchte Format ist.
@@ -41,7 +41,7 @@ public class Validierung {
 		return Pattern.matches("^([a-z]|[\\+|\\-|\\.]){1,63}[@](([a-z]|[\\+|\\-|\\.]){1,190})$", email);
 				
 	}
-	// needs to be checked..
+	// needs to be checked.. Does not work
 	public boolean countCheck(String text, int count ) {
 		return Pattern.matches("[A-Z]+([a-z]|[\\- ]){2,"+count+"}", text);
 	}

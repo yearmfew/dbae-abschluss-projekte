@@ -26,7 +26,7 @@ public class DatabasePassword {
 			try {
 				con = DatabaseConnection.getConnection();
 				PreparedStatement pstmt = con
-						.prepareStatement("INSERT INTO passwort (passwort, email) VALUES (" + "?, " + "?" +
+						.prepareStatement("INSERT INTO user (passwort, email) VALUES (" + "?, " + "?" +
 						// "?" +
 								")");
 				// pstmt.setInt(1, student.getId());
@@ -77,14 +77,14 @@ public class DatabasePassword {
 	 * @param kundenid des Users, Passwort des Users
 	 * @return erfolg
 	 */
-	public static boolean checkPassword(int studentId, String password) {
+	public static boolean checkPassword(int userId, String password) {
 		boolean loginSuccessfull = false;
 		try {
 			con = DatabaseConnection.getConnection();
 			String passwordDB = null;
 
-			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM passwort WHERE userid= ?");
-			pstmt.setInt(1, studentId);
+			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM user WHERE userid= ?");
+			pstmt.setInt(1, userId);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {

@@ -18,7 +18,6 @@ public class Student {
 	
 	
 	public Student(int id, String vorname, String nachname) {
-		super();
 		this.id = id;
 		this.vorname = vorname;
 		this.nachname = nachname;
@@ -32,8 +31,9 @@ public class Student {
 	}
 	
 	
-	public Student(String vorname, String nachname, String email, String passwort,  String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+	public Student( String vorname, String nachname, String email, String passwort,  String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
 		super();
+	
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;
@@ -44,8 +44,10 @@ public class Student {
 		this.abschluss = abschluss;
 		this.seminarthema = seminarthema;
 	}
-	public Student(String vorname, String nachname, String email,  String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+	public Student(int id, String vorname, String nachname, String email,  String matrikelnummer, 
+			String studiengang, String seminar, String abschluss, String seminarthema) {
 		super();
+		this.id = id;
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;

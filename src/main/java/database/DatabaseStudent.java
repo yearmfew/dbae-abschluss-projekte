@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import student.Student;
 import java.sql.SQLException;
-
+import student.Student;
 public class DatabaseStudent {
 	private static Connection con = null;
 
@@ -92,7 +92,6 @@ public class DatabaseStudent {
 	}
 
 	public static Student getStudentById(int id) {
-
 		Student student = null;
 		try {
 			con = DatabaseConnection.getConnection();
@@ -102,7 +101,7 @@ public class DatabaseStudent {
 			if (rs == null) {
 				System.out.println("Es gibt keinen Student mit diesem Id in db.");
 			} else {
-				while (rs.next()) {
+				while ( rs.next()) {
 					Student myStudent = new Student(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"));
 					student = myStudent;
 				}

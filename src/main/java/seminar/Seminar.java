@@ -15,8 +15,21 @@ public class Seminar {
 	private boolean status;
 	
 	
-	
-	public Seminar(int id, String titel, int dozentId, String oberbegriff, String beschreibung, String thema,
+	// add semster
+	public Seminar( String titel, int dozentId, String oberbegriff, String beschreibung, String thema,
+			 String semester, boolean status) {
+		super();
+		this.titel = titel;
+		this.dozentId = dozentId;
+		this.oberbegriff = oberbegriff;
+		this.thema = thema;
+		this.beschreibung = beschreibung;
+		this.semester = semester;
+		this.status = status;
+		
+	}
+	// in edit semester
+	public Seminar( int id, String titel, int dozentId, String oberbegriff, String beschreibung, String thema,
 			 String semester, boolean status) {
 		super();
 		this.id = id;

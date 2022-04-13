@@ -50,7 +50,6 @@ public class editSeminar extends HttpServlet {
 		doGet(request, response);
 	
 		String titel = request.getParameter("titel");
-		System.out.println(titel);
 	}
 
 }

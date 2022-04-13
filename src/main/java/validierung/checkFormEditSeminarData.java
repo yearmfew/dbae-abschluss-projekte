@@ -30,7 +30,7 @@ public class checkFormEditSeminarData {
 		
 		Map<String, String> result = new HashMap<String, String>();
 		
-		if(titelCheck) {
+		if(!titelCheck) {
 			result.put("titelHatUnerlaubteZeichnen", "Es gibt unerlaubte Zeichnen mit dieser Titel");
 		}
 		if (!themaCheck) {

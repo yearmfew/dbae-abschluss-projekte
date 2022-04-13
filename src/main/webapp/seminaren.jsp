@@ -21,14 +21,19 @@
 						<th scope="col">Status</th>
 						<th scope="col">Semester</th>
 						<th></th>
-						<th></th>
-						<th></th>
+						<th><a href="addSeminar.jsp">
+								Add Seminar <i class="fa fa-plus" aria-hidden="true"></i>
+							</a></th>
 
 					</tr>
 				</thead>
 				<c:forEach var="seminar" items="${ sessionScope.seminaren }">
 					<tr>
-						<td class="seminarTitle">${seminar.getTitel()}</td>
+						<td class="seminarDetails seminarTitel">
+						<a href="toSeminarDetails?method=toSeminarDetails&seminarId=${seminar.getId()}">
+								${seminar.getTitel()}
+						</a>
+						</td>
 						<td>${seminar.getDozent().getTitel()}
 							${seminar.getDozent().getVorname()}
 							${seminar.getDozent().getNachname()}</td>
@@ -36,23 +41,11 @@
 						<td>${seminar.isStatus()}</td>
 						<td>${seminar.getSemester()}</td>
 						<td>
-						<!-- 
-						 	<button onclick="toEditSeminar(${seminar.getId()})">
-								Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-							</button>
-						 -->
 							<a href="editSeminar?method=editSeminar&seminarId=${seminar.getId()}">
 								Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-						</a>
-							
-
+							</a>
 						</td>
-						<td>Belegen <i class="fa fa-sign-in" aria-hidden="true"></td>
-						<td class="seminarDetails">
-						<a href="toSeminarDetails?method=toSeminarDetails&seminarId=${seminar.getId()}">
-								Details ansehen <i class="fa fa-info-circle" aria-hidden="true"></i>
-						</a>
-						</td>
+						<td><a href="belegen?method=belegen&seminarId=${seminar.getId()}">Belegen <i class="fa fa-sign-in" aria-hidden="true">	</a></td>
 
 
 					</tr>

@@ -119,7 +119,10 @@ public class DatabaseStudent {
 				System.out.println("[SQL] Fehler bei getStudentId - Verbindung geschlossen");
 			}
 		}
-
+		
+		
+		
+		
 		return student;
 
 	}

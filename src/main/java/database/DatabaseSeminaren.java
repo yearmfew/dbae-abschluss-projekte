@@ -14,6 +14,7 @@ import student.Student;
 public class DatabaseSeminaren {
 
 	private static Connection con = null;
+
 	// GET METHODS
 	public static ArrayList getSeminarsData() {
 		ArrayList<Seminar> seminaren = new ArrayList<Seminar>();
@@ -31,11 +32,8 @@ public class DatabaseSeminaren {
 							rs.getBoolean("status"));
 
 					Dozent dozent = DatabaseDozent.getDozentById(rs.getInt("dozent_id"));
-					int studentId = rs.getInt("student_id");
-					
-					Student student = DatabaseStudent.getStudentById(studentId);
+					Student student = DatabaseStudent.getStudentById(rs.getInt("student_id"));
 					seminar.setZugewissenerStudent(student);
-					
 					seminar.setDozent(dozent);
 					seminaren.add(seminar);
 				}
@@ -75,12 +73,12 @@ public class DatabaseSeminaren {
 
 					Dozent dozent = DatabaseDozent.getDozentById(rs.getInt("dozent_id"));
 					Student student = DatabaseStudent.getStudentById(rs.getInt("student_id"));
-			
-					
-						mySeminar.setZugewissenerStudent(student);
-				
+					mySeminar.setZugewissenerStudent(student);
 					mySeminar.setDozent(dozent);
 					seminar = mySeminar;
+
+				
+					// System.out.println(rs.getInt("student_id"));
 
 				}
 			}
@@ -103,15 +101,16 @@ public class DatabaseSeminaren {
 	}
 
 	// ADD METHODS
-	
+
 	public static boolean addSeminar(Seminar seminar) {
 		boolean erfolg = false;
 
 		try {
 			con = DatabaseConnection.getConnection();
 
-			PreparedStatement pstmt = con
-					.prepareStatement("INSERT INTO seminar (titel, dozent_id, oberbegriff, beschreibung, semester, thema)  VALUES (" + "?, " + // titel - String
+			PreparedStatement pstmt = con.prepareStatement(
+					"INSERT INTO seminar (titel, dozent_id, oberbegriff, beschreibung, semester, thema)  VALUES ("
+							+ "?, " + // titel - String
 							"?, " + // dozentId - Integer
 							"?, " + // oberbegriff - String
 							"?, " + // beschreibung - String
@@ -119,9 +118,8 @@ public class DatabaseSeminaren {
 							"? " + // thema - String
 							")");
 
-		
 			pstmt.setString(1, seminar.getTitel());
-			pstmt.setInt(2, seminar.getDozentId()); 
+			pstmt.setInt(2, seminar.getDozentId());
 			pstmt.setString(3, seminar.getOberbegriff());
 			pstmt.setString(4, seminar.getBeschreibung());
 			pstmt.setString(5, seminar.getSemester());
@@ -147,10 +145,9 @@ public class DatabaseSeminaren {
 		}
 
 		return erfolg;
-		
+
 	}
-	
-	
+
 	// UPDATE METHODS
 	public static boolean updateSeminar(Seminar seminar) {
 		boolean erfolg = false;
@@ -192,11 +189,11 @@ public class DatabaseSeminaren {
 		boolean erfolg = false;
 		try {
 			con = DatabaseConnection.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(
-					"UPDATE seminar SET status = true, student_id= ? WHERE id = ? ");
+			PreparedStatement pstmt = con
+					.prepareStatement("UPDATE seminar SET status = true, student_id= ? WHERE id = ? ");
 			pstmt.setInt(1, studentId);
 			pstmt.setInt(2, seminarId);
-			
+
 			int zeilen = pstmt.executeUpdate();
 
 			if (zeilen > 0) {

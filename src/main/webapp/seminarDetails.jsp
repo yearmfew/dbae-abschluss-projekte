@@ -35,7 +35,7 @@
 						<th scope="row">Zugewiesener Student</th>
 						<!-- Wir kontrollieren ob seminar belegt und student hat. Sonst kann es probleme zuführen -->
 						<c:if test="${sessionScope.seminar.getStatus()}">
-						 	<td>STudent: ${sessionScope.seminar.getZugewissenerStudent().getVorname()} ${sessionScope.seminar.getZugewissenerStudent().getNachname()}</td>
+						 	<td>${sessionScope.seminar.getZugewissenerStudent().getVorname()} ${sessionScope.seminar.getZugewissenerStudent().getNachname()}</td>
 						</c:if>
 					</tr>
 					<tr>

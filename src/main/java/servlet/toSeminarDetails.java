@@ -10,18 +10,17 @@ import javax.servlet.http.HttpSession;
 
 import seminar.Seminar;
 
-import java.util.ArrayList;
 /**
- * Servlet implementation class seminar
+ * Servlet implementation class link
  */
-@WebServlet("/initSeminaren")
-public class initSeminaren extends HttpServlet {
+@WebServlet("/toSeminarDetails")
+public class toSeminarDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public initSeminaren() {
+    public toSeminarDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +30,10 @@ public class initSeminaren extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Seminar seminar = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
 		HttpSession session = request.getSession();
-
-		ArrayList <Seminar> seminaren = database.DatabaseSeminaren.getSeminarsData();
-		session.setAttribute("seminaren", seminaren);
-
-		request.getRequestDispatcher("seminaren.jsp").forward(request, response);
+		session.setAttribute("seminar", seminar);
+		request.getRequestDispatcher("seminarDetails.jsp").forward(request, response);
 
 	}
 
@@ -47,5 +44,7 @@ public class initSeminaren extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+
 
 }

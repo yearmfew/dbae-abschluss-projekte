@@ -54,7 +54,15 @@ public class LoginPage extends HttpServlet {
 			session.setAttribute("student", student);
 			request.getRequestDispatcher("profil.jsp").forward(request, response);
 			System.out.println("Der Student Login ist erfolgreich");
-		
+			
+			
+			// klappt das 
+			UserType usertype = (UserType) session.getAttribute("usertype");
+			System.out.println("Der usertype ist in der session: " + usertype.getId()); 
+			// 
+			
+			
+			
 		} else if (isDozentLoginSuccessfull) {
 			Dozent dozent = DatabaseDozent.getDozentById(dozentenId);
 			
@@ -64,7 +72,11 @@ public class LoginPage extends HttpServlet {
 			usertype.setId(dozentenId);
 			usertype.setType(type);
 			DatabaseUserType.addUsertype(usertype);
-			request.getRequestDispatcher("profil.jsp").forward(request, response);
+			
+			session.setAttribute(type, usertype);
+			
+			
+			request.getRequestDispatcher("studentenprofile.jsp").forward(request, response);
 			
 			System.out.println("Der Dozent Login ist erfolgreich");
 		} else  {

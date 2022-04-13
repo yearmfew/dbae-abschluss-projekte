@@ -78,7 +78,14 @@ public class RegistrationPage extends HttpServlet {
 		usertype.setType(type);
 		usertype.setId(id);
 		DatabaseUserType.addUsertype(usertype);
-
+		// add to session
+		//session.setAttribute("usertype", usertype);
+		
+		// test
+		
+		
+		
+		
 		session.setAttribute("DB add", "okay");
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 

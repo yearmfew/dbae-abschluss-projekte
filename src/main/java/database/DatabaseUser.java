@@ -56,7 +56,7 @@ public class DatabaseUser {
 				System.out.println("Es gibt keinen User mit diesem Id in db.");
 			} else {
 				while ( rs.next()) {
-					User myUser = new User(rs.getInt("id"), rs.getString("user_type"), rs.getString("email"), rs.getString("passwort"));
+					User myUser = new User(rs.getInt("userid"), rs.getString("user_type"), rs.getString("email"), rs.getString("passwort"));
 					user = myUser;
 				}
 			}
@@ -77,11 +77,10 @@ public class DatabaseUser {
 		return user;
 	}
 	public static User getUserByMail(String email) {
-		System.out.println("start");
 		User user = null;
 		try {
 			con = DatabaseConnection.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM user WHERE email= ?");
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM passwort WHERE email = ?");
 			pstmt.setString(1, email);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs == null) {
@@ -97,14 +96,14 @@ public class DatabaseUser {
 
 		} catch (SQLException e) {
 			System.err.println(e);
-			System.err.println("SQL Fehler bei getStudentByMail...." + e.toString());
+			System.err.println("SQL Fehler bei getUserByMail...." + e.toString());
 		} finally {
 			try {
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("[SQL] Fehler bei getStudentId - Verbindung geschlossen");
+				System.out.println("[SQL] Fehler bei getUserByMail - Verbindung geschlossen");
 			}
 		}
 		return user;

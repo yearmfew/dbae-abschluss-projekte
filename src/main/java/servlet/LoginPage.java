@@ -32,24 +32,26 @@ public class LoginPage extends HttpServlet {
 
 		Boolean validLogin = false;
 
-
 		User user = DatabaseUser.getUserByMail(email);
-		if (user.getPassword() == password) {
+		if (user.getPassword().equals(password)) {
 			validLogin = true;
 			session.setAttribute("validLogin", validLogin);
+			session.setAttribute("user", user);
 
 		}else {
+			System.out.println("what the fick are you doing here!!!");
 			request.setAttribute("fehlermeldung", "Nutzername oder Passwort falsch. Bitte überprüfen sie ihre Daten.");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 
 		
 		if (validLogin) {
-			if (user.getUserType() == "student") {
+			if (user.getUserType().equals("student")) {
+
 				Student student = DatabaseStudent.getStudentById(user.getId());
 				session.setAttribute("student", student);
 				request.getRequestDispatcher("profil.jsp").forward(request, response);
-			} else if (user.getUserType() == "dozent") {
+			} else if (user.getUserType().equals("dozent")) {
 				Dozent dozent = DatabaseDozent.getDozentById(user.getId());
 				session.setAttribute("dozent", dozent);
 				request.getRequestDispatcher("profil.jsp").forward(request, response);

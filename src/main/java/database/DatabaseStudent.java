@@ -112,7 +112,9 @@ public class DatabaseStudent {
 				System.out.println("Es gibt keinen Student mit diesem Id in db.");
 			} else {
 				while ( rs.next()) {
-					Student myStudent = new Student(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"));
+					Student myStudent = new Student(rs.getInt("id"), 
+							rs.getString("vorname"), rs.getString("nachname"), rs.getString("email"),
+							rs.getString("matrikelnummer"), rs.getString("studiengang"), rs.getString("seminar"), rs.getString("abschluss"), rs.getString("seminarThema"));
 					student = myStudent;
 				}
 			}
@@ -185,7 +187,7 @@ public class DatabaseStudent {
 				System.out.println("Es gibt keinen Studenten in der Datenbank.");
 			} else {
 				while (rs.next()) {
-					Student student = new Student(rs.getString("vorname"), rs.getString("nachname"),
+					Student student = new Student(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"),
 							rs.getString("email"), rs.getString("matrikelnummer"), rs.getString("seminar"),
 							rs.getString("studiengang"), rs.getString("abschluss"), rs.getString("seminarthema"));
 

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import database.DatabaseStudent;
 import database.DatabaseUser;
 import dozent.Dozent;
+import database.DatabaseBewertungen;
 import database.DatabaseDozent;
 import database.DatabasePassword;
 import student.Student;
@@ -48,22 +49,23 @@ public class LoginPage extends HttpServlet {
 
 				if (validLogin) { 
 					if (user.getUserType().equals("student")) {
-						// student login
+
 						Student student = DatabaseStudent.getStudentById(user.getId());
+						int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
+						session.setAttribute("countOfBewertungen", countOfBewertungen);
 						session.setAttribute("student", student);
 						request.getRequestDispatcher("initSeminaren").forward(request, response);
 					} else if (user.getUserType().equals("dozent")) {
-						// dozent login
 						Dozent dozent = DatabaseDozent.getDozentById(user.getId());
 						session.setAttribute("dozent", dozent);
 						request.getRequestDispatcher("initSeminaren").forward(request, response);
 					}
-
 				}
 			} else { // ... wird eine warning message geworfen ohne das die seite down geht 
 				request.setAttribute("fehlermeldung", "Die Kombination aus E-Mail/Passwort ist nicht vorhanden.");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				System.out.println("user ist null");
+
 			}
 		} catch (NullPointerException npe) {
 			request.setAttribute("fehlermeldung", "Es ist ein Fehler aufgetreten. Haben Sie sich bereits registriert?");

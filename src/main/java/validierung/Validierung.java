@@ -18,6 +18,7 @@ public class Validierung {
 	 */
 	public boolean textFelderCheck(String text) {
 
+
 		return Pattern.matches("([A-Z]|[a-z]|[\\-|\\&|\\.|\\,|\\:])*", text);
 	}
 

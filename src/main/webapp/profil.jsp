@@ -37,7 +37,10 @@
 						<th scope="row">Seminarthema</th>
 						<td>${sessionScope.student.getSeminarthema()}</td>
 					</tr>
-
+					<tr>
+						<th scope="row">Anzahl der Bewertungen: </th>
+						<td>${sessionScope.countOfBewertungen}</td>
+					</tr>
 
 
 

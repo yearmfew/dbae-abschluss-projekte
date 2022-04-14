@@ -155,9 +155,9 @@ public class Student {
 	public String getMatrikelnummer() {
 		return matrikelnummer;
 	}
-	//public ArrayList<Seminar> getBeteiligteSeminaren() {
-	//	return beteiligteSeminaren;
-	// }
+	public ArrayList<Seminar> getBeteiligteSeminaren() {
+		return beteiligteSeminaren;
+	 }
 	public void setBeteiligteSeminaren(ArrayList<Seminar> beteiligteSeminaren) {
 		this.beteiligteSeminaren = beteiligteSeminaren;
 	}

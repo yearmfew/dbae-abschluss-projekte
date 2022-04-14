@@ -18,16 +18,14 @@ public class DatabaseSeminaren {
 	private static Connection con = null;
 
 	// GET METHODS
-	public static ArrayList getSeminarsData() throws seminarNotFoundException{
+	public static ArrayList<Seminar> getSeminarsData() throws seminarNotFoundException{
 		ArrayList<Seminar> seminaren = new ArrayList<Seminar>();
 
 		try {
 			con = DatabaseConnection.getConnection();
 			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM seminar");
 			ResultSet rs = pstmt.executeQuery();
-			if (rs == null) {
-				System.out.println("Es gibt keinen Seminar in db.");
-			} else {
+			
 				while (rs.next()) {
 					Seminar seminar = new Seminar(rs.getInt("id"), rs.getString("titel"), rs.getString("oberbegriff"),
 							rs.getString("beschreibung"), rs.getString("thema"), rs.getString("semester"),
@@ -39,18 +37,18 @@ public class DatabaseSeminaren {
 					seminar.setDozent(dozent);
 					seminaren.add(seminar);
 				}
-			}
+			
 
 		} catch (SQLException e) {
 			System.err.println(e);
-			System.err.println("SQL Fehler bei getKontoId" + e.toString());
+			System.err.println("SQL Fehler bei getSeminarsData()" + e.toString());
 		} finally {
 			try {
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("[SQL] Fehler bei getKontoId - Verbindung geschlossen");
+				System.out.println("[SQL] Fehler bei getSeminarsData() - Verbindung geschlossen");
 			}
 		}
 		if(seminaren.size() == 0) throw new seminarNotFoundException("Es gibt keinen Seminar in Datenbank");

@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import user.User;
 
 /**
  * Servlet implementation class belegen
@@ -26,25 +29,14 @@ public class belegen extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+		HttpSession session = request.getSession();
 		int seminarId = Integer.parseInt(request.getParameter("seminarId"));
-	    int studentId = 0; // wird von session holen
+	    User user = (User) session.getAttribute("user");
+	    int studentId = user.getId();
 	    boolean result = database.DatabaseSeminaren.belegSeminar(seminarId, studentId);
 	    if(result) request.getRequestDispatcher("initSeminaren").forward(request, response);	
 	    
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-		
-		// int seminarId = Integer.parseInt(request.getParameter("seminarId"));
-		// System.out.println("hello.:  "+ seminarId);
-
-	}
 
 }

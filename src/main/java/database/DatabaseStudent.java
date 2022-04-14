@@ -153,7 +153,9 @@ public class DatabaseStudent {
 				while ( rs.next()) {
 					Student myStudent = new Student(rs.getInt("id"), 
 							rs.getString("vorname"), rs.getString("nachname"), rs.getString("email"),
-							rs.getString("matrikelnummer"), rs.getString("studiengang"), rs.getString("seminar"), rs.getString("abschluss"), rs.getString("seminarThema"));
+							rs.getString("matrikelnummer"), rs.getString("studiengang"), 
+							rs.getString("seminar"), rs.getString("abschluss"), 
+							rs.getString("seminarThema"));
 					return myStudent;
 				}
 			}

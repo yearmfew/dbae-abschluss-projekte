@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-
 import bewertung.Bewertung;
 import dozent.Dozent;
 import exceptions.addBewertungException;
@@ -35,7 +33,7 @@ public class DatabaseBewertungen {
 							rs.getInt("verknüpfung_mit_anderen"),rs.getInt("diskassionführung"),
 							rs.getInt("beteiligung_diskussionen"), rs.getString("kommentar"), 
 							rs.getInt("bewerter_id"),rs.getInt("umfang"),
-							rs.getInt("referenzen"),rs.getInt("sprachlicheGestaltung"),rs.getInt("schwierigkeitsgrad"));
+							rs.getInt("referenzen"),rs.getInt("sprachlicheGestaltung"),rs.getInt("schwierigkeitsgrad"), rs.getInt("seminarId"));
 
 					User bewerter = DatabaseUser.getUserById(rs.getInt("bewerter_id"));
 					bewertung.setBewerterType(bewerter.getUserType());
@@ -132,11 +130,14 @@ public class DatabaseBewertungen {
 	}
 	
 	
-	public static int getCountOfBewertungen() {
+	public static int getCountOfBewertungenById(int id) {
 		int count = 0;
+		
 		   try {
 				con = DatabaseConnection.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("SELECT COUNT(*) FROM bewertungen");
+				PreparedStatement pstmt = con.prepareStatement("SELECT COUNT(*) FROM bewertungen WHERE id =?");
+				pstmt.setInt(1, id);
+			
 				ResultSet rs = pstmt.executeQuery();
 				rs.next();
 				count = rs.getInt(1);	
@@ -156,8 +157,7 @@ public class DatabaseBewertungen {
 				}
 			}
 		   
-		
-		System.out.println(count);
+	
 		return count;
 	}
 	

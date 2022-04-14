@@ -23,6 +23,7 @@
 						</a></th>
 					</c:if>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<c:forEach var="seminar" items="${ sessionScope.seminaren }">
@@ -37,16 +38,22 @@
 					<td>${seminar.isStatus()}</td>
 					<td>${seminar.getSemester()}</td>
 
-					<td><c:if test="${!sessionScope.user.isUserStudent()}">
-							<a
-								href="toAddBewertung?method=toAddBewerung&seminarId=${seminar.getId()}">
-								Vortrag Geben <i class="fa fa-commenting-o" aria-hidden="true"></i>
-							</a>
-						</c:if> <c:if test="${sessionScope.user.isUserStudent()}">
+					<td> <c:if test="${sessionScope.user.isUserStudent()}">
+						<c:if test="${!seminar.getStatus()}">
+
 							<a href="belegen?method=belegen&seminarId=${seminar.getId()}">Belegen
 								<i class="fa fa-sign-in" aria-hidden="true"></i>
-							</a><
+							</a>
 						</c:if>
+						<c:if test="${seminar.getStatus()}">
+							Schon Belegt
+						</c:if>
+						</c:if></td>
+					<td><a
+						href="toAddBewertung?method=toAddBewerung&seminarId=${seminar.getId()}">
+							Bewertung Geben <i class="fa fa-commenting-o" aria-hidden="true"></i>
+					</a></td>
+					
 					<td><a
 						href="editSeminar?method=editSeminar&seminarId=${seminar.getId()}">
 							Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

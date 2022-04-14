@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import database.DatabaseStudent;
 import database.DatabaseUser;
 import dozent.Dozent;
+import database.DatabaseBewertungen;
 import database.DatabaseDozent;
 import database.DatabasePassword;
 import student.Student;
@@ -49,6 +50,8 @@ public class LoginPage extends HttpServlet {
 			if (user.getUserType().equals("student")) {
 
 				Student student = DatabaseStudent.getStudentById(user.getId());
+				int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
+				session.setAttribute("countOfBewertungen", countOfBewertungen);
 				session.setAttribute("student", student);
 				request.getRequestDispatcher("initSeminaren").forward(request, response);
 			} else if (user.getUserType().equals("dozent")) {

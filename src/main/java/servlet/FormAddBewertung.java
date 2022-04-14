@@ -57,8 +57,8 @@ public class FormAddBewertung extends HttpServlet {
 		Seminar seminar = (Seminar) session.getAttribute("seminar");
 		User user = (User) session.getAttribute("user");
 		int id = seminar.getZugewissenerStudent().getId();
-		int bewerterId = user.getId();
-
+		int bewerterId = user.getId();	
+		int seminarId = seminar.getId();
 		// FOR ANAS:::::
 		if (!user.isUserStudent()) {
 			// TODO hinzufüge hier extra details... mit set methoden..
@@ -70,7 +70,7 @@ public class FormAddBewertung extends HttpServlet {
 
 		Bewertung bewertung = new Bewertung(id, foliengestaltung, spraclichePresentation, presentationstil,
 				zeitlicheGestaltung, verstandnis, inhaltlicheAufbereitung, verknuepfungMitAnderen, diskassionFuehrung,
-				beteiligungDiskassionen, kommentar, bewerterId);
+				beteiligungDiskassionen, kommentar, bewerterId, seminarId);
 
 		checkFormAddBewertung cf = new checkFormAddBewertung();
 		Map result = cf.checkForm(kommentar);

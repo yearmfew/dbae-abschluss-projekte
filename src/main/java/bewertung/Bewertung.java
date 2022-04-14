@@ -18,13 +18,14 @@ public class Bewertung {
 	private int sprachlicheGestaltung; // -1 = -, 0 = o, 1 = +
 	private int schwerigkeitsgrad; // -1 = -, 0 = o, 1 = +
 	private String bewerterType; // student oder dozent
+	private int seminarId;
 	
 	
 	
 	
-	
-	
-	
+
+
+
 	/**
 	 * @param id
 	 * @param foliengestaltung
@@ -43,7 +44,7 @@ public class Bewertung {
 	 */
 	public Bewertung(int id, int foliengestaltung, int spraclichePresentation, int presentationstil,
 			int zeitlicheGestaltung, int verstandnis, int inhaltlicheAufbereitung, int verknuepfungMitAnderen,
-			int diskassionFuehrung, int beteiligungDiskassionen, String kommentar, int bewerterId) {
+			int diskassionFuehrung, int beteiligungDiskassionen, String kommentar, int bewerterId, int seminarId) {
 		super();
 		this.id = id;
 		this.foliengestaltung = foliengestaltung;
@@ -57,6 +58,7 @@ public class Bewertung {
 		this.beteiligungDiskassionen = beteiligungDiskassionen;
 		this.kommentar = kommentar;
 		this.bewerterId = bewerterId;
+		this.seminarId = seminarId;
 	}
 
 
@@ -88,7 +90,7 @@ public class Bewertung {
 	public Bewertung(int id, int foliengestaltung, int spraclichePresentation, int presentationstil,
 			int zeitlicheGestaltung, int verstandnis, int inhaltlicheAufbereitung, int verknuepfungMitAnderen,
 			int diskassionFuehrung, int beteiligungDiskassionen, String kommentar, int bewerterId, int umfang,
-			int referenzen, int sprachlicheGestaltung, int schwerigkeitsgrad) {
+			int referenzen, int sprachlicheGestaltung, int schwerigkeitsgrad, int seminarId) {
 		super();
 		this.id = id;
 		this.foliengestaltung = foliengestaltung;
@@ -106,6 +108,7 @@ public class Bewertung {
 		this.referenzen = referenzen;
 		this.sprachlicheGestaltung = sprachlicheGestaltung;
 		this.schwerigkeitsgrad = schwerigkeitsgrad;
+		this.seminarId = seminarId;
 	}
 
 
@@ -549,6 +552,34 @@ public class Bewertung {
 	public void setBewerterType(String bewerterType) {
 		this.bewerterType = bewerterType;
 	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * @return the seminarId
+	 */
+	public int getSeminarId() {
+		return seminarId;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @param seminarId the seminarId to set
+	 */
+	public void setSeminarId(int seminarId) {
+		this.seminarId = seminarId;
+	}
+
+
+	
 	
 	
 	

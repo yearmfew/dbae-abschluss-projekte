@@ -25,7 +25,7 @@ public class initProfil extends HttpServlet {
 
 			ArrayList <Student> studenten = database.DatabaseStudent.getStudentData();
 			session.setAttribute("studenten", studenten);
-
+			
 			request.getRequestDispatcher("studentenProfile.jsp").forward(request, response);
 
 		}

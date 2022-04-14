@@ -10,7 +10,7 @@ import student.Student;
 public class DatabaseProfilePage {
 	private static Connection con = null;
 
-	public static Student updateStudent(Student student) {
+	public static boolean updateStudent(Student student) {
 		boolean erfolg = false;
 
 		try {
@@ -45,9 +45,9 @@ public class DatabaseProfilePage {
 			}
 		}
 
-		return student;
+		return erfolg;
 	}
-
+	// die methode kannst du löschen
 	public static Student getStudentData(int id) {
 		// syntax von datasebase kunde viel verändert prüfen"""
 		Student student = null;
@@ -107,7 +107,7 @@ public class DatabaseProfilePage {
 		try {
 			con = DatabaseConnection.getConnection();
 
-			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM passwort WHERE userid = ?");
+			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM users WHERE id = ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 

@@ -1,94 +1,57 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="shared/header.jsp" />
+	<div class="studentPageContent">
+		<h1>PROFIL DETAILS STUDENT</h1>
+		<div class="studentDetailsTable">
+			<table class="table table-striped">
 
-<div class="page-container-menu">
+				<tbody>
+					<tr>
+						<th scope="row">Vorname</th>
+						<td>${sessionScope.student.getVorname()}</td>
+					</tr>
+					<tr>
+						<th scope="row">Nachname</th>
+						<td>${sessionScope.student.getNachname()}</td>
+					</tr>
+					<tr>
+						<th scope="row">Email</th>
+						<td>${sessionScope.student.getEmail()}</td>
+					</tr>
+					<tr>
+						<th scope="row">Matrikelnummer</th>
+						<td>${sessionScope.student.getMatrikelnummer()}</td>
+					</tr>
+					<tr>
+						<th scope="row">Seminar</th>
+						<td>${sessionScope.student.getSeminar()}</td>
+					</tr>
+					<tr>
+						<th scope="row">Studiengang</th>
+						<td>${sessionScope.student.getStudiengang()}</td>
+					<tr>
+						<th scope="row">Abschluss</th>
+						<td>${sessionScope.student.getAbschluss()}</td>
+					</tr>
+					<tr>
+						<th scope="row">Seminarthema</th>
+						<td>${sessionScope.student.getSeminarthema()}</td>
+					</tr>
 
-	<jsp:include page="shared/menu.jsp" />
-</div>
-<div class=" page-container-content ">
-
-	<form action="ProfilePage" method="GET">
 
 
-		<div class="container bootstrap snippets bootdey"></div>
-		<!-- editierbarer form nur für studenten.-->
 
-		<h3>Profil bearbeiten:</h3>
-
-		<form class="form-horizontal" role="form">
-			
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Vorname</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="text" name="vorname" placeholder="${ sessionScope.student.getVorname() } ">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Nachname</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="text"  name="nachname" placeholder="${ sessionScope.student.getNachname() } ">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Matrikelnummer</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="text" name="matrikelnummer"
-						placeholder="${ sessionScope.student.getMatrikelnummer() } ">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Email</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="email" name="email" placeholder="${ sessionScope.student.getEmail() } ">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Studiengang</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="text" name="studiengang" placeholder="${ sessionScope.student.getStudiengang() } ">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Seminar</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="text" name="seminar" placeholder="${ sessionScope.student.getSeminar() } ">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Abschluss</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="text" name="abschluss" placeholder="${ sessionScope.student.getAbschluss() } ">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-3 control-label">Seminarthema:</label>
-				<div class="col-lg-8">
-					<input class="form-control" type="text" name="seminarthema" placeholder="${ sessionScope.student.getSeminarthema() } ">
-				</div>
-				
-			</div>
-			
-	<div class="form-inputs">
-			<div>
-			<h5>Geben Sie ihr Passwort ein um die Änderungen zu bestätigen.</h5>
-				<label for="passwort" class="form-label">Passwort:</label> <input type="text"
-					 required class="form-control" name="passwort" id=""
-					value=${ passwort }>
-
+				</tbody>
+			</table>
+			<c:if test="${sessionScope.user.isUserStudent()}">
+			<div class="d-flex justify-content-end">
+				<a class="btn btn-primary"
+					href="updateProfil.jsp">
+					Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				</a>
+			</c:if>
 			</div>
 		</div>
-		<div class="form-buttons">
-				<button type="submit" class="btn btn-primary">Speichern</button>
-			</div>
-	</form>
-		</form>
-	</form>
-
-
-
-	<!--  sendet eingebene passwort zur session -->
+	</div>
 	
-	<form action="ProfilePage" method="POST">
-
-	
-	<jsp:include page="shared/footer.jsp" />
+	<jsp:include page = "shared/footer.jsp" />

@@ -1,10 +1,5 @@
 
 <jsp:include page="shared/header.jsp" />
-<div class="page-containerMenu">
-
-	<jsp:include page="shared/menu-loggedout.jsp" />
-</div>
-<div class=" page-containerContent ">
 
 
 	<h1>Willkommen zum Seminarmanager</h1>

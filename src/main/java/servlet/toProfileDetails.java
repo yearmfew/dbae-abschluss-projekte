@@ -37,7 +37,7 @@ public class toProfileDetails extends HttpServlet {
 		Student student = database.DatabaseStudent.getStudentById(Integer.parseInt(request.getParameter("studentId")));
 		HttpSession session = request.getSession();
 		session.setAttribute("student", student);
-		request.getRequestDispatcher("studentDetails.jsp").forward(request, response);
+		request.getRequestDispatcher("profil.jsp").forward(request, response);
 
 	}
 

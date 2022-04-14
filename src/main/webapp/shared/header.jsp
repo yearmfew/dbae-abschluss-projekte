@@ -18,3 +18,7 @@
 <body>
 
 	<div class="page-container">
+		<div class="page-containerMenu">
+			<jsp:include page="menu.jsp" />
+		</div>
+		<div class=" page-containerContent ">

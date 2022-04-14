@@ -50,11 +50,11 @@ public class LoginPage extends HttpServlet {
 
 				Student student = DatabaseStudent.getStudentById(user.getId());
 				session.setAttribute("student", student);
-				request.getRequestDispatcher("profil.jsp").forward(request, response);
+				request.getRequestDispatcher("initSeminaren").forward(request, response);
 			} else if (user.getUserType().equals("dozent")) {
 				Dozent dozent = DatabaseDozent.getDozentById(user.getId());
 				session.setAttribute("dozent", dozent);
-				request.getRequestDispatcher("profil.jsp").forward(request, response);
+				request.getRequestDispatcher("initSeminaren").forward(request, response);
 			}
 
 		} 

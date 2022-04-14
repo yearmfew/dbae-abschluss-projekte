@@ -1,9 +1,4 @@
 <jsp:include page="shared/header.jsp" />
-<div class="page-containerMenu">
-
-	<jsp:include page="shared/menu-loggedout.jsp" />
-</div>
-<div class=" page-containerContent ">
 
 
 	<form action="RegistrationPage" method="POST">

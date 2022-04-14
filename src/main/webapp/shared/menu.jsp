@@ -6,14 +6,19 @@
 </c:if>
 
 <c:if test="${ sessionScope.validLogin }">
-	<a class="menu-item" href="startseite.jsp">Startseite</a> 
+	<a class="menu-item" href="index.jsp">Startseite</a> 
+	<c:if test="${ sessionScope.user.isUserStudent() }">
 	<a class="menu-item" href="profil.jsp">Profil</a> 
+	</c:if>
+	<c:if test="${ !sessionScope.user.isUserStudent() }">
+	<a class="menu-item" href="initProfil">Registierte Studenten</a>
+	</c:if>
 	<a class="menu-item" href="verwaltung.jsp">Vervaltung</a>
 	<a class="menu-item" href="initSeminaren">Seminaren</a>
-	<a class="menu-item" href="initProfil">Profil</a>
+	
 	
 	<!-- will be a form and send to a sevlet for logout -->
-	<a class="menu-item" href="#">Logout</a>
+	<a class="menu-item" href="logout">Logout</a>
 </c:if>
 </div>
 

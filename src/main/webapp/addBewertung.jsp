@@ -4,7 +4,7 @@
 <jsp:include page="shared/header.jsp" />
 
 <div class="addBewertungPageContent">
-	<h1>Vortrag Hinzufügen</h1>
+	<h1>Bewertung Hinzufügen</h1>
 
 
 	<form action="FormAddBewertung" method="POST">
@@ -80,6 +80,10 @@
 					<option value="+1">+</option>
 			</select>
 		</div>	
+		
+		<!-- dOzent select boxes  cif...-->
+		
+		
 		<div class="freitext form-group">
   			<label for="kommentar">Freitextkommentar</label>
   			<textarea class="form-control" placeholder="Geben sie ihre extra kommentar hier ein" id="kommentar" name="kommentar"></textarea>

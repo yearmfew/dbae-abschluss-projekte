@@ -60,6 +60,11 @@ public class FormAddBewertung extends HttpServlet {
 		int bewerterId = user.getId();	
 		int seminarId = seminar.getId();
 		// FOR ANAS:::::
+
+		Bewertung bewertung = new Bewertung(id, foliengestaltung, spraclichePresentation, presentationstil,
+				zeitlicheGestaltung, verstandnis, inhaltlicheAufbereitung, verknuepfungMitAnderen, diskassionFuehrung,
+				beteiligungDiskassionen, kommentar, bewerterId, seminarId);
+
 		if (!user.isUserStudent()) {
 			// TODO hinzufüge hier extra details... mit set methoden..
 //			 @param umfang
@@ -67,11 +72,6 @@ public class FormAddBewertung extends HttpServlet {
 //			 * @param sprachlicheGestaltung
 //			 * @param schwerigkeitsgrad
 		}
-
-		Bewertung bewertung = new Bewertung(id, foliengestaltung, spraclichePresentation, presentationstil,
-				zeitlicheGestaltung, verstandnis, inhaltlicheAufbereitung, verknuepfungMitAnderen, diskassionFuehrung,
-				beteiligungDiskassionen, kommentar, bewerterId, seminarId);
-
 		checkFormAddBewertung cf = new checkFormAddBewertung();
 		Map result = cf.checkForm(kommentar);
 		if (result.size() == 0) {

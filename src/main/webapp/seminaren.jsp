@@ -51,8 +51,9 @@
 						</c:if></td>
 					<td><a
 						href="toAddBewertung?method=toAddBewerung&seminarId=${seminar.getId()}">
-							Vortrag Geben <i class="fa fa-commenting-o" aria-hidden="true"></i>
+							Bewertung Geben <i class="fa fa-commenting-o" aria-hidden="true"></i>
 					</a></td>
+					
 					<td><a
 						href="editSeminar?method=editSeminar&seminarId=${seminar.getId()}">
 							Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

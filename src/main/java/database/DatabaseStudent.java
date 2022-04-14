@@ -15,8 +15,8 @@ import seminar.Seminar;
 public class DatabaseStudent {
 	private static Connection con = null;
 
-	public static boolean addStudent(Student student) {
-		boolean erfolg = false;
+	public static Student addStudent(Student student) {
+		// boolean erfolg = false;
 		System.out.println("id: " + student.getId());
 
 		try {
@@ -45,7 +45,7 @@ public class DatabaseStudent {
 			pstmt.setString(9, student.getSeminarthema());
 			int zeilen = pstmt.executeUpdate();
 			if (zeilen > 0) {
-				erfolg = true;
+				// erfolg = true;
 
 			}
 
@@ -61,7 +61,7 @@ public class DatabaseStudent {
 			}
 		}
 
-		return erfolg;
+		return student;
 	}
 
 	

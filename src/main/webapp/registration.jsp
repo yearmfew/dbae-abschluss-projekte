@@ -8,32 +8,37 @@
 			<div>
 				<label for="vorname" class="form-label">Vorname</label> <input
 					type="text" required class="form-control" name="vorname"
-					id="vorname" value=${ vorname }>
+					id="vorname" value=${ vorname }> <span class="warning">
+					${ vornameFormat } </span>
 
 			</div>
 			<div>
 				<label for="nachname" class="form-label">Nachname</label> <input
 					type="text" required class="form-control" name="nachname"
-					id="nachname" value=${ nachname }>
+					id="nachname" value=${ nachname }> <span class="warning">
+					${ nachnameFormat } </span>
 
 			</div>
 			<div>
 				<label for="matrikelnummer" class="form-label">Matrikelnummer</label>
 				<input type="text" required class="form-control"
 					name="matrikelnummer" id="matrikelnummer" value=${ matrikelnummer }>
+					<span class="warning">
+					${ matrikelnummerFormat } </span>
 
 			</div>
 			<div>
 				<label for="email" class="form-label">Email</label> <input
 					type="email" required class="form-control" name="email" id="email"
-					value=${ email }> <span class="warning"> ${ emailAlreadyUsed }
+					value=${ email }> <span class="warning"> 
+					${ emailFormat } ${ emailAlreadyUsed }
 				</span>
 			</div>
 			<div>
 				<label for="password" class="form-label">Passwort</label> <input
 					type="password" required class="form-control" name="password"
 					id="password" value=${ password }> <span class="warning">
-					${ error } </span>
+					${ passwortFormat } </span>
 
 				<div>Belegtes Seminar:</div>
 

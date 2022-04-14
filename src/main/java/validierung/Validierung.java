@@ -1,6 +1,6 @@
 package validierung;
 
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 import database.DatabaseStudent;
 
@@ -46,24 +46,33 @@ public class Validierung {
 		return Pattern.matches("[A-Z]+([a-z]|[\\- ]){2,"+count+"}", text);
 	}
 	//anas teil
-	public static boolean pruefeEmail(String email) {
-		return Pattern.matches("([a-z\\.\\-\\+]){2,63}@([a-z\\.\\-\\+]){2,191}", email);
+	public  boolean pruefeEmail(String email) {
+		return Pattern.matches("([a-z\\.\\-\\+]){1,63}@([a-z\\.\\-\\+]){2,191}", email);
 	}
 
-	public static boolean pruefeName(String name) {
+	public boolean pruefeName(String name) {
 		return Pattern.matches("[A-Z]{1}[a-z]+([\\s-]{1})*([A-Z]{1}[a-z]{2,20})*", name);
 	}
 	
-	public static boolean pruefeMatrikelnummer(String matrikelnummer) {
+	public boolean pruefeMatrikelnummer(String matrikelnummer) {
 		return Pattern.matches("^[0-9]{6,8}$", matrikelnummer);
 	}
 	// Noch Fehler die Reihenfolge passt noch nicht
 	// aA? -> geht und ist richtig aber Aa? -> geht nicht, muss aber gehen
-	public static boolean pruefePasswort(String password) {
-		return Pattern.matches("(.*[a-z].*)(.*[A-Z].*)(.*[^(a-zA-Z_0-9)].*)", password);
+	public boolean pruefePasswort(String password) {
+		Pattern passwordOK = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[^(a-zA-Z_0-9)])");
+		Matcher match = passwordOK.matcher(password);
+		System.out.println("pw is= " + password);
+		boolean passwordMatch= true;
+		System.out.println("passwordmatch = " + passwordMatch);
+		if (match == null ) {
+			passwordMatch = false;
+			
+		} 
+		return passwordMatch;
 	}
 	
-	public static boolean isEmailExit(String email) { 
+	public boolean isEmailExit(String email) { 
 		boolean isEmailExist = false; // falls keine mail
 		// hier nochmal schauen 
 		isEmailExist = DatabaseStudent.isEmailExist(email);

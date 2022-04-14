@@ -35,23 +35,6 @@ public class DatabasePassword {
 				int zeilen = pstmt.executeUpdate();
 				if (zeilen > 0) {
 					erfolg = true;
-					// int studentid = 0;
-
-					// abrufe die Id kundenid kunde auf der Datenbank
-					// wir speichern es damit wir es beim password adding und wenn braucht nutzen
-					// kann
-					// PreparedStatement pstmtForStudentId = con.prepareStatement("SELECT userid
-					// FROM passwort WHERE email = ?");
-					// pstmtForStudentId.setString(1, student.getEmail());
-					// ResultSet rs = pstmtForStudentId.executeQuery();
-					// System.out.println("rs:::" + rs);
-
-					// while (rs.next()) {
-					// studentid = rs.getInt("userid");
-					// }
-
-					// student.setId(studentid);
-
 				}
 
 			} catch (SQLException e) {
@@ -121,14 +104,14 @@ public class DatabasePassword {
 		int userid = 0;
 		try {
 			con = DatabaseConnection.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT userid FROM passwort WHERE email= ?");
+			PreparedStatement pstmt = con.prepareStatement("SELECT id FROM users WHERE email= ?");
 			pstmt.setString(1, email);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs == null) {
 				System.out.println("Es gibt keinen Student mit diesem Id in db.");
 			} else {
 				while (rs.next()) {
-					userid = (rs.getInt("userid"));
+					userid = (rs.getInt("id"));
 				}
 			}
 

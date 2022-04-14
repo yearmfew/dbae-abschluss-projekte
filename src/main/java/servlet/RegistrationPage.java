@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import database.DatabasePassword;
 import database.DatabaseStudent;
 import database.DatabaseUser;
-import student.RegEx;
 import student.Student;
 import user.User;
 import validierung.checkFormEditSeminarData;
@@ -32,12 +30,11 @@ public class RegistrationPage extends HttpServlet {
 		String nachname = request.getParameter("nachname");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String error = "";
 		String matrikelnummer = request.getParameter("matrikelnummer");
 		String studiengang = (request.getParameter("studiengang"));
 		String seminar = (request.getParameter("seminar"));
 		String abschluss = (request.getParameter("abschluss"));
-		String seminarthema = (request.getParameter("seminarthema")); // kann auch leer sein -> noch machen
+		String seminarthema = (request.getParameter("seminarthema"));
 
 		request.setAttribute("vorname", vorname);
 		request.setAttribute("nachname", nachname);
@@ -49,18 +46,18 @@ public class RegistrationPage extends HttpServlet {
 		request.setAttribute("abschluss", abschluss);
 		request.setAttribute("seminarthema", seminarthema);
 		HttpSession session = request.getSession();
-		// int id = 99;
 
 		Student student = new Student(vorname, nachname, email, password, matrikelnummer, studiengang, seminar,
 				abschluss, seminarthema);
 
 		// muss alles in checkforma data weil ich das auch bei profil bearbeiten brauche
-
+		
 		Map<String, String> result = new HashMap<String, String>();
 		checkFormStudentData cF = new checkFormStudentData();
 
-		result = cF.checkForm(vorname, nachname, email, studiengang, matrikelnummer, seminar, abschluss, seminarthema);
-
+		result = cF.checkForm(vorname, nachname, email, password, studiengang, matrikelnummer, seminar, abschluss, seminarthema);
+		
+		if (result.size() == 0) {
 		// DATABASE PASSWORT WRITE DATA
 		// füg bei password einen usertype hinzu
 		DatabasePassword.addPassword(student);
@@ -70,14 +67,16 @@ public class RegistrationPage extends HttpServlet {
 		student.setId(id);
 		// DATABASE STUDENT WRITE DATA
 		DatabaseStudent.addStudent(student);
-	
-		
-		
-		
-		
+
 		session.setAttribute("DB add", "okay");
 		request.getRequestDispatcher("login.jsp").forward(request, response);
-
+		}  else {
+			// fehler erklarungen erstellung mit for loop
+			for (Object i : result.keySet()) {
+				request.setAttribute((String) i, (String) result.get(i));
+			 }
+			request.getRequestDispatcher("registration.jsp").forward(request, response);
+		}
 		// check form test ende
 
 		/*
@@ -117,7 +116,7 @@ public class RegistrationPage extends HttpServlet {
 
 		// request.setAttribute("error", error);
 
-		// request.getRequestDispatcher("registration.jsp").forward(request, response);
+	 
 	}
 
 }

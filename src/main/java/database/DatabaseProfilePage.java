@@ -10,7 +10,7 @@ import student.Student;
 public class DatabaseProfilePage {
 	private static Connection con = null;
 
-	public static Student updateStudent(Student student) {
+	public static boolean updateStudent(Student student) {
 		boolean erfolg = false;
 
 		try {
@@ -45,7 +45,7 @@ public class DatabaseProfilePage {
 			}
 		}
 
-		return student;
+		return erfolg;
 	}
 	// die methode kannst du löschen
 	public static Student getStudentData(int id) {

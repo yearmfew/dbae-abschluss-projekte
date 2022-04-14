@@ -3,14 +3,17 @@
 	flex-direction: row;
 	height: 95vh;
 	margin: 0;
+	
 }
 
 .page-containerMenu {
-	width: 15%;
+	min-width: 15% !important;
+	
+	
 }
 
 .page-containerContent {
-	width: 85%;
+	width: 75%;
 	padding: 1rem;
 }
 
@@ -53,7 +56,17 @@ Seminar page Css
 	width:100%;
 }
 
-
+.loginPage{
+	width:100%;
+	height:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}
+.loginPage form{
+	width:40%;
+}
 
 .warning {
 	display: flex;

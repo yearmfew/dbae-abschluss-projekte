@@ -127,7 +127,7 @@ public class Seminar {
 		this.semester = semester;
 	}
 	public String isStatus() {
-		if(status == true) return "belegt";
+		if(status == true) return "vergeben";
 		return "frei";
 	}
 	public boolean getStatus() {

@@ -18,9 +18,9 @@ import database.DatabaseDozent;
 import student.Student;
 import user.User;
 
-
 /**
  * Servlet welches die Logindaten des Besuchers auf Richtigkeit prüft
+ * 
  * @author Anas Souseh
  */
 @WebServlet("/LoginPage")
@@ -37,7 +37,7 @@ public class LoginPage extends HttpServlet {
 		Boolean validLogin = false;
 		try {
 			User user = DatabaseUser.getUserByMail(email);
-			// falls versucht wird mit mail einzuloggen welche nicht der datenbank ist... 
+			// falls versucht wird mit mail einzuloggen welche nicht der datenbank ist...
 			if (user != null) {
 				if (user.getPassword().equals(password)) {
 					validLogin = true;
@@ -49,14 +49,15 @@ public class LoginPage extends HttpServlet {
 							"Nutzername oder Passwort falsch. Bitte überprüfen sie ihre Daten.");
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 				}
-
+				// if teil student/ else dozent
 				if (validLogin) { 
 					if (user.getUserType().equals("student")) {
-
+						// student und dozent bei login in session speicherun um in folgenden Seiten mit
+						// richtigen Werten zu arbeiten
 						Student student = DatabaseStudent.getStudentById(user.getId());
 						int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
 						int durchnittlicheNote = DatabaseBewertungen.getNoteVonBewertung(student.getId());
-
+						student.setCountOfBewertungen(countOfBewertungen);
 						session.setAttribute("student", student);
 						request.getRequestDispatcher("initSeminaren").forward(request, response);
 					} else if (user.getUserType().equals("dozent")) {
@@ -65,7 +66,7 @@ public class LoginPage extends HttpServlet {
 						request.getRequestDispatcher("initSeminaren").forward(request, response);
 					}
 				}
-			} else { // ... wird eine warning message geworfen ohne das die seite down geht 
+			} else { // ... wird eine warning message geworfen ohne das die seite down geht
 				request.setAttribute("fehlermeldung", "Die Kombination aus E-Mail/Passwort ist nicht vorhanden.");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				System.out.println("user ist null");

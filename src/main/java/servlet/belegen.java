@@ -35,8 +35,17 @@ public class belegen extends HttpServlet {
 		int seminarId = Integer.parseInt(request.getParameter("seminarId"));
 	    User user = (User) session.getAttribute("user");
 	    int studentId = user.getId();
-	    boolean result = database.DatabaseSeminaren.belegSeminar(seminarId, studentId);
-	    if(result) request.getRequestDispatcher("initSeminaren").forward(request, response);	
+	    try {
+	    	
+	    	database.DatabaseSeminaren.belegSeminar(seminarId, studentId);
+	    }catch(Exception e) {
+	    	session.setAttribute("schonBelegtFehler", "Sie sind schon in einem Seminer Belegt..");
+	    	request.getRequestDispatcher("initSeminaren").forward(request, response);
+	    }
+	    	request.getRequestDispatcher("initSeminaren").forward(request, response);	
+	    
+	    
+	    
 	    
 	}
 

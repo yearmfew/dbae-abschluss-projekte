@@ -14,7 +14,7 @@ import seminar.Seminar;
 import student.Student;
 
 /**
- * Servlet implementation class initProfil
+ * Weiterleitung zu dem Profil eines Studenten.
  * @author Anas Souseh
  */
 @WebServlet("/initProfil")

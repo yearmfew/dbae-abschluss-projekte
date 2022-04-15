@@ -10,7 +10,7 @@ import exceptions.addBewertungException;
 import exceptions.getBewertungException;
 import user.User;
 /**
- * 
+ * Klasse welche Bewertung eines Users aus der Datenbank holt.
  * @author Birol Yilmaz, Anas Souseh
  *
  */
@@ -177,7 +177,6 @@ public class DatabaseBewertungen {
 	}
 
 	public static int getNoteVonBewertung(int id) {
-		System.out.println("id "+ id);
 		int note = 0;
 		int umfang= 0;
 		int referenzen = 0;
@@ -212,7 +211,6 @@ public class DatabaseBewertungen {
 			}
 		}
 		note = (int) ((umfang + referenzen + sprachlicheGestaltung + inhaltlicheAufbereitung + schwierigkeitsgrad)/5);
-		System.out.println("die note in db ist:" + note);
 		return note;
 
 	}

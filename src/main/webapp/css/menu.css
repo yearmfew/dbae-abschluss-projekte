@@ -2,6 +2,7 @@
 	display:flex;
 	flex-direction:column;
 	height:100%;
+	min-height:95vh;
 	justify-content: flex-start;
 	background-color:#cecece;
 	width:100%;

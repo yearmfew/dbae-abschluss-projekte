@@ -22,6 +22,11 @@ public class DatabaseSeminaren {
 	private static Connection con = null;
 
 	// GET METHODS
+	/**
+	 * Bringt alle seminaren in datenbank
+	 * @return seminaren
+	 * @throws seminarNotFoundException
+	 */
 	public static ArrayList<Seminar> getSeminarsData() throws seminarNotFoundException{
 		ArrayList<Seminar> seminaren = new ArrayList<Seminar>();
 
@@ -38,6 +43,7 @@ public class DatabaseSeminaren {
 					Dozent dozent = DatabaseDozent.getDozentById(rs.getInt("dozent_id"));
 					Student student = DatabaseStudent.getStudentById(rs.getInt("student_id"));
 					seminar.setZugewissenerStudent(student);
+					
 					seminar.setDozent(dozent);
 					seminaren.add(seminar);
 				}
@@ -46,6 +52,7 @@ public class DatabaseSeminaren {
 		} catch (SQLException e) {
 			System.err.println(e);
 			System.err.println("SQL Fehler bei getSeminarsData()" + e.toString());
+			
 		} finally {
 			try {
 				con.close();
@@ -59,7 +66,12 @@ public class DatabaseSeminaren {
 		return seminaren;
 
 	}
-
+	/**
+	 * Bringt seminar mit gegebenen id
+	 * @param id
+	 * @return seminar
+	 * @throws seminarNotFoundException
+	 */
 	public static Seminar getSeminarById(int id) throws seminarNotFoundException {
 		
 
@@ -100,7 +112,12 @@ public class DatabaseSeminaren {
 	}
 
 	// ADD METHODS
-
+	/**
+	 * hinzugüht gegebenen seminar zu Datenbank
+	 * @param seminar
+	 * @return erfolg
+	 * @throws addSeminarException
+	 */
 	public static boolean addSeminar (Seminar seminar) throws addSeminarException {
 		boolean erfolg = false;
 
@@ -147,6 +164,11 @@ public class DatabaseSeminaren {
 	}
 
 	// UPDATE METHODS
+	/**
+	 * aktualisiert gegebenen seminar mit gegebenen values
+	 * @param seminar
+	 * @return erfolg
+	 */
 	public static boolean updateSeminar(Seminar seminar) {
 		boolean erfolg = false;
 		try {
@@ -182,7 +204,17 @@ public class DatabaseSeminaren {
 		return erfolg;
 	}
 
-	public static boolean belegSeminar(int seminarId, int studentId) {
+	/**
+	 * beleg ein student für ein seminar. 
+	 * Wenn ein student ist schon belegt, bekommen wir ein exception weil student_id
+	 * in datenbank seminar table unique ist. 
+	 * Wir throw diese error damit wir es nutzen kann.
+	 * @param seminarId
+	 * @param studentId
+	 * @return
+	 * @throws SQLException
+	 */
+	public static boolean belegSeminar(int seminarId, int studentId) throws SQLException {
 		boolean erfolg = false;
 		try {
 			con = DatabaseConnection.getConnection();
@@ -199,14 +231,15 @@ public class DatabaseSeminaren {
 
 		} catch (SQLException e) {
 			System.err.println(e);
-			System.err.println("SQL Fehler bei updateSeminar()" + e.toString());
+			System.err.println("SQL Fehler bei belegSeminar()" + e.toString());
+			throw e;
 		} finally {
 			try {
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("[SQL] Fehler bei updateSeminar() - Verbindung geschlossen");
+				System.out.println("[SQL] Fehler bei belegSeminar() - Verbindung geschlossen");
 			}
 		}
 		return erfolg;

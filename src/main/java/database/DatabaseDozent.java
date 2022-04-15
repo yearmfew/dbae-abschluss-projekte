@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import dozent.Dozent;
 /**
- * 
+ * Klasse welche Daten des Dozente aus der Datenbanktabelle dozent holt.
  * @author Birol Yilmaz, Anas Souseh
  *
  */

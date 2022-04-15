@@ -11,21 +11,30 @@ import java.util.ArrayList;
 
 import dozent.Dozent;
 import seminar.Seminar;
+
 /**
+ * Klasse welche alle Informationen eines Studenten aus der Datenbanktabelle
+ * student holt.
  * 
  * @author Anas Souseh
  *
  */
+
 public class DatabaseStudent {
 	private static Connection con = null;
 
+	/**
+	 * Returniert einen studenten aus der datenbank. Der Student wir durch seine id
+	 * welche aus der userdatenbank stammt zugeordnet.
+	 * 
+	 * @param student
+	 * @return student
+	 */
 	public static Student addStudent(Student student) {
-		// boolean erfolg = false;
-		System.out.println("id: " + student.getId());
 
 		try {
 			con = DatabaseConnection.getConnection();
-			/* ) */
+
 			PreparedStatement pstmt = con.prepareStatement(
 					"INSERT INTO student (id, vorname, nachname, email, matrikelnummer, seminar, studiengang, abschluss, seminarthema) VALUES ("
 							+ "?, " + /// vorname - String
@@ -49,7 +58,6 @@ public class DatabaseStudent {
 			pstmt.setString(9, student.getSeminarthema());
 			int zeilen = pstmt.executeUpdate();
 			if (zeilen > 0) {
-				// erfolg = true;
 
 			}
 
@@ -68,7 +76,11 @@ public class DatabaseStudent {
 		return student;
 	}
 
-	
+	/**
+	 * Überschreibt die Daten eines Studenten, wenn er sich nach Bearbeitung des Profil mit seinem Passwort speichert.
+	 * @param student
+	 * @return erfolg
+	 */
 	public static boolean updateStudent(Student student) {
 		boolean erfolg = false;
 
@@ -106,7 +118,7 @@ public class DatabaseStudent {
 
 		return erfolg;
 	}
-	
+
 	/**
 	 * Prüft ob Studentmail bereits in der Datenbank existiert.
 	 * 
@@ -144,6 +156,11 @@ public class DatabaseStudent {
 		return isExist;
 	}
 
+	/**
+	 * Returniert alle Daten eines Studenten. Der Student wird durch sein id zugeordnet.
+	 * @param id
+	 * @return habile. Ein Student. 
+	 */
 	public static Student getStudentById(int id) {
 		Student habile = null;
 		try {
@@ -154,12 +171,10 @@ public class DatabaseStudent {
 			if (rs == null) {
 				System.out.println("Es gibt keinen Student mit diesem Id in db.");
 			} else {
-				while ( rs.next()) {
-					Student myStudent = new Student(rs.getInt("id"), 
-							rs.getString("vorname"), rs.getString("nachname"), rs.getString("email"),
-							rs.getString("matrikelnummer"), rs.getString("studiengang"), 
-							rs.getString("seminar"), rs.getString("abschluss"), 
-							rs.getString("seminarThema"));
+				while (rs.next()) {
+					Student myStudent = new Student(rs.getInt("id"), rs.getString("vorname"), rs.getString("nachname"),
+							rs.getString("email"), rs.getString("matrikelnummer"), rs.getString("studiengang"),
+							rs.getString("seminar"), rs.getString("abschluss"), rs.getString("seminarThema"));
 					return myStudent;
 				}
 			}
@@ -176,10 +191,7 @@ public class DatabaseStudent {
 				System.out.println("[SQL] Fehler bei getStudentId - Verbindung geschlossen");
 			}
 		}
-		
-		
-		
-		
+
 		return habile;
 
 	}
@@ -217,10 +229,14 @@ public class DatabaseStudent {
 				System.out.println("[SQL] Fehler bei getId() - Verbindung geschlossen");
 			}
 		}
-		System.out.println("id in email:"+ id);
+		System.out.println("id in email:" + id);
 		return id;
 	}
 
+	/**
+	 * Methode um einen Select * Befehl auf dem Student Table durchzuführen.
+	 * @return studenten. ArrayList welche alle Studenten in der Datenbank zurückgibt.
+	 */
 	public static ArrayList getStudentData() {
 		ArrayList<Student> studenten = new ArrayList<Student>();
 
@@ -252,19 +268,15 @@ public class DatabaseStudent {
 				System.out.println("[SQL] Fehler bei getStudenData - Verbindung geschlossen");
 			}
 		}
-		
-		// es kann weg sein!!
-		
-		for(Student student : studenten) {
+
+		for (Student student : studenten) {
 			int durchnittlicheNote = DatabaseBewertungen.getNoteVonBewertung(student.getId());
 			int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
-			System.out.println("sada "+countOfBewertungen);
+			System.out.println("sada " + countOfBewertungen);
 			student.setCountOfBewertungen(countOfBewertungen);
 			student.setDurchnittlicheNote(durchnittlicheNote);
 		}
-		
-		
-		
+
 		return studenten;
 
 	}

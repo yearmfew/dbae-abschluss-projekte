@@ -17,7 +17,7 @@ import database.DatabaseUser;
 import student.Student;
 import validierung.checkFormStudentData;
 /**
- * 
+ * Page für Studenten, bei der sich ein neuer Account erstellt werden kann. 
  * @author Anas Souseh
  *
  */
@@ -73,6 +73,8 @@ public class RegistrationPage extends HttpServlet {
 				// DATABASE STUDENT WRITE DATA
 				DatabaseStudent.addStudent(student);
 
+				session.setAttribute("DB add", "okay");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 				
 			} catch (Exception addStudentDataException) {
 				addStudentDataException.printStackTrace();
@@ -82,8 +84,6 @@ public class RegistrationPage extends HttpServlet {
 				request.getRequestDispatcher("regtistration.jsp").forward(request, response);
 			}
 			
-			session.setAttribute("DB add", "okay");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
 			// fehlermeldung im formular ausgeben
 			for (Object i : result.keySet()) {

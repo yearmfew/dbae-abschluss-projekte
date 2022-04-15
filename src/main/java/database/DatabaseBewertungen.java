@@ -10,7 +10,7 @@ import exceptions.addBewertungException;
 import exceptions.getBewertungException;
 import user.User;
 /**
- * 
+ * Klasse welche Bewertung eines Users aus der Datenbank holt.
  * @author Birol Yilmaz, Anas Souseh
  *
  */

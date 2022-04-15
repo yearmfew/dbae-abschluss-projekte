@@ -56,7 +56,7 @@ public class LoginPage extends HttpServlet {
 						Student student = DatabaseStudent.getStudentById(user.getId());
 						int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
 						int durchnittlicheNote = DatabaseBewertungen.getNoteVonBewertung(student.getId());
-
+						student.setCountOfBewertungen(countOfBewertungen);
 						session.setAttribute("student", student);
 						request.getRequestDispatcher("initSeminaren").forward(request, response);
 					} else if (user.getUserType().equals("dozent")) {

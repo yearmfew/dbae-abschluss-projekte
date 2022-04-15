@@ -11,7 +11,11 @@ import java.util.ArrayList;
 
 import dozent.Dozent;
 import seminar.Seminar;
-
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 public class DatabaseStudent {
 	private static Connection con = null;
 

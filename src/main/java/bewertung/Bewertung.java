@@ -1,5 +1,9 @@
 package bewertung;
-
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class Bewertung {
 	private int id;
 	private int foliengestaltung; // -1 = -, 0 = o, 1 = +
@@ -19,6 +23,7 @@ public class Bewertung {
 	private int schwerigkeitsgrad; // -1 = -, 0 = o, 1 = +
 	private String bewerterType; // student oder dozent
 	private int seminarId;
+
 	private int noteAusarbeitung;
 	
 	

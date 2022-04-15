@@ -13,6 +13,7 @@ import seminar.Seminar;
 
 import java.util.ArrayList;
 /**
+ * @author Birol Yilmaz
  * Servlet implementation class seminar
  */
 @WebServlet("/initSeminaren")

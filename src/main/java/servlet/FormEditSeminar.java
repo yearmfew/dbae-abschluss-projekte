@@ -15,6 +15,7 @@ import seminar.Seminar;
 import validierung.checkFormEditSeminarData;
 
 /**
+ * @author Birol Yilmaz
  * Servlet implementation class FormEditSeminar
  */
 @WebServlet("/FormEditSeminar")

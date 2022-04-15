@@ -3,13 +3,18 @@ package validierung;
 import java.util.regex.*;
 
 import database.DatabaseStudent;
-
+/**
+ * 
+ * @author Birol Yilmaz, Anas Souseh
+ *
+ */
 public class Validierung {
 	public Validierung() {
 
 	}
 
 	/*
+	 * @author Birol Yilmaz
 	 * Kontrolliert ob der text fürht zu kein sql injection.
 	 * 
 	 * @param text, text zu kontrollieren
@@ -18,11 +23,13 @@ public class Validierung {
 	 */
 	public boolean textFelderCheck(String text) {
 
+		
+		return Pattern.matches("([A-Z]|[a-z]|\\s+|[\\-|\\&|\\.|\\,|\\:|\\;])*", text);
 
-		return Pattern.matches("([A-Z]|[a-z]|[\\-|\\&|\\.|\\,|\\:])*", text);
 	}
 
 	/**
+	 * @author Anas Souseh
 	 * Es kontrolliert ob der Name in der gewünchte Format ist.
 	 * 
 	 * @param name, vor- oder nachname
@@ -33,12 +40,13 @@ public class Validierung {
 	}
 
 	/**
-	 * Es kontrolliert ob email in der gewünschten format ist. gewünshte Format: •
-	 * Sie besteht aus zwei Teilen, die mit einem @ getrennt werden • Erlaubte
-	 * Zeichen sind Kleinbuchstaben, Punkte, Plus und Minus • Sie ist nicht beliebig
-	 * lang: Der lokale Teil (vor dem ”@“) ist nicht länger als 63 Zeichen, • die
-	 * E-Mail Adresse insgesamt ist nicht länger als 254 Zeichen.
-	 * 
+	 * @author Anas Souseh
+	 * Es kontrolliert ob email in der gewünschten format ist.
+	 * gewünshte Format: 
+	 * • Sie besteht aus zwei Teilen, die mit einem @ getrennt werden
+	 * • Erlaubte Zeichen sind Kleinbuchstaben, Punkte, Plus und Minus
+	 * • Sie ist nicht beliebig lang: Der lokale Teil (vor dem ”@“) ist nicht länger als 63 Zeichen,
+	 * • die E-Mail Adresse insgesamt ist nicht länger als 254 Zeichen.
 	 * @param email email zu registrieren.
 	 * @return true or false. Wenn email gultig ist True usw.
 	 */
@@ -53,12 +61,23 @@ public class Validierung {
 		return Pattern.matches("[A-Z]+([a-z]|[\\- ]){2," + count + "}", text);
 	}
 
+
 	// anas teil
 	//
 	public boolean pruefeEmail(String email) {
 		return Pattern.matches("([a-z\\.\\-\\+]){1,63}@([a-z\\.\\-\\+]){2,191}", email);
 	}
 	// name auf 20 begrenzt. besteht aus mind 2 buchstaben
+
+	/**
+	 * @author Anas Souseh
+	 * @param email
+	 * @return
+	 */
+	public  boolean pruefeEmail(String email) {
+		return Pattern.matches("([a-z\\.\\-\\+]){1,63}@([a-z\\.\\-\\+]){2,191}", email);
+	}
+
 	public boolean pruefeName(String name) {
 		return Pattern.matches("[A-Z]{1}[a-z]+([\\s-]{1})*([A-Z]{1}[a-z]{2,20})*", name);
 	}
@@ -73,10 +92,19 @@ public class Validierung {
 	public boolean pruefePasswort(String password) {
 		Pattern passwordOK = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[^(a-zA-Z_0-9)])");
 		Matcher match = passwordOK.matcher(password);
+
 		// falls ein pattern gefunden wird wird ein match geworfen
 		boolean matchExists = match.find();
 		System.out.println("matchexists= " + matchExists);
 		return matchExists;
+
+		boolean passwordMatch= true;
+		if (match == null ) {
+			passwordMatch = false;
+			
+		} 
+		return passwordMatch;
+
 	}
 
 	public boolean isEmailExit(String email) {
@@ -86,6 +114,7 @@ public class Validierung {
 		return isEmailExist;
 	}
 	
+
 	public boolean benotungsFeldCheck(int bewertung) {
 		boolean bewertungRichtig = false;
 		if (bewertung == 1 | bewertung == 0 | bewertung == -1) {
@@ -94,5 +123,6 @@ public class Validierung {
 	return bewertungRichtig;
 	
 	} 
+
 
 }

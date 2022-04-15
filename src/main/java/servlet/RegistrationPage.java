@@ -15,7 +15,11 @@ import database.DatabasePassword;
 import database.DatabaseStudent;
 import student.Student;
 import validierung.checkFormStudentData;
-
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 @WebServlet("/RegistrationPage")
 public class RegistrationPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;

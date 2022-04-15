@@ -3,7 +3,11 @@ package validierung;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class checkFormEditSeminarData {
 	/**
 	 * Kontrolliert ob die Form data rictig ist.

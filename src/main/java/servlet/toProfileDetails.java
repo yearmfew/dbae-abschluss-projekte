@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import database.DatabaseBewertungen;
 import student.Student;
 
 /**
  * Servlet implementation class toProfileDetails
+ * @author Anas Souseh
  */
 @WebServlet("/toProfileDetails")
 public class toProfileDetails extends HttpServlet {
@@ -36,11 +37,12 @@ public class toProfileDetails extends HttpServlet {
 		// Student student = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
 		Student student = database.DatabaseStudent.getStudentById(Integer.parseInt(request.getParameter("studentId")));
 		HttpSession session = request.getSession();
-		session.setAttribute("student", student);
 		// ka ob das klappt
-		database.DatabaseBewertungen.getNoteVonBewertung(student.getId());
-		// System.out.println("student note :" + database.DatabaseBewertungen.getNoteVonBewertung(student.getId()));
-		session.setAttribute("note", database.DatabaseBewertungen.getNoteVonBewertung(student.getId()));
+		int note = database.DatabaseBewertungen.getNoteVonBewertung(student.getId());
+		int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
+		student.setDurchnittlicheNote(note);
+		student.setCountOfBewertungen(countOfBewertungen);
+		session.setAttribute("student", student);
 		request.getRequestDispatcher("profil.jsp").forward(request, response);
 		
 		

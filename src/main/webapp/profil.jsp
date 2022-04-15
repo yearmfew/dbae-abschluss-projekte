@@ -39,14 +39,13 @@
 				</tr>
 				<tr>
 					<th scope="row">Anzahl der Bewertungen:</th>
-					<td>${sessionScope.countOfBewertungen}</td>
+					<td>${sessionScope.student.getCountOfBewertungen()}</td>
 				</tr>
-				<c:if test="${sessionScope.user.isUserDozent()}">
-					<!-- hier muss die bewertung nur für dozent -->
+				<c:if test="${!sessionScope.user.isUserStudent()}">
 					
-					<tr>
+				<tr>
 					<th scope="row">Note der Ausarbeitung:</th>
-					<td>${sessionScope.bewertung.getNote()}</td>
+					<td>${sessionScope.student.getDurchnittlicheNote()}</td>
 				</tr>
 					</c:if>
 				

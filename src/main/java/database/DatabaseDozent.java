@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dozent.Dozent;
-import seminar.Seminar;
 /**
  * 
  * @author Birol Yilmaz, Anas Souseh
@@ -51,7 +50,7 @@ public class DatabaseDozent {
 
 	}
 	
-	public static ArrayList getAllDozenten() {
+	public static ArrayList<Dozent> getAllDozenten() {
 		ArrayList<Dozent> dozenten = new ArrayList <Dozent>();
 		try {
 			con = DatabaseConnection.getConnection();

@@ -6,16 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import bewertung.Bewertung;
-import dozent.Dozent;
 import exceptions.addBewertungException;
 import exceptions.getBewertungException;
-import exceptions.seminarNotFoundException;
-import seminar.Seminar;
-import student.Student;
 import user.User;
 /**
  * 
- * @author Birol Yilmaz
+ * @author Birol Yilmaz, Anas Souseh
  *
  */
 public class DatabaseBewertungen {
@@ -181,23 +177,26 @@ public class DatabaseBewertungen {
 	}
 
 	public static int getNoteVonBewertung(int id) {
+		System.out.println("id "+ id);
 		int note = 0;
 		int umfang= 0;
-		int 
+		int referenzen = 0;
+		int sprachlicheGestaltung =0;
+		int inhaltlicheAufbereitung =0;
+		int schwierigkeitsgrad=0;
 		try {
 			con = DatabaseConnection.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT umfang, referenzen, sprachlicheGestaltung,"
+			PreparedStatement pstmt = con.prepareStatement("SELECT umfang, referenzen, sprachlichegestaltung,"
 					+ " inhaltliche_aufbereitung, schwierigkeitsgrad FROM bewertungen WHERE id = ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				int umfang = rs.getInt("umfang");
-				int referenzen = rs.getInt("referenzen");
-				int sp = rs.getInt("sprachlicheGestaltung");
-				int ia = rs.getInt("inhaltliche_aufbereitung");
-				int sq = rs.getInt("schwierigkeitsgrad");
-				note = (int) ((umfang + referenzen + sp + ia + sq)/5);
-				System.out.println("die note in db ist:" + note);
+				umfang = rs.getInt("umfang");
+				referenzen = rs.getInt("referenzen");
+				sprachlicheGestaltung = rs.getInt("sprachlichegestaltung");
+				inhaltlicheAufbereitung = rs.getInt("inhaltliche_aufbereitung");
+				schwierigkeitsgrad = rs.getInt("schwierigkeitsgrad");
+				
 			}
 
 		} catch (SQLException e) {
@@ -212,6 +211,8 @@ public class DatabaseBewertungen {
 				System.out.println("[SQL] Fehler bei getBewertungen() - Verbindung geschlossen");
 			}
 		}
+		note = (int) ((umfang + referenzen + sprachlicheGestaltung + inhaltlicheAufbereitung + schwierigkeitsgrad)/5);
+		System.out.println("die note in db ist:" + note);
 		return note;
 
 	}

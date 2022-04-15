@@ -2,7 +2,11 @@ package validierung;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 public class checkFormStudentData {
 	public Map checkForm(String vorname, String nachname, String email, String passwort, String studiengang,
 			String matrikelnummer, String seminar, String abschluss, String seminarthema) {

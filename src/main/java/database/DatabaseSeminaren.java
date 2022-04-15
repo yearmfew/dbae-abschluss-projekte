@@ -38,6 +38,7 @@ public class DatabaseSeminaren {
 					Dozent dozent = DatabaseDozent.getDozentById(rs.getInt("dozent_id"));
 					Student student = DatabaseStudent.getStudentById(rs.getInt("student_id"));
 					seminar.setZugewissenerStudent(student);
+					
 					seminar.setDozent(dozent);
 					seminaren.add(seminar);
 				}

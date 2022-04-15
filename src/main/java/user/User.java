@@ -52,4 +52,8 @@ private String password;
 		return userType.equals("student");
 	}
 	
+	public boolean isUserDozent() {
+		// return false;
+		return userType.equals("dozent");
+	}
 }

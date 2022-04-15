@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 /**
  * Filtert HTML aus Benutzereingaben
  * 
- * @author Leon Schaffert
+ * @author Birol Yilmaz, Anas Souseh
  *
  */
 @WebFilter( urlPatterns={"/print-filtered-text"})

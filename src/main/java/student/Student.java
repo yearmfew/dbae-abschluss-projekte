@@ -2,6 +2,11 @@ package student;
 import java.util.ArrayList;
 
 import seminar.Seminar;
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 public class Student {
 	private int id;
 	private String vorname;
@@ -14,6 +19,8 @@ public class Student {
 	private String seminarthema;
 	private String seminar;
 	private ArrayList<Seminar> beteiligteSeminaren;
+	private int durchnittlicheNote;
+	private int countOfBewertungen;
 	
 	
 	
@@ -164,6 +171,34 @@ public class Student {
 	
 	public String getPasswort() {
 		return passwort;
+	}
+
+	/**
+	 * @return the durchnittlicheNote
+	 */
+	public int getDurchnittlicheNote() {
+		return durchnittlicheNote;
+	}
+
+	/**
+	 * @param durchnittlicheNote the durchnittlicheNote to set
+	 */
+	public void setDurchnittlicheNote(int durchnittlicheNote) {
+		this.durchnittlicheNote = durchnittlicheNote;
+	}
+
+	/**
+	 * @return the countOfBewertungen
+	 */
+	public int getCountOfBewertungen() {
+		return countOfBewertungen;
+	}
+
+	/**
+	 * @param countOfBewertungen the countOfBewertungen to set
+	 */
+	public void setCountOfBewertungen(int countOfBewertungen) {
+		this.countOfBewertungen = countOfBewertungen;
 	}
 	
 }

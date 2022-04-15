@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.DatabasePassword;
+
 import database.DatabaseStudent;
+import database.DatabaseUser;
 import student.Student;
 import validierung.checkFormStudentData;
 /**
@@ -64,13 +65,14 @@ public class RegistrationPage extends HttpServlet {
 			// DATABASE PASSWORT WRITE DATA
 			// füg bei password einen usertype hinzu
 			try {
-				DatabasePassword.addPassword(student);
+				DatabaseUser.addUser(student);
 
 				// id holen von db
-				int id = DatabasePassword.getUserId(student.getEmail());
+				int id = DatabaseUser.getUserId(student.getEmail());
 				student.setId(id);
 				// DATABASE STUDENT WRITE DATA
 				DatabaseStudent.addStudent(student);
+
 				
 			} catch (Exception addStudentDataException) {
 				addStudentDataException.printStackTrace();

@@ -49,15 +49,21 @@
 							Schon Belegt
 						</c:if>
 						</c:if></td>
-					<td><a
+					<td>
+					<c:if test="${seminar.getStatus()}">
+					<a
 						href="toAddBewertung?method=toAddBewerung&seminarId=${seminar.getId()}">
 							Bewertung Geben <i class="fa fa-commenting-o" aria-hidden="true"></i>
-					</a></td>
+					</a>
+					</c:if>
 					
+					</td>
+					<c:if test="${!sessionScope.user.isUserStudent()}">
 					<td><a
 						href="editSeminar?method=editSeminar&seminarId=${seminar.getId()}">
 							Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 					</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 			</tbody>

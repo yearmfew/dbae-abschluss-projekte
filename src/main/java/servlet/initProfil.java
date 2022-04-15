@@ -15,6 +15,7 @@ import student.Student;
 
 /**
  * Servlet implementation class initProfil
+ * @author Anas Souseh
  */
 @WebServlet("/initProfil")
 public class initProfil extends HttpServlet {

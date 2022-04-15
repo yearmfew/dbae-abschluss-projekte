@@ -2,7 +2,11 @@ package validierung;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class checkFormAddSeminar {
 
 	public Map checkForm(String titel, String thema, String oberbegriff, String beschreibung) {

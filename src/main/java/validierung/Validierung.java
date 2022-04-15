@@ -62,11 +62,7 @@ public class Validierung {
 	}
 
 
-	// anas teil
-	//
-	public boolean pruefeEmail(String email) {
-		return Pattern.matches("([a-z\\.\\-\\+]){1,63}@([a-z\\.\\-\\+]){2,191}", email);
-	}
+	
 	// name auf 20 begrenzt. besteht aus mind 2 buchstaben
 
 	/**
@@ -97,13 +93,6 @@ public class Validierung {
 		boolean matchExists = match.find();
 		System.out.println("matchexists= " + matchExists);
 		return matchExists;
-
-		boolean passwordMatch= true;
-		if (match == null ) {
-			passwordMatch = false;
-			
-		} 
-		return passwordMatch;
 
 	}
 

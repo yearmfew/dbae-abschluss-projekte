@@ -1,5 +1,9 @@
 package user;
-
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class User {
 	
 private int id;

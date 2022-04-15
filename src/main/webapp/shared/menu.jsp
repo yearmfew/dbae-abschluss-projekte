@@ -8,7 +8,7 @@
 	<c:if test="${ sessionScope.validLogin }">
 		<a class="menu-item" href="index.jsp">Startseite</a>
 		<c:if test="${ sessionScope.user.isUserStudent() }">
-			<a class="menu-item" href="toProfil?method=toProfil&studentId=${sessionScope.user.getId()}">
+			<a class="menu-item" href="toProfileDetails?method=toProfileDetails&studentId=${sessionScope.user.getId()}">
 				Profil
 			</a>
 		</c:if>

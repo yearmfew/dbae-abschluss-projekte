@@ -55,7 +55,7 @@
 						<td>
 						<c:if test="${seminar.getStatus()}">
 								<a
-									href="toProfil?method=toProfil&studentId=${seminar.getZugewissenerStudent().getId()}">
+									href="toProfileDetails?method=toProfileDetails&studentId=${seminar.getZugewissenerStudent().getId()}">
 									${seminar.getZugewissenerStudent().getVorname()}
 									${seminar.getZugewissenerStudent().getNachname()} <i
 									class="fa fa-user" aria-hidden="true"></i>

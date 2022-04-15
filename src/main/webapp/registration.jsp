@@ -95,6 +95,8 @@
 						id="seminarthema">
 				</div>
 			</div>
+			<span class="warning">
+					${ buttonNotPressed } </span>
 
 			<div class="form-buttons">
 				<button type="submit" class="btn btn-primary">Registrieren</button>

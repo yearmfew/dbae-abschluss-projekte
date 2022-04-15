@@ -236,13 +236,6 @@ public class DatabaseStudent {
 							rs.getString("email"), rs.getString("matrikelnummer"), rs.getString("seminar"),
 							rs.getString("studiengang"), rs.getString("abschluss"), rs.getString("seminarthema"));
 
-					// Dozent dozent = DatabaseDozent.getDozentById(rs.getInt("dozent_id"));
-
-					// int studentId = rs.getInt("zugewissenerStudentId");
-					// student = DatabaseStudent.getStudentById(studentId);
-
-					// seminar.setZugewissenerStudent(student);
-					// seminar.setDozent(dozent);
 					studenten.add(student);
 				}
 			}
@@ -259,6 +252,19 @@ public class DatabaseStudent {
 				System.out.println("[SQL] Fehler bei getStudenData - Verbindung geschlossen");
 			}
 		}
+		
+		// es kann weg sein!!
+		
+		for(Student student : studenten) {
+			int durchnittlicheNote = DatabaseBewertungen.getNoteVonBewertung(student.getId());
+			int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
+			System.out.println("sada "+countOfBewertungen);
+			student.setCountOfBewertungen(countOfBewertungen);
+			student.setDurchnittlicheNote(durchnittlicheNote);
+		}
+		
+		
+		
 		return studenten;
 
 	}

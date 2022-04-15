@@ -17,7 +17,11 @@ import seminar.Seminar;
 import student.Student;
 import validierung.checkFormEditSeminarData;
 import validierung.checkFormStudentData;
-
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 @WebServlet("/FormUpdateProfil")
 public class FormUpdateProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +43,7 @@ public class FormUpdateProfil extends HttpServlet {
 
 		String passwort = request.getParameter("passwort");
 
-		if (passwort.equals(database.DatabaseProfilePage.getPasswort(student.getId()))) {
+		if (passwort.equals(database.DatabaseUser.getPasswort(student.getId()))) {
 
 			if (request.getParameter("vorname") != "")
 				vorname = request.getParameter("vorname");

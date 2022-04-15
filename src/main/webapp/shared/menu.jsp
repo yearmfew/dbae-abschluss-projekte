@@ -13,7 +13,6 @@
 	<c:if test="${ !sessionScope.user.isUserStudent() }">
 	<a class="menu-item" href="initProfil">Registierte Studenten</a>
 	</c:if>
-	<a class="menu-item" href="verwaltung.jsp">Vervaltung</a>
 	<a class="menu-item" href="initSeminaren">Seminaren</a>
 	
 	

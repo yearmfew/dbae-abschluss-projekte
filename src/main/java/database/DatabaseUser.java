@@ -15,38 +15,43 @@ import user.User;
 public class DatabaseUser {
 	private static Connection con = null;
 
-//	public static boolean adduser(User user) {
-//		boolean erfolg = false;
-//		try {
-//			con = DatabaseConnection.getConnection();
-//			/* ) */
-//			PreparedStatement pstmt = con.prepareStatement(
-//					"INSERT INTO user VALUES ("
-//							+ "?, " + // id - int
-//							"? " + // type - String
-//							")");
-//			pstmt.setInt(1, user.getId());
-//			pstmt.setString(2, user.getType());
-//			int zeilen = pstmt.executeUpdate();
-//			if (zeilen > 0) {
-//				erfolg = true;
-//
-//			}
-//
-//		} catch (SQLException e) {
-//			System.err.println("SQL Fehler bei adduser()" + e.toString());
-//		} finally {
-//			try {
-//				con.close();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//				System.out.println("[SQL] Fehler bei adduser() - Verbindung geschlossen");
-//			}
-//		}
-//
-//		return erfolg;
-//	}
+	/**
+	 * Speichert das Passwort des Users in die Datenbank.
+	 * 
+	 * @param
+	 * @return erfolg
+	 */
+	public static boolean addUser(Student student) {
+		boolean erfolg = false;
+		while (!erfolg) {
+			try {
+				con = DatabaseConnection.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("INSERT INTO users (passwort, email) VALUES (" + "?, " + "?" +
+						// "?" +
+								")");
+				pstmt.setString(1, student.getPasswort());
+				pstmt.setString(2, student.getEmail());
+				int zeilen = pstmt.executeUpdate();
+				if (zeilen > 0) {
+					erfolg = true;
+				}
+
+			} catch (SQLException e) {
+				System.err.println("SQL Fehler bei addPassword()" + e.toString());
+			} finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("[SQL] Fehler bei addPassword() - Verbindung geschlossen");
+				}
+			}
+
+		}
+		return erfolg;
+	}
 
 	
 	public static User getUserById(int id) {
@@ -112,4 +117,78 @@ public class DatabaseUser {
 		}
 		return user;
 	}
+
+	/**
+	 * Holt Passwort aus Datenbank und prüft ob die eingegebenen Passwörter
+	 * übereinstimmen.
+	 * 
+	 * @param kundenid des Users, Passwort des Users
+	 * @return erfolg
+	 */
+	
+
+	public static int getUserId(String email) {
+		System.out.println("Hello");
+		int userid = 0;
+		try {
+			con = DatabaseConnection.getConnection();
+			PreparedStatement pstmt = con.prepareStatement("SELECT id FROM users WHERE email= ?");
+			pstmt.setString(1, email);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs == null) {
+				System.out.println("Es gibt keinen Student mit diesem Id in db.");
+			} else {
+				while (rs.next()) {
+					userid = (rs.getInt("id"));
+				}
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			System.err.println("SQL Fehler bei getUserIdBEFOREDATEBASEUPLOAD" + e.toString());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("[SQL] Fehler bei getStudentId - Verbindung geschlossen");
+			}
+		}
+		System.out.println("id in email:" + userid);
+		return userid;
+	}
+
+	
+	public static String getPasswort(int id) {
+
+		String passwort = "0";
+		try {
+			con = DatabaseConnection.getConnection();
+
+			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM users WHERE id = ?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				passwort = rs.getString("passwort");
+
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			System.err.println("SQL Fehler bei getPasswort()" + e.toString());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("[SQL] Fehler bei getPasswort() - Verbindung geschlossen");
+			}
+		}
+
+		return passwort;
+	}
+	
 }

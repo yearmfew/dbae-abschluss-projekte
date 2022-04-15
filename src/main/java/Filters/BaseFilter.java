@@ -9,6 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
+ * @author Birol Yilmaz Anas Souseh
  * Servlet Filter implementation class BaseFilter
  */
 public class BaseFilter implements Filter 

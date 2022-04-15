@@ -15,11 +15,14 @@ import database.DatabaseUser;
 import dozent.Dozent;
 import database.DatabaseBewertungen;
 import database.DatabaseDozent;
-import database.DatabasePassword;
 import student.Student;
 import user.User;
 
-//Servlet welches die Logindaten des Besuchers auf Richtigkeit prüft
+
+/**
+ * Servlet welches die Logindaten des Besuchers auf Richtigkeit prüft
+ * @author Anas Souseh
+ */
 @WebServlet("/LoginPage")
 public class LoginPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -52,7 +55,8 @@ public class LoginPage extends HttpServlet {
 
 						Student student = DatabaseStudent.getStudentById(user.getId());
 						int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
-						session.setAttribute("countOfBewertungen", countOfBewertungen);
+						int durchnittlicheNote = DatabaseBewertungen.getNoteVonBewertung(student.getId());
+
 						session.setAttribute("student", student);
 						request.getRequestDispatcher("initSeminaren").forward(request, response);
 					} else if (user.getUserType().equals("dozent")) {

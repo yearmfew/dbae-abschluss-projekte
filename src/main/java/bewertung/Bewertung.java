@@ -1,7 +1,7 @@
 package bewertung;
 /**
  * 
- * @author Birol Yilmaz
+ * @author Birol Yilmaz, Anas Souseh
  *
  */
 public class Bewertung {
@@ -23,7 +23,6 @@ public class Bewertung {
 	private int schwerigkeitsgrad; // -1 = -, 0 = o, 1 = +
 	private String bewerterType; // student oder dozent
 	private int seminarId;
-
 	private int noteAusarbeitung;
 	
 	

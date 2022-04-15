@@ -35,7 +35,6 @@ public class initSeminaren extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		ArrayList <Seminar> seminaren = null;
-		
 		try {	
 		seminaren = database.DatabaseSeminaren.getSeminarsData();
 		}catch (seminarNotFoundException e){
@@ -44,11 +43,10 @@ public class initSeminaren extends HttpServlet {
 			return;
 		}
 		session.setAttribute("seminaren", seminaren);
-
 		request.getRequestDispatcher("seminaren.jsp").forward(request, response);
 
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -56,5 +54,4 @@ public class initSeminaren extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

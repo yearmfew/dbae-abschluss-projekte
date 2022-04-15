@@ -112,6 +112,15 @@ public class Validierung {
 	return bewertungRichtig;
 	
 	} 
+	
+	public boolean isPressed(String button) {
+		boolean buttonPressed = false;
+		// falls der button einen wert hat ist der gedrückt und return true
+		if (button != null) {
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
 
 
 }

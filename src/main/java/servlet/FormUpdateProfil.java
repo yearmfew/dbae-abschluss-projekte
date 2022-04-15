@@ -18,7 +18,8 @@ import student.Student;
 import validierung.checkFormEditSeminarData;
 import validierung.checkFormStudentData;
 /**
- * 
+ * Servlet welches das Bearbeiten der Profildaten erlaubt, falls man als student angemeldet ist.
+ * Zuordnung des Studenten über die student id.
  * @author Anas Souseh
  *
  */
@@ -64,20 +65,19 @@ public class FormUpdateProfil extends HttpServlet {
 
 			Map<String, String> result = new HashMap<String, String>();
 			checkFormStudentData cF = new checkFormStudentData();
-
+			// hashmap, welche bedingungen laut registration page auch bei profilbearbeitung prüft
 			result = cF.checkForm(vorname, nachname, email, passwort, studiengang, matrikelnummer, seminar, abschluss,
 					seminarthema);
-
+			// falls es keine fehler gibt
 			if (result.size() == 0) {
 				Student updatedStudent = new Student(student.getId(), vorname, nachname, email, matrikelnummer,
 						studiengang, seminar, abschluss, seminarthema);
 				boolean erfolg = database.DatabaseStudent.updateStudent(updatedStudent);
 				if (erfolg) {
-					// weiterleitung auf richtige page muss ich mir noch überlegen....
 					session.setAttribute("student", updatedStudent);
 					request.getRequestDispatcher("profil.jsp").forward(request, response);
 				} else {
-					System.out.println("Problem");
+					System.out.println("Problem bei updatestudent");
 				}
 			}
 

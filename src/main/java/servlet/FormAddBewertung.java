@@ -19,8 +19,8 @@ import exceptions.addBewertungException;
 import seminar.Seminar;
 
 /**
- * @author Birol Yilmaz, Anas Souseh
- * Servlet implementation class FormAddBewertung
+ * @author Birol Yilmaz, Anas Souseh Servlet implementation class
+ *         FormAddBewertung
  */
 @WebServlet("/FormAddBewertung")
 public class FormAddBewertung extends HttpServlet {
@@ -60,7 +60,6 @@ public class FormAddBewertung extends HttpServlet {
 		int id = seminar.getZugewissenerStudent().getId();
 		int bewerterId = user.getId();
 		int seminarId = seminar.getId();
-		// FOR ANAS:::::
 
 		Bewertung bewertung = new Bewertung(id, foliengestaltung, spraclichePresentation, presentationstil,
 				zeitlicheGestaltung, verstandnis, inhaltlicheAufbereitung, verknuepfungMitAnderen, diskassionFuehrung,
@@ -68,6 +67,7 @@ public class FormAddBewertung extends HttpServlet {
 
 		checkFormAddBewertung cf = new checkFormAddBewertung();
 
+		// ANAS:::::
 		if (!user.isUserStudent()) {
 
 			// anforderung 8
@@ -83,15 +83,9 @@ public class FormAddBewertung extends HttpServlet {
 			bewertung.setReferenzen(referenzen);
 			bewertung.setSprachlicheGestaltung(sprachlicheGestaltung);
 			bewertung.setSchwerigkeitsgrad(schwierigkeitsgrad);
-			
-			// berechne Note und gebe die auf profil des studenten aus
-			//int noteAusarbeitung = (int) (umfang+referenzen+sprachlicheGestaltung+schwierigkeitsgrad)/4;
-			// System.out.println("Note" + noteAusarbeitung);
 
-			// bewertung.setNote(noteAusarbeitung);
-			
-			
-			
+			// berechne Note und gebe die auf profil des studenten aus
+
 			// checkform welches prüft ob der user falsche daten für benotung eingibt
 			Map ergebnis = cf.checkForm(foliengestaltung, spraclichePresentation, presentationstil, zeitlicheGestaltung,
 					verstandnis, inhaltlicheAufbereitung, verknuepfungMitAnderen, diskassionFuehrung,
@@ -114,9 +108,8 @@ public class FormAddBewertung extends HttpServlet {
 
 			try {
 				DatabaseBewertungen.addBewertung(bewertung);
-				
+
 			} catch (addBewertungException e) {
-				// TODO Auto-generated catch block
 				request.getRequestDispatcher("toAddBewertung").forward(request, response);
 				e.printStackTrace();
 				return;
@@ -124,23 +117,12 @@ public class FormAddBewertung extends HttpServlet {
 				request.getRequestDispatcher("initSeminaren").forward(request, response);
 			}
 		} else {
-			// fehler erklarungen erstellung mit for loop
+			// warnhinweise ausgeben durch validierung for loop
 			for (Object i : result.keySet()) {
 				request.setAttribute((String) i, (String) result.get(i));
 			}
 			request.getRequestDispatcher("addBewertung.jsp").forward(request, response);
 		}
-
-//		System.out.println("foliengestaltung = "+foliengestaltung );
-//		System.out.println("spraclichePresentation = "+spraclichePresentation );
-//		System.out.println("presentationstil = "+presentationstil );
-//		System.out.println("zeitlicheGestaltung = "+zeitlicheGestaltung );
-//		System.out.println("verstandnis = "+verstandnis );
-//		System.out.println("inhaltlicheAufbereitung = "+inhaltlicheAufbereitung );
-//		System.out.println("verknuepfungMitAnderen = "+verknuepfungMitAnderen );
-//		System.out.println("diskassionFuehrung = "+diskassionFuehrung );
-//		System.out.println("beteiligungDiskassionen = "+beteiligungDiskassionen );
-//		System.out.println("kommentar = "+kommentar );
 
 	}
 

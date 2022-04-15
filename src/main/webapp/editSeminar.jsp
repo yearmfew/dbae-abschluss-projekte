@@ -1,9 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="shared/header.jsp" />
-<div class="page-containerMenu">
-	<jsp:include page="shared/menu-loggedin.jsp" />
-</div>
-<div class=" page-containerContent ">
+
 	<div class="seminarPageContent">
 		<h1>Edit Seminar</h1>
 		
@@ -59,6 +56,7 @@
 				id="oberbegriff"
 				placeholder="${sessionScope.seminar.getOberbegriff()}"
 				>
+				<span class="warning">  ${ oberbegriffFehler } </span>
 			</div>
 			<div class="mb-2">
 				<label for="beschreibung" class="form-label">Beschreibung</label> 
@@ -80,8 +78,8 @@
 				id="semester"
 				placeholder="${sessionScope.seminar.getSemester()}"
 				>
-			</div>
 				<span class="warning">  ${ semesterFehler } </span>
+			</div>
 			<button type="submit" class="btn btn-primary">Speichere Anderungen</button>
 		</form>
 	</div>

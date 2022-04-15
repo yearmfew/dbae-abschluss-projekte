@@ -8,24 +8,28 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import dozent.Dozent;
+import exceptions.addSeminarException;
+import exceptions.seminarNotFoundException;
 import seminar.Seminar;
 import student.Student;
-
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class DatabaseSeminaren {
 
 	private static Connection con = null;
 
 	// GET METHODS
-	public static ArrayList getSeminarsData() {
+	public static ArrayList<Seminar> getSeminarsData() throws seminarNotFoundException{
 		ArrayList<Seminar> seminaren = new ArrayList<Seminar>();
 
 		try {
 			con = DatabaseConnection.getConnection();
 			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM seminar");
 			ResultSet rs = pstmt.executeQuery();
-			if (rs == null) {
-				System.out.println("Es gibt keinen Seminar in db.");
-			} else {
+			
 				while (rs.next()) {
 					Seminar seminar = new Seminar(rs.getInt("id"), rs.getString("titel"), rs.getString("oberbegriff"),
 							rs.getString("beschreibung"), rs.getString("thema"), rs.getString("semester"),
@@ -37,25 +41,27 @@ public class DatabaseSeminaren {
 					seminar.setDozent(dozent);
 					seminaren.add(seminar);
 				}
-			}
+			
 
 		} catch (SQLException e) {
 			System.err.println(e);
-			System.err.println("SQL Fehler bei getKontoId" + e.toString());
+			System.err.println("SQL Fehler bei getSeminarsData()" + e.toString());
 		} finally {
 			try {
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("[SQL] Fehler bei getKontoId - Verbindung geschlossen");
+				System.out.println("[SQL] Fehler bei getSeminarsData() - Verbindung geschlossen");
 			}
 		}
+		if(seminaren.size() == 0) throw new seminarNotFoundException("Es gibt keinen Seminar in Datenbank");
 		return seminaren;
 
 	}
 
-	public static Seminar getSeminarById(int id) {
+	public static Seminar getSeminarById(int id) throws seminarNotFoundException {
+		
 
 		Seminar seminar = null;
 		try {
@@ -63,9 +69,6 @@ public class DatabaseSeminaren {
 			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM seminar WHERE id= ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs == null) {
-				System.out.println("Es gibt keinen seminer mit diesem Id in db.");
-			} else {
 				while (rs.next()) {
 					Seminar mySeminar = new Seminar(rs.getInt("id"), rs.getString("titel"), rs.getString("oberbegriff"),
 							rs.getString("beschreibung"), rs.getString("thema"), rs.getString("semester"),
@@ -76,12 +79,8 @@ public class DatabaseSeminaren {
 					mySeminar.setZugewissenerStudent(student);
 					mySeminar.setDozent(dozent);
 					seminar = mySeminar;
-
-				
-					// System.out.println(rs.getInt("student_id"));
-
 				}
-			}
+			
 
 		} catch (SQLException e) {
 			System.err.println(e);
@@ -95,14 +94,14 @@ public class DatabaseSeminaren {
 				System.out.println("[SQL] Fehler bei getKontoId - Verbindung geschlossen");
 			}
 		}
-
+		if(seminar == null) throw new seminarNotFoundException("seminar with id " + id + " not found");
 		return seminar;
 
 	}
 
 	// ADD METHODS
 
-	public static boolean addSeminar(Seminar seminar) {
+	public static boolean addSeminar (Seminar seminar) throws addSeminarException {
 		boolean erfolg = false;
 
 		try {
@@ -126,7 +125,6 @@ public class DatabaseSeminaren {
 			pstmt.setString(6, seminar.getThema());
 
 			int zeilen = pstmt.executeUpdate();
-			System.out.println("zeilen:: " + zeilen);
 			if (zeilen > 0) {
 				erfolg = true;
 
@@ -143,7 +141,7 @@ public class DatabaseSeminaren {
 				System.out.println("[SQL] Fehler bei addSeminar() - Verbindung geschlossen");
 			}
 		}
-
+		if(!erfolg) throw new addSeminarException();
 		return erfolg;
 
 	}

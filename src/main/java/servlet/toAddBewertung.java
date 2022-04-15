@@ -8,21 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import user.User;
+import exceptions.seminarNotFoundException;
+import seminar.Seminar;
 
 /**
- * 
  * @author Birol Yilmaz
- *
+ * Servlet implementation class toAddBewertung
  */
-@WebServlet("/belegen")
-public class belegen extends HttpServlet {
+@WebServlet("/toAddBewertung")
+public class toAddBewertung extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public belegen() {
+    public toAddBewertung() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +31,25 @@ public class belegen extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
-		int seminarId = Integer.parseInt(request.getParameter("seminarId"));
-	    User user = (User) session.getAttribute("user");
-	    int studentId = user.getId();
-	    boolean result = database.DatabaseSeminaren.belegSeminar(seminarId, studentId);
-	    if(result) request.getRequestDispatcher("initSeminaren").forward(request, response);	
-	    
+		Seminar seminar = null;
+		try {
+			seminar = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
+			//seminar = database.DatabaseSeminaren.getSeminarById(1234);
+		} catch (seminarNotFoundException e) {
+			request.getRequestDispatcher("initSeminaren").forward(request, response);
+			session.setAttribute("seminarNotFound", e.getMessage());
+			e.printStackTrace();
+			return;
+		}
+		
+		session.setAttribute("seminar", seminar);
+		request.getRequestDispatcher("addBewertung.jsp").forward(request, response);
+
+		
 	}
 
+	
 
 }

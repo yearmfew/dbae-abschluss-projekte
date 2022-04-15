@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Seminarmanager</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/menu.css" type="text/css" />
@@ -18,3 +19,7 @@
 <body>
 
 	<div class="page-container">
+		<div class="page-containerMenu">
+			<jsp:include page="menu.jsp" />
+		</div>
+		<div class=" page-containerContent ">

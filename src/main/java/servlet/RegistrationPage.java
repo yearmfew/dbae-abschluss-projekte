@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,15 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.DatabasePassword;
-import database.DatabaseStudent;
-import student.RegEx;
-import student.Student;
 
+import database.DatabaseStudent;
+import database.DatabaseUser;
+import student.Student;
+import validierung.checkFormStudentData;
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 @WebServlet("/RegistrationPage")
 public class RegistrationPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ArrayList<Student> studenten = new ArrayList<Student>();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,12 +32,11 @@ public class RegistrationPage extends HttpServlet {
 		String nachname = request.getParameter("nachname");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String error = "";
 		String matrikelnummer = request.getParameter("matrikelnummer");
 		String studiengang = (request.getParameter("studiengang"));
 		String seminar = (request.getParameter("seminar"));
 		String abschluss = (request.getParameter("abschluss"));
-		String seminarthema = (request.getParameter("seminarthema")); // kann auch leer sein -> noch machen
+		String seminarthema = (request.getParameter("seminarthema"));
 
 		request.setAttribute("vorname", vorname);
 		request.setAttribute("nachname", nachname);
@@ -47,68 +49,49 @@ public class RegistrationPage extends HttpServlet {
 		request.setAttribute("seminarthema", seminarthema);
 		HttpSession session = request.getSession();
 
-		ArrayList<Student> sessionStudenten = (ArrayList<Student>) session.getAttribute("studenten");
+		Student student = new Student(vorname, nachname, email, password, matrikelnummer, studiengang, seminar,
+				abschluss, seminarthema);
 
-		Student newStudent = new Student(vorname, nachname, email, matrikelnummer, studiengang, seminar, abschluss,
-				seminarthema);
-		studenten.add(newStudent);
-		
-		session.setAttribute("studenten", studenten);
-
-		boolean isEmailExist = DatabaseStudent.isEmailExist(email);
-		
 		// muss alles in checkforma data weil ich das auch bei profil bearbeiten brauche
-		
+
 		Map<String, String> result = new HashMap<String, String>();
+		checkFormStudentData cF = new checkFormStudentData();
+
+		result = cF.checkForm(vorname, nachname, email, password, studiengang, matrikelnummer, seminar, abschluss,
+				seminarthema);
 		// prüfe im formular ob die formatbedingungen nach regex passen
-		if (RegEx.pruefeEmail(email)) {// email prüfen else error
-			if (RegEx.pruefeName(nachname) && RegEx.pruefeName(vorname)) { // name prüfen else error
-				if (RegEx.pruefeMatrikelnummer(matrikelnummer)) {
-					if (RegEx.pruefePasswort(password)) {
-						if (!isEmailExist) { // checkt ob email schon einmal in datenbank gespeichert
-							// DATABASE CONNECTION:
+		if (result.size() == 0) {
 
-							if (DatabaseStudent.addStudent(newStudent)) {
-								
-								DatabasePassword.addPassword(newStudent); //könnte falsch sein
-								
-								session.setAttribute("DB add", "okay");
-								request.getRequestDispatcher("login.jsp").forward(request, response);
-								
-								
-								
-								
-							} else {
-								session.setAttribute("DB add", "wrong");
-								request.getRequestDispatcher("registration.jsp").forward(request, response);
+			// DATABASE PASSWORT WRITE DATA
+			// füg bei password einen usertype hinzu
+			try {
+				DatabaseUser.addUser(student);
 
-							}
-						} else {
-							// resultset unnötig. noch rausnehmen
-							result.put("emailAlreadyUsed", "Es gibt bereits einen Account mit dieser Email");
-						}
+				// id holen von db
+				int id = DatabaseUser.getUserId(student.getEmail());
+				student.setId(id);
+				// DATABASE STUDENT WRITE DATA
+				DatabaseStudent.addStudent(student);
 
-					} else {
-						error += "Passwort entspricht nicht dem Format! ";
-					}
-				} else {
-					error += "Matrikelnummer entspricht nicht dem Format! ";
-				}
-
-			} else {
-				error += "Name entspricht nicht dem Format! ";
+				
+			} catch (Exception addStudentDataException) {
+				addStudentDataException.printStackTrace();
+				request.getRequestDispatcher("registration.jsp").forward(request, response);
+			} finally {
+				session.setAttribute("student", student);
+				request.getRequestDispatcher("regtistration.jsp").forward(request, response);
 			}
-
+			
+			session.setAttribute("DB add", "okay");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
-			error += "Email entspricht nicht dem Format! ";
+			// fehlermeldung im formular ausgeben
+			for (Object i : result.keySet()) {
+				request.setAttribute((String) i, (String) result.get(i));
+			}
+			request.getRequestDispatcher("registration.jsp").forward(request, response);
+
 		}
-		
-		
-		// fehlt noch das checkbox pflicht ist mache ich morgen
 
-		request.setAttribute("error", error);
-
-		request.getRequestDispatcher("registration.jsp").forward(request, response);
 	}
-
 }

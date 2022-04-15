@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import seminar.Seminar;
 import student.Student;
 
 /**
  * Servlet implementation class initProfil
+ * @author Anas Souseh
  */
 @WebServlet("/initProfil")
 public class initProfil extends HttpServlet {
@@ -21,10 +24,10 @@ public class initProfil extends HttpServlet {
 			// TODO Auto-generated method stub
 			HttpSession session = request.getSession();
 
-			Student student = database.DatabaseProfilePage.getStudentData(0);
-			session.setAttribute("student", student);
-
-			request.getRequestDispatcher("profil.jsp").forward(request, response);
+			ArrayList <Student> studenten = database.DatabaseStudent.getStudentData();
+			session.setAttribute("studenten", studenten);
+			
+			request.getRequestDispatcher("studentenProfile.jsp").forward(request, response);
 
 		}
 

@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import exceptions.seminarNotFoundException;
 import seminar.Seminar;
 
 import java.util.ArrayList;
 /**
+ * @author Birol Yilmaz
  * Servlet implementation class seminar
  */
 @WebServlet("/initSeminaren")
@@ -32,8 +34,15 @@ public class initSeminaren extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-
-		ArrayList <Seminar> seminaren = database.DatabaseSeminaren.getSeminarsData();
+		ArrayList <Seminar> seminaren = null;
+		
+		try {	
+		seminaren = database.DatabaseSeminaren.getSeminarsData();
+		}catch (seminarNotFoundException e){
+			session.setAttribute("keinSeminarInDB", e.getMessage());
+			e.printStackTrace();
+			return;
+		}
 		session.setAttribute("seminaren", seminaren);
 
 		request.getRequestDispatcher("seminaren.jsp").forward(request, response);

@@ -8,21 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import exceptions.seminarNotFoundException;
-import seminar.Seminar;
+import database.DatabaseBewertungen;
+import student.Student;
 
 /**
- * @author Birol Yilmaz
- * Servlet implementation class link
+ * Servlet implementation class toProfileDetails
+ * @author Anas Souseh
  */
-@WebServlet("/toSeminarDetails")
-public class toSeminarDetails extends HttpServlet {
+@WebServlet("/toProfileDetails")
+public class toProfileDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public toSeminarDetails() {
+    public toProfileDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +32,20 @@ public class toSeminarDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		Seminar seminar = null;
-		try {
-			seminar = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
-			//seminar = database.DatabaseSeminaren.getSeminarById(1234);
-		} catch (seminarNotFoundException e) {
-			request.getRequestDispatcher("initSeminaren").forward(request, response);
-			session.setAttribute("seminarNotFound", e.getMessage());
-			e.printStackTrace();
-			return;
-		}
+		response.getWriter().append("Served at: ").append(request.getContextPath());	
 		
-		session.setAttribute("seminar", seminar);
-		request.getRequestDispatcher("seminarDetails.jsp").forward(request, response);
-
+		// Student student = database.DatabaseSeminaren.getSeminarById(Integer.parseInt(request.getParameter("seminarId")));
+		Student student = database.DatabaseStudent.getStudentById(Integer.parseInt(request.getParameter("studentId")));
+		HttpSession session = request.getSession();
+		// ka ob das klappt
+		int note = database.DatabaseBewertungen.getNoteVonBewertung(student.getId());
+		int countOfBewertungen = DatabaseBewertungen.getCountOfBewertungenById(student.getId());
+		student.setDurchnittlicheNote(note);
+		student.setCountOfBewertungen(countOfBewertungen);
+		session.setAttribute("student", student);
+		request.getRequestDispatcher("profil.jsp").forward(request, response);
+		
+		
 	}
 
 	/**
@@ -56,7 +55,5 @@ public class toSeminarDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-
 
 }

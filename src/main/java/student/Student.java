@@ -2,6 +2,11 @@ package student;
 import java.util.ArrayList;
 
 import seminar.Seminar;
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 public class Student {
 	private int id;
 	private String vorname;
@@ -14,6 +19,8 @@ public class Student {
 	private String seminarthema;
 	private String seminar;
 	private ArrayList<Seminar> beteiligteSeminaren;
+	private int durchnittlicheNote;
+	private int countOfBewertungen;
 	
 	
 	
@@ -24,9 +31,14 @@ public class Student {
 		
 	}
 	
-	
-	public Student(String vorname, String nachname, String email,  String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+	public Student(int id, String passwort) {
 		super();
+		this.id = id;
+		this.passwort = passwort;
+	}
+	public Student( String vorname, String nachname, String email,String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+		super();
+	
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;
@@ -37,6 +49,32 @@ public class Student {
 		this.seminarthema = seminarthema;
 	}
 	
+	public Student( String vorname, String nachname, String email, String passwort,  String matrikelnummer, String studiengang, String seminar, String abschluss, String seminarthema) {
+		super();
+	
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.email = email;
+		this.passwort = passwort;
+		this.matrikelnummer = matrikelnummer;
+		this.studiengang = studiengang;
+		this.seminar = seminar;
+		this.abschluss = abschluss;
+		this.seminarthema = seminarthema;
+	}
+	public Student(int id, String vorname, String nachname, String email,  String matrikelnummer, 
+			String studiengang, String seminar, String abschluss, String seminarthema) {
+		super();
+		this.id = id;
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.email = email;
+		this.matrikelnummer = matrikelnummer;
+		this.studiengang = studiengang;
+		this.seminar = seminar;
+		this.abschluss = abschluss;
+		this.seminarthema = seminarthema;
+	}
 	
 	public int getId() {
 		return id;
@@ -124,15 +162,43 @@ public class Student {
 	public String getMatrikelnummer() {
 		return matrikelnummer;
 	}
-	//public ArrayList<Seminar> getBeteiligteSeminaren() {
-	//	return beteiligteSeminaren;
-	// }
+	public ArrayList<Seminar> getBeteiligteSeminaren() {
+		return beteiligteSeminaren;
+	 }
 	public void setBeteiligteSeminaren(ArrayList<Seminar> beteiligteSeminaren) {
 		this.beteiligteSeminaren = beteiligteSeminaren;
 	}
 	
 	public String getPasswort() {
 		return passwort;
+	}
+
+	/**
+	 * @return the durchnittlicheNote
+	 */
+	public int getDurchnittlicheNote() {
+		return durchnittlicheNote;
+	}
+
+	/**
+	 * @param durchnittlicheNote the durchnittlicheNote to set
+	 */
+	public void setDurchnittlicheNote(int durchnittlicheNote) {
+		this.durchnittlicheNote = durchnittlicheNote;
+	}
+
+	/**
+	 * @return the countOfBewertungen
+	 */
+	public int getCountOfBewertungen() {
+		return countOfBewertungen;
+	}
+
+	/**
+	 * @param countOfBewertungen the countOfBewertungen to set
+	 */
+	public void setCountOfBewertungen(int countOfBewertungen) {
+		this.countOfBewertungen = countOfBewertungen;
 	}
 	
 }

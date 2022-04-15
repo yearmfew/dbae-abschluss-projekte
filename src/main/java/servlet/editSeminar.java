@@ -15,6 +15,7 @@ import dozent.Dozent;
 import exceptions.seminarNotFoundException;
 
 /**
+ * @author Birol Yilmaz
  * Servlet implementation class editSeminar
  */
 @WebServlet("/editSeminar")

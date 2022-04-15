@@ -10,7 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import student.Student;
 import java.util.UUID;
-
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 public class DatabasePassword {
 	private static Connection con = null;
 
@@ -60,44 +64,7 @@ public class DatabasePassword {
 	 * @param kundenid des Users, Passwort des Users
 	 * @return erfolg
 	 */
-	public static boolean checkPassword(int userId, String password) {
-		boolean loginSuccessfull = false;
-		try {
-			con = DatabaseConnection.getConnection();
-			String passwordDB = null;
-
-			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM user WHERE userid= ?");
-			pstmt.setInt(1, userId);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				passwordDB = rs.getString("passwort");
-			}
-			System.out.println("pass DB Student: " + passwordDB);
-			// falls kein student sich anmeldet kommt hier null also muss es ein dozent sein
-			if (passwordDB == null) {
-				loginSuccessfull = false;
-				// falls es ein student ist und die daten richtig sind
-			} else {
-				if (passwordDB.equals(password)) {
-					loginSuccessfull = true;
-				}
-
-			}
-		} catch (SQLException e) {
-			System.err.println(e);
-			System.err.println("SQL Fehler bei checkPassword()" + e.toString());
-		} finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("[SQL] Fehler bei checkPassword() - Verbindung geschlossen");
-			}
-		}
-		return loginSuccessfull;
-	}
+	
 
 	public static int getUserId(String email) {
 		System.out.println("Hello");
@@ -131,41 +98,83 @@ public class DatabasePassword {
 		return userid;
 	}
 
-	public static boolean checkPasswordDozent(int dozentId, String password) {
-		boolean loginSuccessfull = false;
-		try {
-			con = DatabaseConnection.getConnection();
-			String passwordDB = null;
-
-			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM passwort WHERE userid= ?");
-			pstmt.setInt(1, dozentId);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				passwordDB = rs.getString("passwort");
-			}
-			System.out.println("pass DB Dozent: " + passwordDB);
-			// falls kein dozent sich anmeldet kommt hier null also muss es ein student sein
-			if (passwordDB == null) {
-				loginSuccessfull = false;
-				// falls es ein dozent ist und die daten richtig sind
-			} else {
-				if (passwordDB.equals(password)) {
-					loginSuccessfull = true;
-				}
-			}
-		} catch (SQLException e) {
-			System.err.println(e);
-			System.err.println("SQL Fehler bei checkPasswordDozent()" + e.toString());
-		} finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("[SQL] Fehler bei checkPasswordDozent() - Verbindung geschlossen");
-			}
-		}
-		return loginSuccessfull;
-	}
+	
+	
+	
+//	public static boolean checkPassword(int userId, String password) {
+//		boolean loginSuccessfull = false;
+//		try {
+//			con = DatabaseConnection.getConnection();
+//			String passwordDB = null;
+//
+//			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM user WHERE userid= ?");
+//			pstmt.setInt(1, userId);
+//			ResultSet rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//				passwordDB = rs.getString("passwort");
+//			}
+//			System.out.println("pass DB Student: " + passwordDB);
+//			// falls kein student sich anmeldet kommt hier null also muss es ein dozent sein
+//			if (passwordDB == null) {
+//				loginSuccessfull = false;
+//				// falls es ein student ist und die daten richtig sind
+//			} else {
+//				if (passwordDB.equals(password)) {
+//					loginSuccessfull = true;
+//				}
+//
+//			}
+//		} catch (SQLException e) {
+//			System.err.println(e);
+//			System.err.println("SQL Fehler bei checkPassword()" + e.toString());
+//		} finally {
+//			try {
+//				con.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				System.out.println("[SQL] Fehler bei checkPassword() - Verbindung geschlossen");
+//			}
+//		}
+//		return loginSuccessfull;
+//	}
+	
+//	public static boolean checkPasswordDozent(int dozentId, String password) {
+//		boolean loginSuccessfull = false;
+//		try {
+//			con = DatabaseConnection.getConnection();
+//			String passwordDB = null;
+//
+//			PreparedStatement pstmt = con.prepareStatement("SELECT passwort FROM passwort WHERE userid= ?");
+//			pstmt.setInt(1, dozentId);
+//			ResultSet rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//				passwordDB = rs.getString("passwort");
+//			}
+//			System.out.println("pass DB Dozent: " + passwordDB);
+//			// falls kein dozent sich anmeldet kommt hier null also muss es ein student sein
+//			if (passwordDB == null) {
+//				loginSuccessfull = false;
+//				// falls es ein dozent ist und die daten richtig sind
+//			} else {
+//				if (passwordDB.equals(password)) {
+//					loginSuccessfull = true;
+//				}
+//			}
+//		} catch (SQLException e) {
+//			System.err.println(e);
+//			System.err.println("SQL Fehler bei checkPasswordDozent()" + e.toString());
+//		} finally {
+//			try {
+//				con.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				System.out.println("[SQL] Fehler bei checkPasswordDozent() - Verbindung geschlossen");
+//			}
+//		}
+//		return loginSuccessfull;
+//	}
 }

@@ -7,7 +7,11 @@ import java.sql.SQLException;
 
 import student.Student;
 import user.User;
-
+/**
+ * 
+ * @author Anas Souseh, Birol Yilmaz
+ *
+ */
 public class DatabaseUser {
 	private static Connection con = null;
 

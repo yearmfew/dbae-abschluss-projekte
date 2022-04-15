@@ -18,7 +18,11 @@ import student.Student;
 import user.User;
 import validierung.checkFormEditSeminarData;
 import validierung.checkFormStudentData;
-
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 @WebServlet("/RegistrationPage")
 public class RegistrationPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;

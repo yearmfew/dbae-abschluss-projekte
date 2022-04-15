@@ -3,22 +3,28 @@ package validierung;
 import java.util.regex.*;
 
 import database.DatabaseStudent;
-
+/**
+ * 
+ * @author Birol Yilmaz, Anas Souseh
+ *
+ */
 public class Validierung {
 	public Validierung() {
 		
 	}
 	
 	/*
+	 * @author Birol Yilmaz
 	 * Kontrolliert ob der text fürht zu kein sql injection.
 	 * @param text, text zu kontrollieren
 	 * @return true oder false
 	 * */
 	public boolean textFelderCheck(String text) {
 		
-		return Pattern.matches("([A-Z]|[a-z]|[\\-|\\&|\\.|\\,|\\:|\\;])*", text);
+		return Pattern.matches("([A-Z]|[a-z]|\\s+|[\\-|\\&|\\.|\\,|\\:|\\;])*", text);
 	}
 	/**
+	 * @author Anas Souseh
 	 * Es kontrolliert ob der Name in der gewünchte Format ist.
 	 * @param name, vor- oder nachname
 	 * @return true oder false. wenn name gultig ist True usw. 
@@ -27,6 +33,7 @@ public class Validierung {
 		return Pattern.matches("[A-Z]+([a-z]|[\\- ])*", name);
 	}
 	/**
+	 * @author Anas Souseh
 	 * Es kontrolliert ob email in der gewünschten format ist.
 	 * gewünshte Format: 
 	 * • Sie besteht aus zwei Teilen, die mit einem @ getrennt werden
@@ -45,11 +52,15 @@ public class Validierung {
 	public boolean countCheck(String text, int count ) {
 		return Pattern.matches("[A-Z]+([a-z]|[\\- ]){2,"+count+"}", text);
 	}
-	//anas teil
+	/**
+	 * @author Anas Souseh
+	 * @param email
+	 * @return
+	 */
 	public  boolean pruefeEmail(String email) {
 		return Pattern.matches("([a-z\\.\\-\\+]){1,63}@([a-z\\.\\-\\+]){2,191}", email);
 	}
-
+	
 	public boolean pruefeName(String name) {
 		return Pattern.matches("[A-Z]{1}[a-z]+([\\s-]{1})*([A-Z]{1}[a-z]{2,20})*", name);
 	}
@@ -62,9 +73,7 @@ public class Validierung {
 	public boolean pruefePasswort(String password) {
 		Pattern passwordOK = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[^(a-zA-Z_0-9)])");
 		Matcher match = passwordOK.matcher(password);
-		System.out.println("pw is= " + password);
 		boolean passwordMatch= true;
-		System.out.println("passwordmatch = " + passwordMatch);
 		if (match == null ) {
 			passwordMatch = false;
 			
@@ -79,9 +88,4 @@ public class Validierung {
 		return isEmailExist;
 	}
 	
-	
-	
-	
-	
-	//(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^(a-zA-Z_0-9)]) //lookahead funktioniert nicht
 }

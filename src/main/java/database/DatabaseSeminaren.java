@@ -12,7 +12,11 @@ import exceptions.addSeminarException;
 import exceptions.seminarNotFoundException;
 import seminar.Seminar;
 import student.Student;
-
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class DatabaseSeminaren {
 
 	private static Connection con = null;

@@ -12,6 +12,7 @@ import exceptions.seminarNotFoundException;
 import seminar.Seminar;
 
 /**
+ * @author Birol Yilmaz
  * Servlet implementation class toAddBewertung
  */
 @WebServlet("/toAddBewertung")

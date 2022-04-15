@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 import user.User;
 
 /**
- * Servlet implementation class belegen
+ * 
+ * @author Birol Yilmaz
+ *
  */
 @WebServlet("/belegen")
 public class belegen extends HttpServlet {

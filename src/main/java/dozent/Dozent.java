@@ -2,6 +2,12 @@ package dozent;
 import java.util.ArrayList;
 
 import seminar.Seminar;
+
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class Dozent {
 
 	private int id;

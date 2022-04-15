@@ -23,7 +23,12 @@ public class Bewertung {
 	private int schwerigkeitsgrad; // -1 = -, 0 = o, 1 = +
 	private String bewerterType; // student oder dozent
 	private int seminarId;
+
+	private int noteAusarbeitung;
 	
+	
+	
+
 
 
 	/**
@@ -578,7 +583,25 @@ public class Bewertung {
 		this.seminarId = seminarId;
 	}
 
+	/**
+	 * @return the seminarId
+	 */
+	public int getNote() {
+		return noteAusarbeitung;
+	}
 
+
+
+
+
+
+
+	/**
+	 * @param seminarId the seminarId to set
+	 */
+	public void setNote(int noteAusarbeitung) {
+		this.noteAusarbeitung = noteAusarbeitung;;
+	}
 	
 	
 	

@@ -19,6 +19,7 @@ import exceptions.addBewertungException;
 import seminar.Seminar;
 
 /**
+ * @author Birol Yilmaz, Anas Souseh
  * Servlet implementation class FormAddBewertung
  */
 @WebServlet("/FormAddBewertung")

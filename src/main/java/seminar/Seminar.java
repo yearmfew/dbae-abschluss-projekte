@@ -1,6 +1,11 @@
 package seminar;
 import dozent.Dozent;
 import student.Student;
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class Seminar {
 
 	private int id;
@@ -53,19 +58,6 @@ public class Seminar {
 		this.semester = semester;
 		this.status = status;
 		
-	}
-	
-	public Seminar(int id, String titel, Dozent dozent, String oberbegriff, String beschreibung,
-			Student zugewissenerStudent, String semester, boolean status) {
-		super();
-		this.id = id;
-		this.titel = titel;
-		this.dozent = dozent;
-		this.oberbegriff = oberbegriff;
-		this.beschreibung = beschreibung;
-		this.zugewissenerStudent = zugewissenerStudent;
-		this.semester = semester;
-		this.status = status;
 	}
 
 	public int getId() {

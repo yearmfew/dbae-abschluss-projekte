@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /** Klasse um die Verbindung zur SQL-Datenbank zu erstellen
- * @author Jan Sarstedt
+ * @author Birol Yilmaz, Anas Souseh
  */
 public class DatabaseConnection {
 	

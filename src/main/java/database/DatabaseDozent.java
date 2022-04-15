@@ -8,7 +8,11 @@ import java.util.ArrayList;
 
 import dozent.Dozent;
 import seminar.Seminar;
-
+/**
+ * 
+ * @author Birol Yilmaz, Anas Souseh
+ *
+ */
 public class DatabaseDozent {
 
 	private static Connection con = null;
@@ -77,6 +81,7 @@ public class DatabaseDozent {
 		
 		return dozenten;
 	}
+	
 	public static int getId(String email) {
 		int id = 0;
 

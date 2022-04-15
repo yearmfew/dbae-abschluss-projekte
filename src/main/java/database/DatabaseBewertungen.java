@@ -1,5 +1,4 @@
 package database;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,10 +13,18 @@ import exceptions.seminarNotFoundException;
 import seminar.Seminar;
 import student.Student;
 import user.User;
-
+/**
+ * 
+ * @author Birol Yilmaz
+ *
+ */
 public class DatabaseBewertungen {
 	private static Connection con = null;
-	
+	/**
+	 * 
+	 * @return
+	 * @throws getBewertungException
+	 */
 	public static ArrayList<Bewertung> getBewertungen() throws getBewertungException {
 		ArrayList<Bewertung> bewertungen = new ArrayList<Bewertung>();
 
@@ -59,7 +66,12 @@ public class DatabaseBewertungen {
 
 	}
 	
-	
+	/**
+	 * 
+	 * @param bewertung
+	 * @return erfolg
+	 * @throws addBewertungException
+	 */
 	public static boolean addBewertung(Bewertung bewertung) throws addBewertungException {
 			boolean erfolg = false;
 			
@@ -129,7 +141,11 @@ public class DatabaseBewertungen {
 			return erfolg;
 	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public static int getCountOfBewertungenById(int id) {
 		int count = 0;
 		

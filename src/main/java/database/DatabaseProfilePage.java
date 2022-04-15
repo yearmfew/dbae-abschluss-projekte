@@ -6,7 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import student.Student;
-
+/**
+ * 
+ * @author Anas Souseh
+ *
+ */
 public class DatabaseProfilePage {
 	private static Connection con = null;
 

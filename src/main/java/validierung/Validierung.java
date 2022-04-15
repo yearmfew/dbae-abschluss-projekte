@@ -85,5 +85,14 @@ public class Validierung {
 		isEmailExist = DatabaseStudent.isEmailExist(email);
 		return isEmailExist;
 	}
+	
+	public boolean benotungsFeldCheck(int bewertung) {
+		boolean bewertungRichtig = false;
+		if (bewertung == 1 | bewertung == 0 | bewertung == -1) {
+			bewertungRichtig = true;
+		} 
+	return bewertungRichtig;
+	
+	} 
 
 }

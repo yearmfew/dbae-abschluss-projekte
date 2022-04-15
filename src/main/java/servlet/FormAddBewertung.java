@@ -57,7 +57,7 @@ public class FormAddBewertung extends HttpServlet {
 		Seminar seminar = (Seminar) session.getAttribute("seminar");
 		User user = (User) session.getAttribute("user");
 		int id = seminar.getZugewissenerStudent().getId();
-		int bewerterId = user.getId();	
+		int bewerterId = user.getId();
 		int seminarId = seminar.getId();
 		// FOR ANAS:::::
 
@@ -65,19 +65,55 @@ public class FormAddBewertung extends HttpServlet {
 				zeitlicheGestaltung, verstandnis, inhaltlicheAufbereitung, verknuepfungMitAnderen, diskassionFuehrung,
 				beteiligungDiskassionen, kommentar, bewerterId, seminarId);
 
-		if (!user.isUserStudent()) {
-			// TODO hinzufüge hier extra details... mit set methoden..
-//			 @param umfang
-//			 * @param referenzen
-//			 * @param sprachlicheGestaltung
-//			 * @param schwerigkeitsgrad
-		}
 		checkFormAddBewertung cf = new checkFormAddBewertung();
+
+		if (!user.isUserStudent()) {
+
+			// anforderung 8
+			// ausarbeitungsbewertung durch dozent
+
+			int umfang = Integer.parseInt(request.getParameter("umfang"));
+			int referenzen = Integer.parseInt(request.getParameter("referenzen"));
+			int sprachlicheGestaltung = Integer.parseInt(request.getParameter("sprachlicheGestaltung"));
+			int schwierigkeitsgrad = Integer.parseInt(request.getParameter("schwierigkeitsgrad"));
+
+			// methoden welche zur später zu datenbank geschickt werden
+			bewertung.setUmfang(umfang);
+			bewertung.setReferenzen(referenzen);
+			bewertung.setSprachlicheGestaltung(sprachlicheGestaltung);
+			bewertung.setSchwerigkeitsgrad(schwierigkeitsgrad);
+			
+			// berechne Note und gebe die auf profil des studenten aus
+			//int noteAusarbeitung = (int) (umfang+referenzen+sprachlicheGestaltung+schwierigkeitsgrad)/4;
+			// System.out.println("Note" + noteAusarbeitung);
+
+			// bewertung.setNote(noteAusarbeitung);
+			
+			
+			
+			// checkform welches prüft ob der user falsche daten für benotung eingibt
+			Map ergebnis = cf.checkForm(foliengestaltung, spraclichePresentation, presentationstil, zeitlicheGestaltung,
+					verstandnis, inhaltlicheAufbereitung, verknuepfungMitAnderen, diskassionFuehrung,
+					beteiligungDiskassionen, umfang, referenzen, sprachlicheGestaltung, schwierigkeitsgrad);
+			if (ergebnis.size() == 0) {
+				System.out.println("keine fehler bei bewertung prüfung");
+			} else {
+				// fehler erklarungen erstellung mit for loop
+				for (Object i : ergebnis.keySet()) {
+					request.setAttribute((String) i, (String) ergebnis.get(i));
+				}
+				System.out.println("es gibt fehler bei bewertungprüfung");
+				request.getRequestDispatcher("addBewertung.jsp").forward(request, response);
+			}
+
+		}
+
 		Map result = cf.checkForm(kommentar);
 		if (result.size() == 0) {
 
 			try {
 				DatabaseBewertungen.addBewertung(bewertung);
+				
 			} catch (addBewertungException e) {
 				// TODO Auto-generated catch block
 				request.getRequestDispatcher("toAddBewertung").forward(request, response);
